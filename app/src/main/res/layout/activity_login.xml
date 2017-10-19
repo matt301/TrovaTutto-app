@@ -14,15 +14,12 @@
         android:id="@+id/landingfrag"
         android:name="com.example.matteo.trovatutto.LandingFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2" />
+        android:layout_height="match_parent" />
 
     <fragment
         android:id="@+id/loginfrag"
         android:name="com.example.matteo.trovatutto.LoginFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-      />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
