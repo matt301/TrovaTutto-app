@@ -10,18 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.matteo.trovatutto.LoginActivity">
 
-    <fragment android:name="com.example.matteo.trovatutto.LandingFragment"
+    <fragment
+        android:id="@+id/landingfrag"
+        android:name="com.example.matteo.trovatutto.LandingFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
+
+    <fragment
+        android:id="@+id/loginfrag"
+        android:name="com.example.matteo.trovatutto.LoginFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:id="@+id/landingfrag"/>
-
-
-
-    <fragment android:name="com.example.matteo.trovatutto.LoginFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:id="@+id/loginfrag"/>
+      />
 
 </LinearLayout>
