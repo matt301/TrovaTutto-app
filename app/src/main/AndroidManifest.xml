@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="TrovaTutto(ma anche no)">
+            android:label="TrovaTutto">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
