@@ -1,23 +1,16 @@
 package com.example.matteo.trovatutto;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.View.OnClickListener;
+// TODO: Settare l'OnClickListener o l' OnFling
+
 
 public class LandingFragment extends Fragment {
-
-    private OnSelectionListener listener;
-
-    public interface OnSelectionListener{
-
-    }
-        public LandingFragment() {
-        // Required empty public constructor
-    }
-
 
 
     @Override
@@ -27,16 +20,5 @@ public class LandingFragment extends Fragment {
         return view;
     }
 
-/*
-    @Override
-    public void onAttach(Activity activity) {
-
-    }
-
-    @Override
-    public void onDetach() {
-
-    }
-  */
 
 }

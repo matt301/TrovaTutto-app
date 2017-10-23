@@ -1,23 +1,15 @@
 package com.example.matteo.trovatutto;
 
-import android.app.ActionBar;
+
+
 import android.app.Activity;
-
 import android.os.Bundle;
-
-import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
-
-import 	android.view.MotionEvent;
-
-import android.widget.Toast;
-import android.app.FragmentManager
-import 	android.app.FragmentTransaction
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 
 
-
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity{
 
 
 
@@ -27,8 +19,11 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         if (savedInstanceState == null)
         {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new LandingFragment())).commit();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            LandingFragment fragment = new LandingFragment();
+            fragmentTransaction.add(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
 
         }
 
