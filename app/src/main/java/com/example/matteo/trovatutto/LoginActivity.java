@@ -9,7 +9,7 @@ import android.app.FragmentTransaction;
 
 
 
-public class LoginActivity extends Activity{
+public class LoginActivity extends  Activity{
 
 
 
@@ -26,6 +26,7 @@ public class LoginActivity extends Activity{
             fragmentTransaction.commit();
 
         }
+
 
 
     }

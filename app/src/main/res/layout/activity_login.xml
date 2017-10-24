@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
@@ -12,4 +12,4 @@
     tools:context="com.example.matteo.trovatutto.LoginActivity">
 
 
-</FrameLayout>
+</RelativeLayout>
