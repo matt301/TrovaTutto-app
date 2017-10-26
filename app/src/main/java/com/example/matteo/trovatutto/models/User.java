@@ -2,7 +2,7 @@ package com.example.matteo.trovatutto.models;
 
 public class User {
 
-    private String name;
+    private String nome;
     private String email;
 
     private String password;
@@ -12,7 +12,7 @@ public class User {
 
 
     public String getName() {
-        return name;
+        return nome;
     }
 
     public String getEmail() {
@@ -20,7 +20,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nome = name;
     }
 
     public void setEmail(String email) {
