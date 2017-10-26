@@ -31,7 +31,7 @@ public class LandingFragment extends Fragment implements OnClickListener {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         // TODO: Settare animazione custom (risolvere problema crash)
        //  transaction.setCustomAnimations(,R.anim.zoom_in);
-        transaction.hide(this);
+        transaction.replace(R.id.fragment_frame,new LoginFragment());
         transaction.commit();
     }
 
