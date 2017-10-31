@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,9 +90,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     }
     private void loginProcess(String email,String password){
 
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
