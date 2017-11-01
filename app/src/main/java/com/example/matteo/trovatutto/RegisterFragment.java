@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     private AppCompatButton btn_register;
-    private EditText et_email,et_password,et_name,et_cognome, et_datanascita, et_indirizzo, et_ntel;
+    private EditText et_email,et_password,et_name, et_cognome, et_datanascita, et_indirizzo, et_ntel;
     private TextView tv_login;
     private ProgressBar progress;
 
@@ -71,11 +71,16 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
                 String name = et_name.getText().toString();
                 String email = et_email.getText().toString();
                 String password = et_password.getText().toString();
+                String cognome = et_cognome.getText().toString();
+                String indirizzo = et_indirizzo.getText().toString();
+                String data_di_nascita = et_datanascita.getText().toString();
+                String ntel = et_ntel.getText().toString();
+
 
                 if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
 
                     progress.setVisibility(View.VISIBLE);
-                    registerProcess(name,email,password);
+                    registerProcess(name,cognome,email,password,indirizzo,data_di_nascita,ntel);
 
                 } else {
 
