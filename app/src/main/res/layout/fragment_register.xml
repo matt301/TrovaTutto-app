@@ -19,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="TrovaTutto"
+        android:text="Registrati eddaiiiiii!!!"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="22sp" />
 
@@ -116,13 +117,27 @@
                 android:hint="indirizzo" />
         </android.support.design.widget.TextInputLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Register"
-        android:textColor="@android:color/white" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7">
+
+            <EditText
+                android:id="@+id/et_ntel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_numerotel"
+                android:hint="Numero di telefono" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:text="Register"
+            android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/tv_login"
