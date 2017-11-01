@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     private AppCompatButton btn_register;
-    private EditText et_email,et_password,et_name;
+    private EditText et_email,et_password,et_name,et_cognome, et_datanascita, et_indirizzo, et_ntel;
     private TextView tv_login;
     private ProgressBar progress;
 
@@ -46,6 +46,10 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
         et_name = (EditText)view.findViewById(R.id.et_name);
         et_email = (EditText)view.findViewById(R.id.et_email);
         et_password = (EditText)view.findViewById(R.id.et_password);
+        et_cognome = (EditText)view.findViewById(R.id.et_cognome);
+        et_datanascita = (EditText)view.findViewById(R.id.et_datanascita);
+        et_indirizzo = (EditText)view.findViewById(R.id.et_indirizzo);
+        et_ntel = (EditText)view.findViewById(R.id.et_ntel);
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
@@ -83,7 +87,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     }
 
-    private void registerProcess(String name, String email,String password){
+    private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String data_di_nascita,String ntel){
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -98,8 +102,12 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
         User user = new User();
         user.setName(name);
+        user.setCognome(cognome);
         user.setEmail(email);
         user.setPassword(password);
+        user.setIndirizzo(indirizzo);
+        user.setData(data_di_nascita);
+        user.setNtel(ntel);
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.REGISTER_OPERATION);
         request.setUser(user);
