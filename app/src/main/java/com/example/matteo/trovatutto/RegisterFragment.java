@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     private AppCompatButton btn_register;
-    private EditText et_email,et_password,et_name, et_cognome, et_datanascita, et_indirizzo, et_ntel;
+    private EditText et_email,et_password,et_name, et_cognome, et_datanascita, et_indirizzo, et_ntel,et_descrizione;
     private TextView tv_login;
     private ProgressBar progress;
 
@@ -50,6 +50,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
         et_datanascita = (EditText)view.findViewById(R.id.et_datanascita);
         et_indirizzo = (EditText)view.findViewById(R.id.et_indirizzo);
         et_ntel = (EditText)view.findViewById(R.id.et_ntel);
+        et_descrizione = (EditText)view.findViewById(R.id.et_descrizione);
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
@@ -75,6 +76,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
                 String indirizzo = et_indirizzo.getText().toString();
                 String data_di_nascita = et_datanascita.getText().toString();
                 String ntel = et_ntel.getText().toString();
+                String descrizione = et_descrizione.getText().toString();
 
 
                 if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
@@ -92,7 +94,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     }
 
-    private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String datadinascita,String ntel){
+    private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String datadinascita,String ntel, String descrizione){
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -105,6 +107,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
+        //Creazione dell'oggetto User contenente tutte le info
         User user = new User();
         user.setName(name);
         user.setCognome(cognome);
@@ -113,6 +116,9 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
         user.setIndirizzo(indirizzo);
         user.setDatadinascita(datadinascita);
         user.setNtel(ntel);
+        user.setDescrizione(descrizione);
+
+        //Invio richiesta di registrazione al server
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.REGISTER_OPERATION);
         request.setUser(user);
