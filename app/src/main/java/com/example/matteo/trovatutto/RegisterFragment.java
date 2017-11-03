@@ -92,7 +92,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     }
 
-    private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String data_di_nascita,String ntel){
+    private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String datadinascita,String ntel){
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -111,7 +111,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
         user.setEmail(email);
         user.setPassword(password);
         user.setIndirizzo(indirizzo);
-        user.setData(data_di_nascita);
+        user.setDatadinascita(datadinascita);
         user.setNtel(ntel);
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.REGISTER_OPERATION);

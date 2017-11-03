@@ -6,9 +6,9 @@ public class User {
     private String cognome;
     private String email;
     private String indirizzo;
-    private String data;
+    private String datadinascita;
     private String ntel;
-    private String bio;
+    private String descrizione;
 
     private String password;
     private String old_password;
@@ -32,13 +32,13 @@ public class User {
         return indirizzo;
     }
 
-    public String getData() {return data;}
+    public String getDatadinascita() {return datadinascita;}
 
     public String getNtel() {
         return ntel;
     }
 
-    public String getBio() {return bio;}
+    public String getDescrizione() {return descrizione;}
 
 
 
@@ -62,14 +62,14 @@ public class User {
         this.indirizzo = indirizzo;
     }
 
-    public void setData(String data) { this.data = data;}
+    public void setDatadinascita(String datadinascita) { this.datadinascita = datadinascita;}
 
     public void setNtel(String ntel) {
         this.ntel = ntel;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
 
