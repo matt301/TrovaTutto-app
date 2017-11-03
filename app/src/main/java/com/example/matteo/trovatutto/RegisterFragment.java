@@ -82,7 +82,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
                 if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
 
                     progress.setVisibility(View.VISIBLE);
-                    registerProcess(name,cognome,email,password,indirizzo,data_di_nascita,ntel);
+                    registerProcess(name,cognome,email,password,indirizzo,data_di_nascita,ntel,descrizione);
 
                 } else {
 
