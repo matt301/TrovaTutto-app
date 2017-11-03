@@ -32,7 +32,7 @@
         android:layout_weight="1">
 
         <EditText
-            android:id="@+id/et_name"
+            android:id="@+id/et_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_person"
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_numerotel"
                 android:hint="Numero di telefono"
-                android:inputType="phone"/>
+                android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_description"
-                android:hint="Descrizione" />
+                android:hint="Descrizione (Opzionale)" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton

@@ -13,8 +13,9 @@ public class Constants {
     public static final String FAILURE = "failure";
     public static final String IS_LOGGED_IN = "isLoggedIn";
 
-    public static final String NAME = "name";
+    public static final String NAME = "nome";
     public static final String EMAIL = "email";
+    public static final String BIRTHDATE = "datadinascita";
 
 
     public static final String TAG = "TrovaTutto";

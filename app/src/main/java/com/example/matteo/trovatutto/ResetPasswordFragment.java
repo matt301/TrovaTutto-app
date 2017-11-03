@@ -158,7 +158,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
 
         User user = new User();
         user.setEmail(email);
-       // user.setCode(code);
+        user.setCode(code);
         user.setPassword(password);
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.RESET_PASSWORD_FINISH);
@@ -199,7 +199,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     }
 
     private void startCountdownTimer(){
-        countDownTimer = new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(86400000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tv_timer.setText("Time remaining : " + millisUntilFinished / 1000);

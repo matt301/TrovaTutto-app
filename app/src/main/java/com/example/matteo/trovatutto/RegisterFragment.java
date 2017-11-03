@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
@@ -27,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
     private AppCompatButton btn_register;
-    private EditText et_email,et_password,et_name, et_cognome, et_datanascita, et_indirizzo, et_ntel,et_descrizione;
+    private EditText et_email,et_password,et_nome, et_cognome, et_datanascita, et_indirizzo, et_ntel,et_descrizione;
     private TextView tv_login;
     private ProgressBar progress;
 
@@ -43,7 +44,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
         btn_register = (AppCompatButton)view.findViewById(R.id.btn_register);
         tv_login = (TextView)view.findViewById(R.id.tv_login);
-        et_name = (EditText)view.findViewById(R.id.et_name);
+        et_nome = (EditText)view.findViewById(R.id.et_nome);
         et_email = (EditText)view.findViewById(R.id.et_email);
         et_password = (EditText)view.findViewById(R.id.et_password);
         et_cognome = (EditText)view.findViewById(R.id.et_cognome);
@@ -69,7 +70,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
 
             case R.id.btn_register:
 
-                String name = et_name.getText().toString();
+                String nome = et_nome.getText().toString();
                 String email = et_email.getText().toString();
                 String password = et_password.getText().toString();
                 String cognome = et_cognome.getText().toString();
@@ -79,10 +80,10 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
                 String descrizione = et_descrizione.getText().toString();
 
 
-                if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+                if(!nome.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
 
                     progress.setVisibility(View.VISIBLE);
-                    registerProcess(name,cognome,email,password,indirizzo,data_di_nascita,ntel,descrizione);
+                    registerProcess(nome,cognome,email,password,indirizzo,data_di_nascita,ntel,descrizione);
 
                 } else {
 

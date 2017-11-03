@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    private TextView tv_name,tv_email,tv_message;
+    private TextView tv_nome,tv_email,tv_message;
     private SharedPreferences pref;
     private AppCompatButton btn_change_password,btn_logout;
     private EditText et_old_password,et_new_password;
@@ -48,14 +48,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         pref = getActivity().getPreferences(0);
-        tv_name.setText("Welcome : "+pref.getString(Constants.NAME,""));
+        tv_nome.setText("Welcome : "+pref.getString(Constants.NAME,""));
         tv_email.setText(pref.getString(Constants.EMAIL,""));
 
     }
 
     private void initViews(View view){
 
-        tv_name = (TextView)view.findViewById(R.id.tv_name);
+        tv_nome = (TextView)view.findViewById(R.id.tv_nome);
         tv_email = (TextView)view.findViewById(R.id.tv_email);
         btn_change_password = (AppCompatButton)view.findViewById(R.id.btn_chg_password);
         btn_logout = (AppCompatButton)view.findViewById(R.id.btn_logout);
@@ -150,8 +150,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         User user = new User();
         user.setEmail(email);
-       // user.setOld_password(old_password);
-       // user.setNew_password(new_password);
+        user.setOld_password(old_password);
+        user.setNew_password(new_password);
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.CHANGE_PASSWORD_OPERATION);
         request.setUser(user);

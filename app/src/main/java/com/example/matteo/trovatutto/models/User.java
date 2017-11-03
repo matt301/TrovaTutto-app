@@ -73,7 +73,7 @@ public class User {
     }
 
 
-    /*
+
     public void setOld_password(String old_password) {
         this.old_password = old_password;
     }
@@ -85,5 +85,5 @@ public class User {
     public void setCode(String code) {
         this.code = code;
     }
-*/
+
 }
