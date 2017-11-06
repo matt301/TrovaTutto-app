@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pref = getSharedPreferences("userInfo",0);
+        pref = getSharedPreferences("userInfo",MODE_PRIVATE);
         initFragment();
     }
 
