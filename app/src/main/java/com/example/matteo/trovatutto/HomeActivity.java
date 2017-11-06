@@ -51,9 +51,9 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        pref = getSharedPreferences("userInfo",0);
+        pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
-        nomeUser = (TextView) this.findViewById(R.id.nome1);
+        nomeUser = (TextView) findViewById(R.id.nome1);
         if( nomeUser!= null) {
             nomeUser.setText(pref.getString(Constants.NAME, ""));
         }

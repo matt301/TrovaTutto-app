@@ -3,6 +3,7 @@ package com.example.matteo.trovatutto;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,7 +49,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        pref = getActivity().getSharedPreferences("userInfo",0);
+        pref = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         tv_nome.setText("Welcome : "+pref.getString(Constants.NAME,""));
         tv_email.setText(pref.getString(Constants.EMAIL,""));
 
@@ -192,5 +193,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
             }
         });
+
+
     }
 }

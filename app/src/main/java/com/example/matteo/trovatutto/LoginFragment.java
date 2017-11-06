@@ -2,6 +2,7 @@ package com.example.matteo.trovatutto;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
     private void initViews(View view){
 
-        pref = getActivity().getPreferences(0);
+        pref = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
         btn_login = (AppCompatButton)view.findViewById(R.id.btn_login);
         tv_register = (TextView)view.findViewById(R.id.tv_register);
@@ -134,7 +135,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
 
                 ServerResponse resp = response.body();
-                Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
 
 
 
@@ -184,9 +185,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         Intent openHome = new Intent(getActivity(), HomeActivity.class);
         startActivity(openHome);
 
-       /* Fragment profile = new ProfileFragment();
+       /*Fragment profile = new ProfileFragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_frame,profile);
-        ft.commit(); */
+        ft.commit();
+        */
     }
 }
