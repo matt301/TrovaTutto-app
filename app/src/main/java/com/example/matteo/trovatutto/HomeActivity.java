@@ -53,8 +53,10 @@ public class HomeActivity extends AppCompatActivity
 
         pref = getSharedPreferences("userInfo",0);
 
-        nomeUser.setText( pref.getString(Constants.NAME,""));
-        nomeUser = (TextView) this.findViewById(R.id.nomeUser);
+        nomeUser = (TextView) this.findViewById(R.id.nome1);
+        if( nomeUser!= null) {
+            nomeUser.setText(pref.getString(Constants.NAME, ""));
+        }
 
         //Dio cane maiale che no va sta APP di merda tutta colpa di Zigna mannaggia la madonna che non fa nulla  e colora con i pastelli
         //Intanto la mia roba è l'unica cosa che va
