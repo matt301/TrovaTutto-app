@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="fill_horizontal"
+    android:background="@drawable/landing"
     android:fitsSystemWindows="true"
     tools:context="com.example.matteo.trovatutto.MainActivity">
 
