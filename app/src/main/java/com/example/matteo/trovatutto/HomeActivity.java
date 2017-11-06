@@ -15,12 +15,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
         boolean viewIsHome = true;
         private SharedPreferences pref;
+        private TextView nomeUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,10 @@ public class HomeActivity extends AppCompatActivity
 
         pref = getSharedPreferences("userInfo",0);
 
+        nomeUser.setText( pref.getString(Constants.NAME,""));
+        nomeUser = (TextView) this.findViewById(R.id.nomeUser);
+
+        //Dio cane maiale che no va sta APP di merda tutta colpa di Zigna mannaggia la madonna che non fa nulla  e colora con i pastelli
     }
 
 
