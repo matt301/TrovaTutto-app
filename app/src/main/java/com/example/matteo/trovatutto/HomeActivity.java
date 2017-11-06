@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity
         nomeUser = (TextView) this.findViewById(R.id.nomeUser);
 
         //Dio cane maiale che no va sta APP di merda tutta colpa di Zigna mannaggia la madonna che non fa nulla  e colora con i pastelli
+        //Intanto la mia roba è l'unica cosa che va
     }
 
 

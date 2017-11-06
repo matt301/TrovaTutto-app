@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.util.JsonReader;
@@ -15,10 +16,18 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,6 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.matteo.trovatutto.Constants.TAG;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener{
@@ -37,11 +48,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     private SharedPreferences pref;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+
         View view = inflater.inflate(R.layout.fragment_login,container,false);
         initViews(view);
+
         return view;
     }
 
@@ -60,6 +75,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         btn_login.setOnClickListener(this);
         tv_register.setOnClickListener(this);
         tv_reset_password.setOnClickListener(this);
+
+
+
     }
 
     @Override
@@ -137,7 +155,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
                 progress.setVisibility(View.INVISIBLE);
-                Log.d(Constants.TAG,"failed");
+                Log.d(TAG,"failed");
                 Snackbar.make(getView(), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
 
             }
