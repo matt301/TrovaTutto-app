@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -47,7 +48,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        pref = getActivity().getPreferences(0);
+        pref = getActivity().getSharedPreferences("userInfo",0);
         tv_nome.setText("Welcome : "+pref.getString(Constants.NAME,""));
         tv_email.setText(pref.getString(Constants.EMAIL,""));
 
@@ -133,10 +134,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void goToLogin(){
 
-        Fragment login = new LoginFragment();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+
+
+      /* Fragment login = new LoginFragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_frame,login);
-        ft.commit();
+        ft.commit();*/
     }
 
     private void changePasswordProcess(String email,String old_password,String new_password){
