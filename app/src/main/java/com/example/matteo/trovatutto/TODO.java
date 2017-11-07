@@ -14,4 +14,13 @@ package com.example.matteo.trovatutto;
         -Pubblicazione su FB
         -Culi Nudi
 
+        Per mettere l'immagine al centro : android:gravity="center_horizontal"
+
+
+        Per schermo intero: nella funzione dell'onCreate prima di tutto
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
 */
