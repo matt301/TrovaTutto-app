@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="fill_horizontal"
     android:background="@drawable/sfondo"
+
     android:fitsSystemWindows="true"
     tools:context="com.example.matteo.trovatutto.MainActivity">
 
