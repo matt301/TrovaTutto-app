@@ -13,6 +13,8 @@ package com.example.matteo.trovatutto;
   TODO:-Geolocalizzazione
   TODO:-Pubblicazione su FB
   TODO:-Culi Nudi
+  TODO:Tette Grosse
+  TODO:midjet p0rn
 
         Per mettere l'immagine al centro : android:gravity="center_horizontal"
 
