@@ -12,6 +12,6 @@ package com.example.matteo.trovatutto;
         -Notifiche
         -Geolocalizzazione
         -Pubblicazione su FB
-
+        -Culi Nudi
 
 */
