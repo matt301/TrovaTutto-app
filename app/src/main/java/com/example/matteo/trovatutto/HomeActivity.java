@@ -1,11 +1,13 @@
 package com.example.matteo.trovatutto;
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -57,12 +59,24 @@ public class HomeActivity extends AppCompatActivity
         txtProfileName.setText((pref.getString(Constants.NAME, "")+" "+(pref.getString(Constants.SURNAME, ""))));
         TextView txtEmail = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.tv_email);
         txtEmail.setText(pref.getString(Constants.EMAIL, ""));
+        initFragment();
 
 
 
         //Dio cane maiale che no va sta APP di merda tutta colpa di Zigna mannaggia la madonna che non fa nulla  e colora con i pastelli
         //Intanto la mia roba è l'unica cosa che va (e invece non era vero)
     }
+    private void initFragment(){
+        android.app.Fragment fragment;
+
+            fragment = new HomeFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame,fragment);
+            ft.commit();
+    }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -153,7 +167,7 @@ public class HomeActivity extends AppCompatActivity
         }
 
       if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, fragment).commit();
 
