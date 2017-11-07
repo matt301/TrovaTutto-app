@@ -4,7 +4,6 @@ package com.example.matteo.trovatutto;
  * Created by aless on 07/11/2017.
  */
 /*TODO:-Upload information profile ( I campi lasciati vuoi non verrano modificati )
-  TODO:-Button Home from provv Profile
   TODO:-Home Segnalazioni
   TODO:-Crea Segnalazioni
   TODO:-Side NavBar with : Home, Crea Segnalazione, ProfileDati, ProfileMieSegnalazioni
@@ -12,9 +11,6 @@ package com.example.matteo.trovatutto;
   TODO:-Notifiche
   TODO:-Geolocalizzazione
   TODO:-Pubblicazione su FB
-  TODO:-Culi Nudi
-  TODO:Tette Grosse
-  TODO:midjet p0rn
 
         Per mettere l'immagine al centro : android:gravity="center_horizontal"
 
