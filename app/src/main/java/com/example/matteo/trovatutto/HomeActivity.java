@@ -1,11 +1,11 @@
 package com.example.matteo.trovatutto;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,6 +23,7 @@ public class HomeActivity extends AppCompatActivity
         boolean viewIsHome = true;
         private SharedPreferences pref;
         private TextView nomeUser;
+
 
 
     @Override
@@ -43,7 +44,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -129,8 +130,9 @@ public class HomeActivity extends AppCompatActivity
    //--nuova
     public void displayView(int viewId) {
 
-        Fragment fragment = null;
-        String title = getString(R.string.app_name);
+
+        Fragment fragment;
+        String title;
 
         switch (viewId) {
             case R.id.nav_profilo:
@@ -138,21 +140,32 @@ public class HomeActivity extends AppCompatActivity
                 title = "Profilo";
                 viewIsHome= false;
                 break;
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                title = "Home";
+                viewIsHome = true;
+                break;
+            default:
+                fragment = new HomeFragment();
+                title = "Home";
+                viewIsHome = true;
+
         }
 
-        if (fragment != null) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.drawer_layout, fragment);
-            ft.commit();
+      if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, fragment).commit();
+
         }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
         // set the toolbar title
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
 
 
     }

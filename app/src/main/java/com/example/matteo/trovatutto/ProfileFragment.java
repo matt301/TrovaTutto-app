@@ -1,12 +1,13 @@
 package com.example.matteo.trovatutto;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -38,7 +39,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private EditText et_old_password,et_new_password;
     private AlertDialog dialog;
     private ProgressBar progress;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
