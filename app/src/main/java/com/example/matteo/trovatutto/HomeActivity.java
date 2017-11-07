@@ -32,12 +32,13 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Culi Nudi", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Eh volevi!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -51,17 +52,16 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        pref = getSharedPreferences("userInfo",MODE_PRIVATE);
+        TextView txtProfileName = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.nome1);
+        txtProfileName.setText((pref.getString(Constants.NAME, "")+" "+(pref.getString(Constants.SURNAME, ""))));
+        TextView txtEmail = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.tv_email);
+        txtEmail.setText(pref.getString(Constants.EMAIL, ""));
 
-        nomeUser = (TextView) findViewById(R.id.nome1);
-        if( nomeUser!= null) {
-            nomeUser.setText(pref.getString(Constants.NAME, ""));
-        }
+
 
         //Dio cane maiale che no va sta APP di merda tutta colpa di Zigna mannaggia la madonna che non fa nulla  e colora con i pastelli
-        //Intanto la mia roba è l'unica cosa che va
+        //Intanto la mia roba è l'unica cosa che va (e invece non era vero)
     }
-
 
     @Override
     public void onBackPressed() {
