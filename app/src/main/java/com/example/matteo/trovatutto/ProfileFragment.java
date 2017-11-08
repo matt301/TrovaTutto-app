@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    private TextView tv_nome,tv_email,tv_message,tv_address,tv_description;
+    private TextView tv_nome,tv_email,tv_message,tv_birthdate,tv_address,tv_ntel,tv_description;
     private SharedPreferences pref;
     private AppCompatButton btn_change_password,btn_logout;
     private EditText et_old_password,et_new_password;
@@ -53,19 +53,22 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         pref = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         tv_nome.setText((pref.getString(Constants.NAME, "")+" "+(pref.getString(Constants.SURNAME, ""))));
-                //("Welcome : "+pref.getString(Constants.NAME,""));
         tv_email.setText(pref.getString(Constants.EMAIL,""));
+        tv_birthdate.setText(pref.getString(Constants.BIRTHDATE,""));
+        tv_ntel.setText(pref.getString(Constants.NTEL,""));
         tv_address.setText(pref.getString(Constants.ADDRESS,""));
         tv_description.setText(pref.getString(Constants.BIO,""));
+
     }
 
     private void initViews(View view){
 
         tv_nome = (TextView)view.findViewById(R.id.tv_nome);
         tv_email = (TextView)view.findViewById(R.id.tv_email);
+        tv_birthdate = (TextView)view.findViewById(R.id.tv_birthdate);
+        tv_ntel = (TextView)view.findViewById(R.id.tv_ntel);
         tv_address = (TextView)view.findViewById(R.id.tv_address);
         tv_description = (TextView)view.findViewById(R.id.tv_description);
-
 
         btn_change_password = (AppCompatButton)view.findViewById(R.id.btn_chg_password);
         btn_logout = (AppCompatButton)view.findViewById(R.id.btn_logout);
