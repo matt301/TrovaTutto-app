@@ -4,6 +4,7 @@ package com.example.matteo.trovatutto;
  * Created by aless on 07/11/2017.
  */
 /*TODO:-Upload information profile ( I campi lasciati vuoi non verrano modificati )
+  TODO:- Gestire BackPressed
   TODO:-Home Segnalazioni
   TODO:-Crea Segnalazioni
   TODO:-Side NavBar with : Home, Crea Segnalazione, ProfileDati, ProfileMieSegnalazioni
