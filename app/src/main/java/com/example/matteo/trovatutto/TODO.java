@@ -21,4 +21,7 @@ package com.example.matteo.trovatutto;
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
+        Blu icone : #08005a
+        Bianco in trasparenza: #CCFFFFFF
+
 */
