@@ -1,7 +1,6 @@
 package com.example.matteo.trovatutto;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -62,10 +61,6 @@ public class HomeActivity extends AppCompatActivity
         initFragment();
 
 
-
-        //Dio cane maiale che no va sta APP di merda tutta colpa di Zigna mannaggia la madonna che non fa nulla  e colora con i pastelli
-        //Intanto la mia roba è l'unica cosa che va
-        //(e invece non era vero)
     }
     private void initFragment(){
         android.app.Fragment fragment;
@@ -120,25 +115,6 @@ public class HomeActivity extends AppCompatActivity
         displayView(item.getItemId());
         return true;
 
-     /*   if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_profilo) {
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;*/
     }
 
 
