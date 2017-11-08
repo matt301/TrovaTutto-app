@@ -126,15 +126,15 @@ public class HomeActivity extends AppCompatActivity
         String title;
 
         switch (viewId) {
-            case R.id.nav_profilo:
-                fragment = new ProfileFragment();
-                title = "Profilo";
-                viewIsHome= false;
-                break;
             case R.id.nav_home:
                 fragment = new HomeFragment();
                 title = "Home";
                 viewIsHome = true;
+                break;
+            case R.id.nav_profilo:
+                fragment = new ProfileFragment();
+                title = "Profilo";
+                viewIsHome= false;
                 break;
             default:
                 fragment = new HomeFragment();
