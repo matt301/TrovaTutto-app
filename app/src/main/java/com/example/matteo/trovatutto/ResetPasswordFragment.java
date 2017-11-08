@@ -199,7 +199,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     }
 
     private void startCountdownTimer(){
-        countDownTimer = new CountDownTimer(86400000, 1000) {
+        countDownTimer = new CountDownTimer(300000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tv_timer.setText("Time remaining : " + millisUntilFinished / 1000);

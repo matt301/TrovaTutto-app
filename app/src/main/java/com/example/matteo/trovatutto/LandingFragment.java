@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import android.view.View.OnClickListener;
 
-// TODO: Settare l'OnClickListener o l' OnFling
+// TODO: Creare landing page con sfondo
 
 
 public class LandingFragment extends Fragment implements OnClickListener {
