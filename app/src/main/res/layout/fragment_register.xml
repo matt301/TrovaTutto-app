@@ -42,6 +42,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="2"
             android:background="#CCFFFFFF">
 
@@ -96,6 +98,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="5"
             android:gravity="bottom|fill_vertical"
             android:background="#CCFFFFFF">
@@ -114,6 +118,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="6"
             android:background="#CCFFFFFF">
 
@@ -130,6 +136,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="7"
             android:background="#CCFFFFFF">
 
@@ -147,6 +155,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="7"
             android:background="#CCFFFFFF">
 
