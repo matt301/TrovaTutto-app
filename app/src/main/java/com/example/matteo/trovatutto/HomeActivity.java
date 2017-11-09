@@ -1,6 +1,7 @@
 package com.example.matteo.trovatutto;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -35,14 +36,7 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Eh volevi!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -137,6 +131,12 @@ public class HomeActivity extends AppCompatActivity
                 title = "Profilo";
                 viewIsHome= false;
                 break;
+            case R.id.nav_logout:
+                fragment = null;
+                title = "";
+                viewIsHome= false;
+                logout();
+                break;
             default:
                 fragment = new HomeFragment();
                 title = "Home";
@@ -159,6 +159,25 @@ public class HomeActivity extends AppCompatActivity
         }
 
 
+
+    }
+    private void logout() {
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean(Constants.IS_LOGGED_IN,false);
+        editor.putString(Constants.EMAIL,"");
+        editor.putString(Constants.NAME,"");
+        editor.clear();
+        editor.apply();
+
+        goToLogin();
+    }
+
+    private void goToLogin(){
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
 
     }
 }

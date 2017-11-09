@@ -137,6 +137,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         editor.putString(Constants.NAME,"");
         editor.clear();
         editor.apply();
+
         goToLogin();
     }
 
