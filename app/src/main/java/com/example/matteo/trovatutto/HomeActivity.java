@@ -23,7 +23,6 @@ public class HomeActivity extends AppCompatActivity
 
         boolean viewIsHome = true;
         private SharedPreferences pref;
-        private TextView nomeUser;
 
 
 
