@@ -146,8 +146,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void goToLogin(){
 
+        pref.edit().clear();
         Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+
+       /* Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);*/
 
     }
 
