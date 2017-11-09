@@ -64,8 +64,19 @@
         android:textStyle="bold" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_chg_password"
+        android:id="@+id/btn_chg_profile"
         android:layout_marginTop="40dp"
+        android:text="Change Profile"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content" />
+
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_chg_password"
+        android:layout_marginTop="20dp"
         android:text="Change Password"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
