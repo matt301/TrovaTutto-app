@@ -195,4 +195,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         ft.commit();
         */
     }
-}
+
+
+
+
+
+    }

@@ -7,88 +7,99 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-
-
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/nav_header_height"
-        android:background="@drawable/titolo"/>
-
-    <android.support.design.widget.TextInputLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#CCFFFFFF"
-       >
+        android:scrollbars="none">
 
-        <EditText
-            android:id="@+id/et_email"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_email"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:background="#CCFFFFFF"/>
+            android:gravity="center"
+            android:orientation="vertical">
 
-    </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/nav_header_height"
+                android:background="@drawable/titolo"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#CCFFFFFF">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#CCFFFFFF"
+               >
 
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_key"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:background="#CCFFFFFF"/>
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_email"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:background="#CCFFFFFF"/>
 
-    </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Login"
-        android:textColor="@android:color/white" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#CCFFFFFF">
 
-    <TextView
-        android:id="@+id/tv_reset_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Forgot Password"
-        android:textColor="@color/colorAccent"
-        android:background="#CCFFFFFF"
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_key"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:background="#CCFFFFFF"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Login"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_reset_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Forgot Password"
+                android:textColor="@color/colorAccent"
+                android:background="#CCFFFFFF"
+                />
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Not Registered ? Register Now !"
+                android:textColor="@color/colorAccent"
+                android:background="#CCFFFFFF"
+
+
         />
 
-    <TextView
-        android:id="@+id/tv_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Not Registered ? Register Now !"
-        android:textColor="@color/colorAccent"
-        android:background="#CCFFFFFF"
 
+            <ProgressBar
+                android:id="@+id/progress"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:indeterminate="true"
+                android:visibility="invisible" />
 
-/>
-
-
-    <ProgressBar
-        android:id="@+id/progress"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:indeterminate="true"
-        android:visibility="invisible" />
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
