@@ -63,18 +63,6 @@
                 android:layout_height="wrap_content" />
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_home"
-                android:layout_width="100sp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:drawableLeft="@drawable/ic_home"
-                android:background="@color/colorPrimary"
-                android:text="HOME"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_chg_profile"
                 android:layout_marginTop="40dp"
                 android:text="Change Profile"
@@ -82,8 +70,6 @@
                 android:textColor="@android:color/white"
                 android:layout_width="200sp"
                 android:layout_height="wrap_content" />
-
-
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_chg_password"
@@ -94,14 +80,6 @@
                 android:layout_width="200sp"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_logout"
-                android:layout_marginTop="20dp"
-                android:text="Logout"
-                android:background="@color/colorPrimary"
-                android:textColor="@android:color/white"
-                android:layout_width="200sp"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private TextView tv_nome,tv_email,tv_message,tv_birthdate,tv_address,tv_ntel,tv_description;
     private SharedPreferences pref;
-    private AppCompatButton btn_change_password, btn_change_profile,btn_logout;
+    private AppCompatButton btn_change_password, btn_change_profile;
     private EditText et_old_password,et_new_password;
     private EditText et_new_nome,et_new_cognome,et_new_birthdate,et_new_ntel,et_new_address,et_new_description;
     private AlertDialog dialog;
@@ -70,13 +70,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tv_description = (TextView)view.findViewById(R.id.tv_description);
         btn_change_password = (AppCompatButton)view.findViewById(R.id.btn_chg_password);
         btn_change_profile = (AppCompatButton)view.findViewById(R.id.btn_chg_profile);
-        btn_logout = (AppCompatButton)view.findViewById(R.id.btn_logout);
+
 
 
 
         btn_change_password.setOnClickListener(this);
         btn_change_profile.setOnClickListener(this);
-        btn_logout.setOnClickListener(this);
+
 
     }
 
@@ -201,31 +201,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_chg_profile:
                 showDialog("PROFILE");
                 break;
-            case R.id.btn_logout:
-                logout();
-                break;
         }
     }
 
-    private void logout() {
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean(Constants.IS_LOGGED_IN,false);
-        editor.putString(Constants.EMAIL,"");
-        editor.putString(Constants.NAME,"");
-        editor.clear();
-        editor.apply();
 
-        goToLogin();
-    }
-
-    private void goToLogin(){
-
-
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-
-    }
 
     private void changePasswordProcess(String email,String old_password,String new_password){
 
