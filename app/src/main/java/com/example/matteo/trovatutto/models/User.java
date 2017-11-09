@@ -16,9 +16,7 @@ public class User {
     private String code;
 
 
-    public String getName() {
-        return nome;
-    }
+    public String getName() {return nome;}
 
     public String getCognome() {
         return cognome;

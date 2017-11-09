@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import android.view.View.OnClickListener;
 
-// TODO: Creare landing page con sfondo
 
 
 public class LandingFragment extends Fragment implements OnClickListener {
@@ -29,8 +28,6 @@ public class LandingFragment extends Fragment implements OnClickListener {
     {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        // TODO: Settare animazione custom (risolvere problema crash)
-       //  transaction.setCustomAnimations(,R.anim.zoom_in);
         transaction.replace(R.id.fragment_frame,new LoginFragment());
         transaction.commit();
     }

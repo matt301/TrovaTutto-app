@@ -3,7 +3,7 @@ package com.example.matteo.trovatutto;
 /**
  * Created by aless on 07/11/2017.
  */
-/*TODO:-Upload information profile ( I campi lasciati vuoi non verrano modificati )
+/*TODO:-Upload information profile (fatto ma errore che fa crashare app)
   TODO:- Gestire BackPressed (é bagato vez)
   TODO:-Home Segnalazioni
   TODO:-Crea Segnalazioni

@@ -287,7 +287,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 ServerResponse resp = response.body();
                 Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 if(resp.getResult().equals(Constants.SUCCESS)){
-                    SharedPreferences.Editor editor = pref.edit();
+
+                    //TODO: Errore "null object reference"
+                    /*SharedPreferences.Editor editor = pref.edit();
                     editor.putString(Constants.NAME,resp.getUser().getName());
                     editor.putString(Constants.SURNAME,resp.getUser().getCognome());
                     editor.putString(Constants.BIRTHDATE,resp.getUser().getDatadinascita());
@@ -295,7 +297,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     editor.putString(Constants.ADDRESS,resp.getUser().getIndirizzo());
                     editor.putString(Constants.BIO,resp.getUser().getDescrizione());
                     editor.apply();
+                     */
                     dialog.dismiss();
+
                     Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
 
                 }
