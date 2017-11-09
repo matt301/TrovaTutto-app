@@ -58,6 +58,7 @@ public class HomeActivity extends AppCompatActivity
         txtProfileName.setText((pref.getString(Constants.NAME, "")+" "+(pref.getString(Constants.SURNAME, ""))));
         TextView txtEmail = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.tv_email);
         txtEmail.setText(pref.getString(Constants.EMAIL, ""));
+
         initFragment();
 
 
@@ -75,12 +76,13 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (viewIsHome) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            displayView(R.id.nav_home);
+
         }
     }
 
