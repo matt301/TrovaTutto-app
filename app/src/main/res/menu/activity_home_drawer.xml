@@ -15,17 +15,21 @@
 
     <item android:title="Reports">
         <menu>
-            <item
-                android:id="@+id/nav_mie_segnalazioni"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Show my reports" />
-            <item
-                android:id="@+id/nav_add_segnalazioni"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send new report " />
+            <group
+               android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_mie_segnalazioni"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Show my reports" />
+                <item
+                    android:id="@+id/nav_add_segnalazioni"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Send new report " />
+            </group>
         </menu>
     </item>
-    <item android:title="">
+
+    <item android:title="Logout">
         <menu>
             <item
                 android:id="@+id/nav_logout"
