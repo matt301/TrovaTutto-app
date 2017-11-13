@@ -21,7 +21,6 @@ import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -288,8 +287,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 if(resp.getResult().equals(Constants.SUCCESS)){
 
-                    //TODO: Errore "null object reference"
-                    /*SharedPreferences.Editor editor = pref.edit();
+
+                   SharedPreferences.Editor editor = pref.edit();
                     editor.putString(Constants.NAME,resp.getUser().getName());
                     editor.putString(Constants.SURNAME,resp.getUser().getCognome());
                     editor.putString(Constants.BIRTHDATE,resp.getUser().getDatadinascita());
@@ -297,7 +296,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     editor.putString(Constants.ADDRESS,resp.getUser().getIndirizzo());
                     editor.putString(Constants.BIO,resp.getUser().getDescrizione());
                     editor.apply();
-                     */
+
+                   //TODO: sick trick for shmart boyz (but evil). May be changed, or not MUAHAHAHAHA!
+                    Intent openHome = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(openHome);
                     dialog.dismiss();
 
                     Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
