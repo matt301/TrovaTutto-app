@@ -51,6 +51,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
         btn_sendreport.setOnClickListener(this);
         btn_insertfoto.setOnClickListener(this);
+        category_spinner.setOnItemSelectedListener(this);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
