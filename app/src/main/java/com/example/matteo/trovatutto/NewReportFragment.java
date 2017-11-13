@@ -1,6 +1,8 @@
 package com.example.matteo.trovatutto;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,11 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 
 
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
@@ -23,10 +25,12 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     public static final int GALLERY_KITKAT_INTENT_CALLED = 2;
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
+    private Button btn_dialog_gallery, btn_dialog_camera;
     private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
     private TextView tv_report_category;
     private Spinner category_spinner;
     private ProgressBar progress;
+    private AlertDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,11 +79,16 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         switch (v.getId()){
 
             case R.id.btn_insertfoto:
-                addPhoto();
+                showDialog("INSERT PHOTO");
                 break;
             case R.id.btn_sendreport:
-
                 break;
+
+            case R.id.btn_dialog_gallery:{
+                addPhoto();
+                break;
+            }
+
         }
 
 
@@ -88,6 +97,24 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     public void sendReportProcess(){
         //send nudes pls
     }
+
+    private void showDialog(String tipo){
+        if(tipo.equals("INSERT PHOTO")){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View view = inflater.inflate(R.layout.dialog_insert_photo, null);
+            btn_dialog_gallery =  view.findViewById(R.id.btn_dialog_gallery);
+            btn_dialog_camera =  view.findViewById(R.id.btn_dialog_camera);
+            builder.setView(view);
+            builder.setTitle("Where?");
+            dialog = builder.create();
+            dialog.show();
+
+        }
+
+    }
+
 
     public void addPhoto(){
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
