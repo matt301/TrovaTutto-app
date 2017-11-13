@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_height="@dimen/nav_header_height"
+                android:layout_height="150dp"
                 android:background="@drawable/titolo"/>
 
             <android.support.design.widget.TextInputLayout
