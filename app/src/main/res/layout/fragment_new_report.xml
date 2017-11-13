@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:drawableRight="@drawable/ic_person"
+                    android:drawableRight="@drawable/ic_title"
                     android:hint="Title"
                     android:inputType="text"
                     />
@@ -63,8 +63,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:drawableRight="@drawable/ic_person"
                         android:hint="Subtitle"
+                        android:drawableRight="@drawable/ic_subtitle"
                         android:inputType="text"
                         />
                 </android.support.design.widget.TextInputLayout>
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:drawableRight="@drawable/ic_email"
+                        android:drawableRight="@drawable/ic_description"
                         android:hint="Description"
                         android:inputType="textEmailAddress"
                         />
@@ -144,7 +144,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="30dp"
-                android:background="@color/colorPrimary"
+                android:background="#4169e1"
                 android:text="Insert photo"
                 android:textColor="@android:color/white" />
 
