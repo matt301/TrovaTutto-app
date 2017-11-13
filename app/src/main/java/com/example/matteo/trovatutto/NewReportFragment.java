@@ -1,34 +1,19 @@
 package com.example.matteo.trovatutto;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.example.matteo.trovatutto.models.ServerRequest;
-import com.example.matteo.trovatutto.models.ServerResponse;
-import com.example.matteo.trovatutto.models.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewReportFragment extends Fragment  implements View.OnClickListener{
 
-    private AppCompatButton btn_register;
-    private EditText et_email,et_password,et_nome, et_cognome, et_datanascita, et_indirizzo, et_ntel,et_descrizione;
-    private TextView tv_login;
+    private AppCompatButton btn_sendreport, btn_insertfoto;
+    private EditText et_report_title, et_report_subtitle,et_report_category, et_report_address,et_report_description;
+
     private ProgressBar progress;
 
     @Override
@@ -41,27 +26,26 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
     private void initViews(View view){
 
-        btn_register = (AppCompatButton)view.findViewById(R.id.btn_register);
-        tv_login = (TextView)view.findViewById(R.id.tv_login);
-        et_nome = (EditText)view.findViewById(R.id.et_nome);
-        et_email = (EditText)view.findViewById(R.id.et_email);
-        et_password = (EditText)view.findViewById(R.id.et_password);
-        et_cognome = (EditText)view.findViewById(R.id.et_cognome);
-        et_datanascita = (EditText)view.findViewById(R.id.et_datanascita);
-        et_indirizzo = (EditText)view.findViewById(R.id.et_indirizzo);
-        et_ntel = (EditText)view.findViewById(R.id.et_ntel);
-        et_descrizione = (EditText)view.findViewById(R.id.et_descrizione);
+        btn_sendreport = (AppCompatButton)view.findViewById(R.id.btn_sendreport);
+        btn_insertfoto = (AppCompatButton)view.findViewById(R.id.btn_insertfoto);
+
+        et_report_title = (EditText)view.findViewById(R.id.et_report_title);
+        et_report_subtitle = (EditText)view.findViewById(R.id.et_report_subtitle);
+        et_report_category= (EditText)view.findViewById(R.id.et_repor_category);
+        et_report_address = (EditText)view.findViewById(R.id.et_report_address);
+        et_report_description = (EditText)view.findViewById(R.id.et_report_description);
+
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
-        btn_register.setOnClickListener(this);
-        tv_login.setOnClickListener(this);
+        btn_sendreport.setOnClickListener(this);
+        btn_insertfoto.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
-
+/*
         switch (v.getId()){
             case R.id.tv_login:
                 goToLogin();
@@ -90,10 +74,9 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 }
                 break;
 
-        }
-
+        }*/
     }
-
+/*
     private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String datadinascita,String ntel, String descrizione){
 
         Gson gson = new GsonBuilder()
@@ -152,4 +135,5 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         ft.replace(R.id.fragment_frame,login);
         ft.commit();
     }
+    */
 }
