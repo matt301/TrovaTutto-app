@@ -1,6 +1,8 @@
 package com.example.matteo.trovatutto;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
@@ -13,7 +15,12 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
+
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
+
+    public static final int GALLERY_INTENT_CALLED = 1;
+    public static final int GALLERY_KITKAT_INTENT_CALLED = 2;
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
     private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
@@ -64,6 +71,37 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v) {}
+    public void onClick(View v) {
+        switch (v.getId()){
+
+            case R.id.btn_insertfoto:
+                addPhoto();
+                break;
+            case R.id.btn_sendreport:
+
+                break;
+        }
+
+
+    }
+
+    public void sendReportProcess(){
+        //send nudes pls
+    }
+
+    public void addPhoto(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_INTENT_CALLED);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/*");
+            getActivity().startActivityForResult(intent, GALLERY_KITKAT_INTENT_CALLED);
+        }
+    }
+
 
 }
