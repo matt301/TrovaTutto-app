@@ -34,7 +34,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_register,container,false);
+        View view = inflater.inflate(R.layout.fragment_new_report,container,false);
         initViews(view);
         return view;
     }
