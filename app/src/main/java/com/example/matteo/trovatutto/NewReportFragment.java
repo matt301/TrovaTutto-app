@@ -6,14 +6,18 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class NewReportFragment extends Fragment  implements View.OnClickListener{
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
-    private EditText et_report_title, et_report_subtitle,et_report_category, et_report_address,et_report_description;
-
+    private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
+    TextView tv_report_category;
+    private Spinner category_spinner;
     private ProgressBar progress;
 
     @Override
@@ -26,17 +30,23 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
     private void initViews(View view){
 
-        btn_sendreport = (AppCompatButton)view.findViewById(R.id.btn_sendreport);
-        btn_insertfoto = (AppCompatButton)view.findViewById(R.id.btn_insertfoto);
+        btn_sendreport        = view.findViewById(R.id.btn_sendreport);
+        btn_insertfoto        = view.findViewById(R.id.btn_insertfoto);
 
-        et_report_title = (EditText)view.findViewById(R.id.et_report_title);
-        et_report_subtitle = (EditText)view.findViewById(R.id.et_report_subtitle);
-        et_report_category= (EditText)view.findViewById(R.id.et_repor_category);
-        et_report_address = (EditText)view.findViewById(R.id.et_report_address);
-        et_report_description = (EditText)view.findViewById(R.id.et_report_description);
+        category_spinner      = view.findViewById(R.id.sp_report_category);
+
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.category_array, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            category_spinner.setAdapter(adapter);
+
+        et_report_title       = view.findViewById(R.id.et_report_title);
+        et_report_subtitle    = view.findViewById(R.id.et_report_subtitle);
+        tv_report_category    = view.findViewById(R.id.tv_report_category);
+        et_report_address     = view.findViewById(R.id.et_report_address);
+        et_report_description = view.findViewById(R.id.et_report_description);
 
 
-        progress = (ProgressBar)view.findViewById(R.id.progress);
+        progress              = view.findViewById(R.id.progress);
 
         btn_sendreport.setOnClickListener(this);
         btn_insertfoto.setOnClickListener(this);
@@ -44,96 +54,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
 
     @Override
-    public void onClick(View v) {
-/*
-        switch (v.getId()){
-            case R.id.tv_login:
-                goToLogin();
-                break;
+    public void onClick(View v) {}
 
-            case R.id.btn_register:
-
-                String nome = et_nome.getText().toString();
-                String email = et_email.getText().toString();
-                String password = et_password.getText().toString();
-                String cognome = et_cognome.getText().toString();
-                String indirizzo = et_indirizzo.getText().toString();
-                String data_di_nascita = et_datanascita.getText().toString();
-                String ntel = et_ntel.getText().toString();
-                String descrizione = et_descrizione.getText().toString();
-
-
-                if(!nome.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-
-                    progress.setVisibility(View.VISIBLE);
-                    registerProcess(nome,cognome,email,password,indirizzo,data_di_nascita,ntel,descrizione);
-
-                } else {
-
-                    Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
-                }
-                break;
-
-        }*/
-    }
-/*
-    private void registerProcess(String name, String cognome, String email,String password,String indirizzo,String datadinascita,String ntel, String descrizione){
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-
-        //Creazione dell'oggetto User contenente tutte le info
-        User user = new User();
-        user.setName(name);
-        user.setCognome(cognome);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setIndirizzo(indirizzo);
-        user.setDatadinascita(datadinascita);
-        user.setNtel(ntel);
-        user.setDescrizione(descrizione);
-
-        //Invio richiesta di registrazione al server
-        ServerRequest request = new ServerRequest();
-        request.setOperation(Constants.REGISTER_OPERATION);
-        request.setUser(user);
-        Call<ServerResponse> response = requestInterface.operation(request);
-
-        response.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
-
-                ServerResponse resp = response.body();
-                Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
-                progress.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-
-                progress.setVisibility(View.INVISIBLE);
-                Log.d(Constants.TAG,"failed");
-                Snackbar.make(getView(), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
-
-
-            }
-        });
-    }
-
-    private void goToLogin(){
-
-        Fragment login = new LoginFragment();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_frame,login);
-        ft.commit();
-    }
-    */
 }

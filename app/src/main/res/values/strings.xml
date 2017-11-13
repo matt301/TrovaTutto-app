@@ -11,4 +11,18 @@
     <string name="hello_blank_fragment">Hello my nigga</string>
 
 
+    <string-array name="category_array">
+        <item>Effetti personali</item>
+        <item>Dispositivi eletronici</item>
+        <item>Libri</item>
+        <item>Gioielli</item>
+        <item>Vestiario</item>
+        <item>Documenti</item>
+        <item>Animali</item>
+        <item>Culi</item>
+        <item>Altro...</item>
+    </string-array>
+
+
+
 </resources>

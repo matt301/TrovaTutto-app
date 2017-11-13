@@ -79,15 +79,21 @@
                 android:layout_weight="6"
                 >
 
-                <EditText
-                    android:id="@+id/et_repor_category"
+                <TextView
+                    android:id="@+id/tv_report_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:drawableRight="@drawable/ic_indirizzo"
-                    android:hint="Categoria:SPINNER"
-                    />
+                    android:hint="Categoria" />
+
+                <Spinner
+                    android:id="@+id/sp_report_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:spinnerMode="dialog" />
 
             </android.support.design.widget.TextInputLayout>
 
