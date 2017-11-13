@@ -17,7 +17,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
     private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
-    TextView tv_report_category;
+    private TextView tv_report_category;
     private Spinner category_spinner;
     private ProgressBar progress;
 
@@ -45,7 +45,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         tv_report_category    = view.findViewById(R.id.tv_report_category);
         et_report_address     = view.findViewById(R.id.et_report_address);
         et_report_description = view.findViewById(R.id.et_report_description);
-
 
         progress              = view.findViewById(R.id.progress);
 
