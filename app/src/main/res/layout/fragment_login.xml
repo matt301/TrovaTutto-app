@@ -20,7 +20,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="500dp"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="@dimen/nav_header_height"
                 android:background="@drawable/titolo"/>
 
@@ -35,7 +37,9 @@
 
                 <EditText
                     android:id="@+id/et_email"
-                    android:layout_width="500dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_email"
                     android:hint="Email"
@@ -47,15 +51,17 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="28dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 >
 
                 <EditText
                     android:id="@+id/et_password"
-                    android:layout_width="500dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:drawableRight="@drawable/ic_key"
                     android:hint="Password"
                     android:inputType="textPassword"
@@ -65,17 +71,20 @@
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_login"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="150dp"
+                android:layout_marginRight="150dp"
                 android:background="@color/colorPrimary"
                 android:text="Login"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/tv_reset_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:text="Forgot Password"
                 android:textColor="@color/colorAccent"
 
