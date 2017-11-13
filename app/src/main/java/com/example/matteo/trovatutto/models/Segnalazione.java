@@ -5,10 +5,11 @@ public class Segnalazione {
 
     private String titolo;
     private String sottotitolo;
-    private String Categoria;
-    private String Descrizone;
-    private String Indirizzo;
-    private String Foto;
+    private String categoria;
+    private String descrizone;
+    private String indirizzo;
+    private String foto;
+    private User autore;
 
     public String getTitolo() {
         return titolo;
@@ -27,34 +28,42 @@ public class Segnalazione {
     }
 
     public String getCategoria() {
-        return Categoria;
+        return categoria;
     }
 
     public void setCategoria(String categoria) {
-        Categoria = categoria;
+        this.categoria = categoria;
     }
 
     public String getDescrizone() {
-        return Descrizone;
+        return descrizone;
     }
 
     public void setDescrizone(String descrizone) {
-        Descrizone = descrizone;
+        this.descrizone = descrizone;
     }
 
     public String getIndirizzo() {
-        return Indirizzo;
+        return indirizzo;
     }
 
     public void setIndirizzo(String indirizzo) {
-        Indirizzo = indirizzo;
+        this.indirizzo = indirizzo;
     }
 
     public String getFoto() {
-        return Foto;
+        return foto;
     }
 
     public void setFoto(String foto) {
-        Foto = foto;
+        this.foto = foto;
+    }
+
+    public User getAutore() {
+        return autore;
+    }
+
+    public void setAutore(User autore) {
+        this.autore = autore;
     }
 }
