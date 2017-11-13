@@ -116,6 +116,13 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 }
             });
 
+            btn_dialog_camera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callCamera();
+                }
+            });
+
 
             dialog = builder.create();
             dialog.show();
@@ -137,6 +144,11 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             intent.setType("image/*");
             getActivity().startActivityForResult(intent, GALLERY_KITKAT_INTENT_CALLED);
         }
+    }
+
+
+    public void callCamera(){
+
     }
 
 
