@@ -148,7 +148,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/ic_indirizzo"
-                        android:hint="indirizzo"
+                        android:hint="Indirizzo"
                         />
 
                 </android.support.design.widget.TextInputLayout>
