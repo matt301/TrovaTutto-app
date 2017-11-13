@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.provider.MediaStore;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +24,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
     public static final int GALLERY_INTENT_CALLED = 1;
     public static final int GALLERY_KITKAT_INTENT_CALLED = 2;
+    public static final int REQUEST_IMAGE_CAPTURE = 12345;
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
     private Button btn_dialog_gallery, btn_dialog_camera;
@@ -149,8 +150,10 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
 
     public void callCamera(){
-        Snackbar.make(getView(), "NUDES SENT!", Snackbar.LENGTH_LONG).show();
-        dialog.dismiss();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Fragment frag = this;
+        /** Pass your fragment reference **/
+        frag.startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
     }
 
 
