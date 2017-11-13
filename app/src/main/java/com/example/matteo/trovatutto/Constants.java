@@ -23,6 +23,12 @@ public class Constants {
     public static final String ADDRESS = "indirizzo";
     public static final String BIO = "descrizione";
 
+    public static final String REPORT_TITLE = "titolo";
+    public static final String REPORT_SUBTITLE = "sottotitolo";
+    public static final String REPORT_CATEGORY = "categoria";
+    public static final String REPORT_DESCRIPTION = "descrizione";
+    public static final String REPORT_ADDRESS = "indirizzo";
+    public static final String REPORT_PHOTO = "foto";
 
     public static final String TAG = "TrovaTutto";
 
