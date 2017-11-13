@@ -6,13 +6,14 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class NewReportFragment extends Fragment  implements View.OnClickListener{
+public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
     private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
@@ -52,6 +53,15 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         btn_insertfoto.setOnClickListener(this);
     }
 
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
 
     @Override
     public void onClick(View v) {}
