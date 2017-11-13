@@ -69,15 +69,12 @@
                         />
                 </android.support.design.widget.TextInputLayout>
 
-    <RelativeLayout
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:background="@drawable/back_spinner"
-                android:orientation="horizontal">
-
-
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="6">
 
                 <TextView
                     android:id="@+id/tv_report_category"
@@ -94,26 +91,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:background="@android:color/transparent"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:spinnerMode="dropdown"
-                    android:gravity="center"
-                   />
+                    android:textAlignment="center"
+                    android:spinnerMode="dialog" />
 
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_drop" />
-
-
-
-
-    </RelativeLayout>
+            </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"

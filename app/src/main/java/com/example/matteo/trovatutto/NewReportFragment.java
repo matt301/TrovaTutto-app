@@ -51,8 +51,8 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
         category_spinner      = view.findViewById(R.id.sp_report_category);
 
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.category_array, R.layout.spinner_text);
-            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.category_array, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
             category_spinner.setAdapter(adapter);
 
         et_report_title       = view.findViewById(R.id.et_report_title);
