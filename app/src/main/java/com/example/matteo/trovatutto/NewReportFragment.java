@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -148,7 +149,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
 
     public void callCamera(){
-
+        Snackbar.make(getView(), "SEND NUDES!", Snackbar.LENGTH_LONG).show();
     }
 
 
