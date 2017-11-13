@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
 
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#CCFFFFFF">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,7 +32,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:background="#CCFFFFFF">
+                >
 
                 <EditText
                     android:id="@+id/et_nome"
@@ -40,7 +41,7 @@
                     android:drawableRight="@drawable/ic_person"
                     android:hint="Nome"
                     android:inputType="textPersonName"
-                    android:background="#CCFFFFFF"/>
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +51,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="2"
-                    android:background="#CCFFFFFF">
+                   >
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/et_cognome"
@@ -59,7 +60,7 @@
                         android:drawableRight="@drawable/ic_person"
                         android:hint="Cognome"
                         android:inputType="textPersonName"
-                        android:background="#CCFFFFFF"/>
+                        />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -68,7 +69,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="3"
-                    android:background="#CCFFFFFF">
+                    >
 
                     <EditText
                         android:id="@+id/et_email"
@@ -77,7 +78,7 @@
                         android:drawableRight="@drawable/ic_email"
                         android:hint="Email"
                         android:inputType="textEmailAddress"
-                        android:background="#CCFFFFFF"/>
+                        />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -87,7 +88,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="4"
-                    android:background="#CCFFFFFF">
+                   >
 
                     <EditText
                         android:id="@+id/et_password"
@@ -96,7 +97,7 @@
                         android:drawableRight="@drawable/ic_key"
                         android:hint="Password"
                         android:inputType="textPassword"
-                        android:background="#CCFFFFFF"/>
+                       />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -107,7 +108,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_weight="5"
                     android:gravity="bottom|fill_vertical"
-                    android:background="#CCFFFFFF">
+                   >
 
                     <EditText
                         android:id="@+id/et_datanascita"
@@ -116,7 +117,7 @@
                         android:drawableRight="@drawable/ic_data"
                         android:hint="Data di Nascita"
                         android:inputType="date"
-                        android:background="#CCFFFFFF"/>
+                      />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -126,7 +127,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="6"
-                    android:background="#CCFFFFFF">
+                   >
 
                     <EditText
                         android:id="@+id/et_indirizzo"
@@ -134,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/ic_indirizzo"
                         android:hint="indirizzo"
-                        android:background="#CCFFFFFF"/>
+                        />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -144,7 +145,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="7"
-                    android:background="#CCFFFFFF">
+                    >
 
                     <EditText
                         android:id="@+id/et_ntel"
@@ -153,7 +154,7 @@
                         android:drawableRight="@drawable/ic_numerotel"
                         android:hint="Numero di telefono"
                         android:inputType="phone"
-                        android:background="#CCFFFFFF"/>
+                        />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -163,7 +164,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="7"
-                    android:background="#CCFFFFFF">
+                   >
 
                     <EditText
                         android:id="@+id/et_descrizione"
@@ -171,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/ic_description"
                         android:hint="Descrizione (Opzionale)"
-                        android:background="#CCFFFFFF"/>
+                        />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -191,7 +192,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Already Registered ? Login Now !"
                 android:textColor="@color/colorAccent"
-                android:background="#CCFFFFFF"/>
+                />
 
             <ProgressBar
                 android:id="@+id/progress"
