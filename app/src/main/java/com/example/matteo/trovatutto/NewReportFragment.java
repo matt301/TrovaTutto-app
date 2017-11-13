@@ -149,7 +149,8 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
 
     public void callCamera(){
-        Snackbar.make(getView(), "SEND NUDES!", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(getView(), "NUDES SENT!", Snackbar.LENGTH_LONG).show();
+        dialog.dismiss();
     }
 
 
