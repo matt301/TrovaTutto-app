@@ -44,6 +44,8 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
         btn_sendreport        = view.findViewById(R.id.btn_sendreport);
         btn_insertfoto        = view.findViewById(R.id.btn_insertfoto);
+        btn_dialog_gallery    = view.findViewById(R.id.btn_dialog_gallery);
+        btn_dialog_camera     = view.findViewById(R.id.btn_dialog_camera);
 
         category_spinner      = view.findViewById(R.id.sp_report_category);
 
@@ -61,6 +63,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
         btn_sendreport.setOnClickListener(this);
         btn_insertfoto.setOnClickListener(this);
+
         category_spinner.setOnItemSelectedListener(this);
     }
 
@@ -76,7 +79,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.btn_insertfoto:
                 showDialog("INSERT PHOTO");
@@ -84,15 +87,10 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             case R.id.btn_sendreport:
                 break;
 
-            case R.id.btn_dialog_gallery:{
-                addPhoto();
-                break;
-            }
-
         }
 
-
     }
+
 
     public void sendReportProcess(){
         //send nudes pls
@@ -104,10 +102,21 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View view = inflater.inflate(R.layout.dialog_insert_photo, null);
+
             btn_dialog_gallery =  view.findViewById(R.id.btn_dialog_gallery);
             btn_dialog_camera =  view.findViewById(R.id.btn_dialog_camera);
+
             builder.setView(view);
             builder.setTitle("Where?");
+
+            btn_dialog_gallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addPhoto();
+                }
+            });
+
+
             dialog = builder.create();
             dialog.show();
 
