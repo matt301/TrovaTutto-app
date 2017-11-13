@@ -4,7 +4,7 @@ package com.example.matteo.trovatutto;
  * Created by aless on 07/11/2017.
  */
 /*TODO:-Upload information profile (fatto ma errore che fa crashare app)
-  TODO:- Gestire BackPressed (é bagato vez)
+  TODO:-Gestire BackPressed (é bagato vez)
   TODO:-Home Segnalazioni
   TODO:-Crea Segnalazioni
   TODO:-Side NavBar with : Home, Crea Segnalazione, ProfileDati, ProfileMieSegnalazioni
