@@ -1,17 +1,17 @@
 package com.example.matteo.trovatutto;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +19,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
@@ -45,7 +37,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     private Spinner category_spinner;
     private ProgressBar progress;
     private AlertDialog dialog;
-    private ImageView iv_report;
+    private SharedPreferences userInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +48,8 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     }
 
     private void initViews(View view){
+
+        userInfo = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
         btn_sendreport        = view.findViewById(R.id.btn_sendreport);
         btn_insertfoto        = view.findViewById(R.id.btn_insertfoto);
@@ -73,7 +67,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         tv_report_category    = view.findViewById(R.id.tv_report_category);
         et_report_address     = view.findViewById(R.id.et_report_address);
         et_report_description = view.findViewById(R.id.et_report_description);
-        iv_report             = view.findViewById(R.id.iv_report);
 
         progress              = view.findViewById(R.id.progress);
 
@@ -101,13 +94,30 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 showDialog("INSERT PHOTO");
                 break;
             case R.id.btn_sendreport:
+                String title = et_report_title.getText().toString();
+                String subtitle = et_report_subtitle.getText().toString();
+                String description = et_report_title.getText().toString();
+                String address = et_report_title.getText().toString();
+                String category =tv_report_category.getText().toString();
+                //FOTO ----------
+
+                if(!title.isEmpty() && !subtitle.isEmpty() && !description.isEmpty()&& !address.isEmpty()) {
+
+                    progress.setVisibility(View.VISIBLE);
+                    sendReportProcess(userInfo.getString(Constants.EMAIL,"")),title,subtitle,category,description,address,foto));
+
+                } else {
+
+                    Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
+                }
                 break;
 
         }
 
     }
 
-    public void sendReportProcess(){
+
+    public void sendReportProcess(String email,String title, String subtitle,String category,String description,String address, //TIPO_FOTO foto){
         //send nudes pls
     }
 
@@ -123,14 +133,11 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
             builder.setView(view);
             builder.setTitle("Where?");
-            dialog = builder.create();
-            dialog.show();
 
             btn_dialog_gallery.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     addPhoto();
-                    dialog.cancel();
                 }
             });
 
@@ -138,12 +145,12 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 @Override
                 public void onClick(View v) {
                     callCamera();
-                    dialog.cancel();
                 }
             });
 
 
-
+            dialog = builder.create();
+            dialog.show();
 
         }
 
@@ -151,10 +158,17 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
 
     public void addPhoto(){
-
-        Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(gallery_intent,GALLERY_INTENT_CALLED);
-
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_INTENT_CALLED);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/*");
+            getActivity().startActivityForResult(intent, GALLERY_KITKAT_INTENT_CALLED);
+        }
     }
 
 
@@ -163,38 +177,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         Fragment frag = this;
         /** Pass your fragment reference **/
         frag.startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-    }
-
-    @Override
-    public void onActivityResult(int reqCode, int resultCode, Intent data) {
-        super.onActivityResult(reqCode, resultCode, data);
-
-        if(reqCode == GALLERY_INTENT_CALLED && resultCode == RESULT_OK && data != null){
-
-            Uri imageUri = data.getData();
-            iv_report.setImageURI(imageUri);
-        }
-        else {
-            Toast.makeText(this.getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
-        }
-
-
-    /*    if (resultCode ==  GALLERY_INTENT_CALLED || resultCode ==  GALLERY_KITKAT_INTENT_CALLED ) {
-            try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = this.getActivity().getContentResolver().openInputStream(imageUri);
-                final Bitmap  bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-                iv_report.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(this.getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }else {
-            Toast.makeText(this.getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
-        }*/
     }
 
 
