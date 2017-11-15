@@ -3,15 +3,16 @@ package com.example.matteo.trovatutto;
 /**
  * Created by aless on 07/11/2017.
  */
-/*TODO:-Upload information profile (fatto ma errore che fa crashare app)
-  TODO:-Gestire BackPressed (é bagato vez)
-  TODO:-Home Segnalazioni
-  TODO:-Crea Segnalazioni
-  TODO:-Side NavBar with : Home, Crea Segnalazione, ProfileDati, ProfileMieSegnalazioni
-  TODO:-Google contact
-  TODO:-Notifiche
-  TODO:-Geolocalizzazione
-  TODO:-Pubblicazione su FB
+/*
+    TODO:   -inviare foto al server
+    TODO:   -Home Segnalazioni
+    TODO:   -Crea Segnalazioni
+    TODO:   -Google contact
+    TODO:   -Notifiche
+    TODO:   -Geolocalizzazione
+
+
+     ODO:-Pubblicazione su FB
 
         Per mettere l'immagine al centro : android:gravity="center_horizontal"
 

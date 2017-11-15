@@ -138,8 +138,16 @@
                         android:inputType="textPostalAddress"
                       />
 
+
+
                 </android.support.design.widget.TextInputLayout>
 
+            <ImageView
+                android:id="@+id/iv_report"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
 
             <android.support.v7.widget.AppCompatButton
