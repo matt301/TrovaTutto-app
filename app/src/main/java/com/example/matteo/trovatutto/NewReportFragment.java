@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ import static android.app.Activity.RESULT_OK;
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     public static final int GALLERY_INTENT_CALLED = 1;
-    public static final int GALLERY_KITKAT_INTENT_CALLED = 2;
+    //public static final int GALLERY_KITKAT_INTENT_CALLED = 2;
     public static final int REQUEST_IMAGE_CAPTURE = 12345;
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
@@ -175,7 +176,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             iv_report.setImageURI(imageUri);
         }
         else {
-            Toast.makeText(this.getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
+            Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
 
 
