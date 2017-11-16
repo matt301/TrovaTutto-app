@@ -30,17 +30,15 @@ import android.widget.TextView;
 import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
-import com.example.matteo.trovatutto.models.User;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.ByteArrayOutputStream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
@@ -57,7 +55,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     private ProgressBar progress;
     private AlertDialog dialog;
     private ImageView iv_report;
-    private String mCurrentPhotoPath;
     private SharedPreferences userInfo;
 
     @Override
@@ -140,13 +137,13 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
                         } else {
 
-                            Snackbar.make(getView(), "Fields are empty you faggot!", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), "Fields are empty you faggot !", Snackbar.LENGTH_LONG).show();
                         }
                     }else{
                         Snackbar.make(getView(), "Immage is empty stupid bitch !", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
-                    Snackbar.make(getView(), "Category is empty little cunt  !", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(getView(), "Category is empty little cunt !", Snackbar.LENGTH_LONG).show();
                 }
                 break;
 
@@ -269,7 +266,9 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         }
+
         //TODO:-- L'immagine è una preview bisogna inserire la foto vera
+
         if (reqCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
 
@@ -283,6 +282,5 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             }
 
     }
-
 
 }

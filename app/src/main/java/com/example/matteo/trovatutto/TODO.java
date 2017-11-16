@@ -4,15 +4,11 @@ package com.example.matteo.trovatutto;
  * Created by aless on 07/11/2017.
  */
 /*
-    TODO:   -inviare foto al server
     TODO:   -Home Segnalazioni
-    TODO:   -Crea Segnalazioni
     TODO:   -Google contact
     TODO:   -Notifiche
     TODO:   -Geolocalizzazione
-
-
-     ODO:-Pubblicazione su FB
+    TODO:   -Pubblicazione su FB
 
         Per mettere l'immagine al centro : android:gravity="center_horizontal"
 
