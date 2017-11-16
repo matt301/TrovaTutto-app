@@ -11,8 +11,7 @@ public class Segnalazione {
     private String foto;
     private String autore;
 
-    public Segnalazione() {
-    }
+    public Segnalazione() {}
 
     public Segnalazione(String titolo,String sottotitolo, String categoria, String descrizione, String indirizzo, String foto, String autore ) {
         this.titolo = titolo;

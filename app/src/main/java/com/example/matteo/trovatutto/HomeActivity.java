@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.view.View;
@@ -27,9 +26,7 @@ import android.support.v7.widget.RecyclerView;
 
 import android.util.TypedValue;
 
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
 
 import java.util.ArrayList;
@@ -86,13 +83,18 @@ public class HomeActivity extends AppCompatActivity
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        prepareReports();
+        prepareReports();// TODO: bindare anche sul bottone "aggiorna"
 
 
         //initFragment(); // TODO: rimuovere HomeFragment
 
 
     }
+
+
+    /**
+     * Simulazione segnalazioni (da sostituire con la request al server)
+     */
 
     private void prepareReports() {
 
