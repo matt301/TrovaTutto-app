@@ -7,18 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Base64;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
@@ -40,23 +35,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.app.Activity.RESULT_OK;
 
 
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     public static final int GALLERY_INTENT_CALLED = 1;
-    //public static final int GALLERY_KITKAT_INTENT_CALLED = 2;
     public static final int REQUEST_IMAGE_CAPTURE = 12345;
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
@@ -64,9 +53,11 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
     private TextView tv_report_category;
     private Spinner category_spinner;
+    private String categoryChoose;
     private ProgressBar progress;
     private AlertDialog dialog;
     private ImageView iv_report;
+    private String mCurrentPhotoPath;
     private SharedPreferences userInfo;
 
     @Override
@@ -109,6 +100,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
+        categoryChoose = category_spinner.getItemAtPosition(pos).toString();
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
     }
@@ -127,26 +119,34 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             case R.id.btn_sendreport:
                 String title = et_report_title.getText().toString();
                 String subtitle = et_report_subtitle.getText().toString();
-                String description = et_report_title.getText().toString();
-                String address = et_report_title.getText().toString();
-                //TODO: categoria invia stringa vuota
-                String category =tv_report_category.getText().toString();
+                String description = et_report_description.getText().toString();
+                String address = et_report_address.getText().toString();
 
-                //Codifica immagine
-                Bitmap image = ((BitmapDrawable) iv_report.getDrawable()).getBitmap();
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                image.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-                String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
-                // fine codifica
+                if(categoryChoose != null) {
+                    String category = categoryChoose;
 
-                if(!title.isEmpty() && !subtitle.isEmpty() && !description.isEmpty()&& !address.isEmpty()) {
+                    //Codifica immagine
+                    if(iv_report.getDrawable() != null) {
+                        Bitmap image = ((BitmapDrawable) iv_report.getDrawable()).getBitmap();
+                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                        image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                        String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+                    // fine codifica
 
-                    progress.setVisibility(View.VISIBLE);
-                    sendReportProcess(userInfo.getString(Constants.EMAIL,""),title,subtitle,category,description,address,encodedImage);
+                        if (!title.isEmpty() && !subtitle.isEmpty() && !description.isEmpty() && !address.isEmpty()) {
 
+                            progress.setVisibility(View.VISIBLE);
+                            sendReportProcess(userInfo.getString(Constants.EMAIL, ""), title, subtitle, category, description, address, encodedImage);
+
+                        } else {
+
+                            Snackbar.make(getView(), "Fields are empty you faggot!", Snackbar.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Snackbar.make(getView(), "Immage is empty stupid bitch !", Snackbar.LENGTH_LONG).show();
+                    }
                 } else {
-
-                    Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(getView(), "Category is empty little cunt  !", Snackbar.LENGTH_LONG).show();
                 }
                 break;
 
@@ -238,44 +238,49 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                     dialog.cancel();
                 }
             });
-
-
-
-
         }
-
     }
 
 
     public void addPhoto(){
 
-
-        Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(gallery_intent,GALLERY_INTENT_CALLED);
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent,GALLERY_INTENT_CALLED);
 
     }
 
 
     public void callCamera(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         Fragment frag = this;
-        /** Pass your fragment reference **/
-        frag.startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+        frag.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
     }
 
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
 
-        if(reqCode == GALLERY_INTENT_CALLED && resultCode == RESULT_OK && data != null){
-
-            Uri imageUri = data.getData();
-            iv_report.setImageURI(imageUri);
+        if (reqCode == GALLERY_INTENT_CALLED) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                Uri imageUri = data.getData();
+                iv_report.setImageURI(imageUri);
+            } else {
+                Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            }
         }
-        else {
-            Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-        }
+        //TODO:-- L'immagine è una preview bisogna inserire la foto vera
+        if (reqCode == REQUEST_IMAGE_CAPTURE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
 
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                iv_report.setImageBitmap(imageBitmap);
+
+            } else {
+                Snackbar.make(this.getView(), "You haven't made a photo", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            }
+            }
 
     }
 
