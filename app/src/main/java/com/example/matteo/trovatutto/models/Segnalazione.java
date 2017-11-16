@@ -9,7 +9,7 @@ public class Segnalazione {
     private String descrizone;
     private String indirizzo;
     private String foto;
-    private User autore;
+    private String autore;
 
     public String getTitolo() {
         return titolo;
@@ -59,11 +59,11 @@ public class Segnalazione {
         this.foto = foto;
     }
 
-    public User getAutore() {
+    public String getAutore() {
         return autore;
     }
 
-    public void setAutore(User autore) {
+    public void setAutore(String autore) {
         this.autore = autore;
     }
 }
