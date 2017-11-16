@@ -6,7 +6,7 @@ public class Segnalazione {
     private String titolo;
     private String sottotitolo;
     private String categoria;
-    private String descrizone;
+    private String descrizione;
     private String indirizzo;
     private String foto;
     private String autore;
@@ -35,12 +35,12 @@ public class Segnalazione {
         this.categoria = categoria;
     }
 
-    public String getDescrizone() {
-        return descrizone;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setDescrizone(String descrizone) {
-        this.descrizone = descrizone;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public String getIndirizzo() {

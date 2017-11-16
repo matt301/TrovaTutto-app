@@ -169,13 +169,13 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
         //Creazione dell'oggetto User contenente tutte le info
-        User user = new User();
+        //User user = new User();
         Segnalazione report = new Segnalazione();
-        user.setEmail(email);
+        //user.setEmail(email);
         report.setAutore(email);
         report.setTitolo(title);
         report.setSottotitolo(subtitle);
-        report.setDescrizone(description);
+        report.setDescrizione(description);
         report.setCategoria(category);
         report.setIndirizzo(address);
         report.setFoto(foto);
@@ -183,7 +183,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         //Invio richiesta di registrazione al server
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.INSERT_NEW_REPORT);
-        request.setUser(user);
+       // request.setUser(user);
         request.setSegnalazione(report);
         Call<ServerResponse> response = requestInterface.operation(request);
 
