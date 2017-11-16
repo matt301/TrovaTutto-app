@@ -11,6 +11,19 @@ public class Segnalazione {
     private String foto;
     private String autore;
 
+    public Segnalazione() {
+    }
+
+    public Segnalazione(String titolo,String sottotitolo, String categoria, String descrizione, String indirizzo, String foto, String autore ) {
+        this.titolo = titolo;
+        this.sottotitolo = sottotitolo;
+        this.categoria = categoria;
+        this.descrizione= descrizione;
+        this.indirizzo = indirizzo;
+        this.foto = foto;
+        this.autore = autore;
+    }
+
     public String getTitolo() {
         return titolo;
     }

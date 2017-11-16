@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
 public class HomeFragment extends Fragment  implements View.OnClickListener {
 
     private  FloatingActionButton fab;
@@ -38,6 +37,7 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
         public void onClick(View view) {
             Snackbar.make(view, "Eh volevi!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+
         }
 
 
