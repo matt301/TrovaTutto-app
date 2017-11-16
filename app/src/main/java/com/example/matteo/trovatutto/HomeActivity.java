@@ -116,7 +116,6 @@ public class HomeActivity extends AppCompatActivity
    //--nuova
     public void displayView(int viewId) {
 
-
         Fragment fragment;
         String title;
 
@@ -128,7 +127,12 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_profilo:
                 fragment = new ProfileFragment();
-                title = "Profilo";
+                title = "Profile";
+                viewIsHome= false;
+                break;
+            case R.id.nav_add_segnalazioni:
+                fragment = new NewReportFragment();
+                title = "New Report";
                 viewIsHome= false;
                 break;
             case R.id.nav_logout:
@@ -137,6 +141,8 @@ public class HomeActivity extends AppCompatActivity
                 viewIsHome= false;
                 logout();
                 break;
+
+
             default:
                 fragment = new HomeFragment();
                 title = "Home";
@@ -179,5 +185,10 @@ public class HomeActivity extends AppCompatActivity
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

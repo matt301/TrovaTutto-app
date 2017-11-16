@@ -9,6 +9,7 @@ public class Constants {
     public static final String CHANGE_PROFILE_OPERATION = "chgProfile";
     public static final String RESET_PASSWORD_INITIATE = "resPassReq";
     public static final String RESET_PASSWORD_FINISH = "resPass";
+    public static final String INSERT_NEW_REPORT = "insSgn";
 
 
     public static final String SUCCESS = "success";
@@ -23,6 +24,12 @@ public class Constants {
     public static final String ADDRESS = "indirizzo";
     public static final String BIO = "descrizione";
 
+    public static final String REPORT_TITLE = "titolo";
+    public static final String REPORT_SUBTITLE = "sottotitolo";
+    public static final String REPORT_CATEGORY = "categoria";
+    public static final String REPORT_DESCRIPTION = "descrizione";
+    public static final String REPORT_ADDRESS = "indirizzo";
+    public static final String REPORT_PHOTO = "foto";
 
     public static final String TAG = "TrovaTutto";
 
