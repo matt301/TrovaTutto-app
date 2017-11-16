@@ -155,7 +155,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     }
 
     public void sendReportProcess(String email,String title,String subtitle, String category, String description, String address, String foto){
-    //E mo so cazzi, cazzi per davvero
+
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -168,10 +168,8 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
-        //Creazione dell'oggetto User contenente tutte le info
-        //User user = new User();
+        //Creazione dell'oggetto Segnalazione contenente tutte le info
         Segnalazione report = new Segnalazione();
-        //user.setEmail(email);
         report.setAutore(email);
         report.setTitolo(title);
         report.setSottotitolo(subtitle);
@@ -183,7 +181,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         //Invio richiesta di registrazione al server
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.INSERT_NEW_REPORT);
-       // request.setUser(user);
         request.setSegnalazione(report);
         Call<ServerResponse> response = requestInterface.operation(request);
 
@@ -194,6 +191,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 ServerResponse resp = response.body();
                 Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 progress.setVisibility(View.INVISIBLE);
+
             }
 
             @Override
@@ -269,7 +267,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         }
-        //TODO:-- L'immagine è una preview bisogna inserire la foto vera
+        //TODO:-- L'immagine è una preview bisogna inserire la foto vera -> non è vero
         if (reqCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
 
