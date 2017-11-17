@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -26,6 +27,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import android.util.TypedValue;
+import android.widget.Toast;
 
 import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
@@ -195,8 +197,38 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
+    public void onBackPressed() {
+
+        if(viewIsHome) {
+
+            if (doubleBackToExitPressedOnce) {
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                super.onBackPressed();
+
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        } else{
+            displayView(R.id.nav_home);
+        }
+    }
+
+
+    /*@Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
@@ -206,7 +238,7 @@ public class HomeActivity extends AppCompatActivity
             displayView(R.id.nav_home);
 
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -224,9 +256,6 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent openReport = new Intent(this, ReportActivity.class);
-            startActivity(openReport);
-            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -260,7 +289,6 @@ public class HomeActivity extends AppCompatActivity
                 fragment = new ProfileFragment();
                 title = "Profile";
                 viewIsHome= false;
-
                 break;
             case R.id.nav_add_segnalazioni:
                 fragment = new NewReportFragment();
@@ -279,7 +307,7 @@ public class HomeActivity extends AppCompatActivity
                 fragment = new HomeFragment();
                 title = "Home";
                 viewIsHome = true;
-
+                break;
         }
 
         if (fragment != null) {
@@ -288,7 +316,6 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.content_frame, fragment).commit();
 
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -309,7 +336,7 @@ public class HomeActivity extends AppCompatActivity
         editor.putString(Constants.NAME,"");
         editor.clear();
         editor.apply();
-
+        this.finish();
         goToLogin();
     }
 
@@ -326,4 +353,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
 }
