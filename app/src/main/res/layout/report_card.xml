@@ -24,6 +24,7 @@
                 android:layout_height="@dimen/report_image_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:focusable="true"
                 android:scaleType="fitXY"/>
 
             <TextView
@@ -51,7 +52,7 @@
                 android:id="@+id/overflow"
                 android:layout_width="@dimen/ic_report_overflow_width"
                 android:layout_height="@dimen/ic_report_overflow_height"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/iv_report_thumbnail"
                 android:layout_marginTop="@dimen/ic_report_overflow_margin_top"
                 android:scaleType="centerCrop"

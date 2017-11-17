@@ -3,7 +3,7 @@ package com.example.matteo.trovatutto;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +27,12 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
 
     private void initViews(View view){
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(this);
 
     }
 
     @Override
 
         public void onClick(View view) {
-            Snackbar.make(view, "Eh volevi!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
 
         }
 

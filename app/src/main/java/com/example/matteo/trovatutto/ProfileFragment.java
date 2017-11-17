@@ -150,7 +150,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
             builder.setView(view);
-            builder.setTitle("Change Profile");
+            builder.setTitle("Edit Profile");
             builder.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
