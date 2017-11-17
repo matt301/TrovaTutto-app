@@ -1,25 +1,28 @@
 package com.example.matteo.trovatutto;
 
-/**
- * Created by aless on 07/11/2017.
- */
 /*
-    TODO:   -Home Segnalazioni
+
+    TODO:     -Home Segnalazioni
+    TODO:  -Segnalazioni personali
+    TODO:    -Geolocalizzazione e mappe
     TODO:   -Google contact
-    TODO:   -Notifiche
-    TODO:   -Geolocalizzazione
-    TODO:   -Pubblicazione su FB
-
-        Per mettere l'immagine al centro : android:gravity="center_horizontal"
-
-
-        Per schermo intero: nella funzione dell'onCreate prima di tutto
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    TODO:      -Notifiche
+    TODO:            -Pubblicazione su FB
 
 
         Blu icone : #08005a
         Bianco in trasparenza: #CCFFFFFF
+
+        Pagina dettaglio segnalazione con: text, foto, mappa
+        https://www.androidhive.info/2015/09/android-material-design-working-with-tabs/
+        Login con Google Plus (opzionale)
+        https://www.androidhive.info/2014/02/android-login-with-google-plus-account-1/
+        Per notifiche
+        https://www.androidhive.info/2016/02/android-push-notifications-using-gcm-php-mysql-realtime-chat-app-part-1/
+        Chat
+        https://www.androidhive.info/2016/02/android-push-notifications-using-gcm-php-mysql-realtime-chat-app-part-1/
+        Mappe(un po' vecchie)
+        https://www.androidhive.info/2013/08/android-working-with-google-maps-v2/
+
 
 */

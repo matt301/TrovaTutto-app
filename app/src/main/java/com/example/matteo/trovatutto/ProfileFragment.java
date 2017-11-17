@@ -61,8 +61,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void initViews(View view){
 
-        tv_nome = (TextView)view.findViewById(R.id.tv_nome);
-        tv_email = (TextView)view.findViewById(R.id.tv_email);
+        tv_nome = (TextView)view.findViewById(R.id.tv_profile_nome);
+        tv_email = (TextView)view.findViewById(R.id.tv_profile_email);
         tv_birthdate = (TextView)view.findViewById(R.id.tv_birthdate);
         tv_ntel = (TextView)view.findViewById(R.id.tv_ntel);
         tv_address = (TextView)view.findViewById(R.id.tv_address);

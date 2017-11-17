@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.view.View;
@@ -18,12 +17,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.content.res.Resources;
+import android.graphics.Rect;
+
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import android.util.TypedValue;
+
+import com.example.matteo.trovatutto.models.ReportAdapter;
+import com.example.matteo.trovatutto.models.Segnalazione;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
         boolean viewIsHome = true;
         private SharedPreferences pref;
+        private RecyclerView recyclerView;
+        private ReportAdapter adapter;
+        private List<Segnalazione> reportList;
+        private  FloatingActionButton fab; //TODO: inseire pulsante aggiorna segnalazioni e settare il listener
 
 
 
@@ -52,10 +71,112 @@ public class HomeActivity extends AppCompatActivity
         TextView txtEmail = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.tv_email);
         txtEmail.setText(pref.getString(Constants.EMAIL, ""));
 
-        initFragment();
+
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        reportList = new ArrayList<>();
+        adapter = new ReportAdapter(this, reportList);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+
+        prepareReports();// TODO: bindare anche sul bottone "aggiorna"
+
+
+        //initFragment(); // TODO: rimuovere HomeFragment
 
 
     }
+
+
+    /**
+     * Simulazione segnalazioni (da sostituire con la request al server)
+     */
+
+    private void prepareReports() {
+
+
+        Segnalazione a = new Segnalazione("True Romance", "very romance", "","","","","");
+        reportList.add(a);
+
+        Segnalazione b = new Segnalazione("Lello", "so gud", "","","","","");
+        reportList.add(b);
+
+        Segnalazione c = new Segnalazione("GiuseppeenoKasaleeno ", "ez", "","","","","");
+        reportList.add(c);
+
+        Segnalazione d = new Segnalazione("True Romance", "very romance", "","","","","");
+        reportList.add(d);
+
+        Segnalazione e = new Segnalazione("True Romance", "very romance", "","","","","");
+        reportList.add(e);
+
+        Segnalazione f = new Segnalazione("Lello", "so gud", "","","","","");
+        reportList.add(f);
+
+        Segnalazione g = new Segnalazione("GiuseppeenoKasaleeno ", "ez", "","","","","");
+        reportList.add(g);
+
+        Segnalazione h = new Segnalazione("True Romance", "very romance", "","","","","");
+        reportList.add(h);
+
+        adapter.notifyDataSetChanged();
+
+    }
+
+    /**
+     * RecyclerView item decoration - give equal margin around grid item
+     */
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+
+
+
+
     private void initFragment(){
         android.app.Fragment fragment;
 
@@ -129,6 +250,7 @@ public class HomeActivity extends AppCompatActivity
                 fragment = new ProfileFragment();
                 title = "Profile";
                 viewIsHome= false;
+
                 break;
             case R.id.nav_add_segnalazioni:
                 fragment = new NewReportFragment();
@@ -150,13 +272,16 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
-      if (fragment != null) {
+        if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, fragment).commit();
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         // set the toolbar title
