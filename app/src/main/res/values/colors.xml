@@ -6,4 +6,11 @@
     <color name="grey">#808080</color>
     <color name="report_title">#4c4c4c</color>
 
+
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccentReport">#c8e8ff</color>
+
+
 </resources>

@@ -26,10 +26,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.tv_report_title);
-            subtitle = (TextView) view.findViewById(R.id.tv_report_subtitle);
-            thumbnail = (ImageView) view.findViewById(R.id.iv_report_thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+            title       = (TextView)  view.findViewById(R.id.tv_report_title);
+            subtitle    = (TextView)  view.findViewById(R.id.tv_report_subtitle);
+            thumbnail   = (ImageView) view.findViewById(R.id.iv_report_thumbnail);
+            overflow    = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 

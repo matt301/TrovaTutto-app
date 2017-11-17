@@ -2,12 +2,12 @@ package com.example.matteo.trovatutto;
 
 /*
 
-    TODO:     -Home Segnalazioni
-    TODO:  -Segnalazioni personali
-    TODO:    -Geolocalizzazione e mappe
+    TODO:   -Home Segnalazioni
+    TODO:   -Segnalazioni personali
+    TODO:   -Geolocalizzazione e mappe
     TODO:   -Google contact
-    TODO:      -Notifiche
-    TODO:            -Pubblicazione su FB
+    TODO:   -Notifiche
+    TODO:   -Pubblicazione su FB
 
 
         Blu icone : #08005a

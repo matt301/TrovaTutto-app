@@ -42,7 +42,8 @@ public class HomeActivity extends AppCompatActivity
         private RecyclerView recyclerView;
         private ReportAdapter adapter;
         private List<Segnalazione> reportList;
-        private  FloatingActionButton fab; //TODO: inseire pulsante aggiorna segnalazioni e settare il listener
+        //TODO: inseire pulsante aggiorna segnalazioni e settare il listener
+        private FloatingActionButton fab;
 
 
 
@@ -216,6 +217,8 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent openHome = new Intent(this, ReportActivity.class);
+            startActivity(openHome);
             return true;
         }
 
