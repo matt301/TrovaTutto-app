@@ -18,8 +18,8 @@
     <dimen name="report_subtitle_padding_bottom">5dp</dimen>
     <dimen name="report_subtitle">12dp</dimen>
 
-    <dimen name="ic_report_overflow_width">20dp</dimen>
-    <dimen name="ic_report_overflow_height">30dp</dimen>
+    <dimen name="ic_report_overflow_width">25dp</dimen>
+    <dimen name="ic_report_overflow_height">25dp</dimen>
     <dimen name="ic_report_overflow_margin_top">10dp</dimen>
     <dimen name="ic_report_overflow_margin_end">10dp</dimen>
 
