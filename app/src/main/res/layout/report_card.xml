@@ -54,9 +54,10 @@
                 android:layout_height="@dimen/ic_report_overflow_height"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/iv_report_thumbnail"
+                android:layout_marginEnd="@dimen/ic_report_overflow_margin_end"
                 android:layout_marginTop="@dimen/ic_report_overflow_margin_top"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_send" />
+                android:src="@drawable/ic_menu_gallery" />
 
         </RelativeLayout>
 
