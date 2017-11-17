@@ -224,8 +224,8 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent openHome = new Intent(this, ReportActivity.class);
-            startActivity(openHome);
+            Intent openReport = new Intent(this, ReportActivity.class);
+            startActivity(openReport);
             return true;
         }
 

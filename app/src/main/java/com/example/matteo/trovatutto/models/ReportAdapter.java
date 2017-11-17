@@ -2,6 +2,8 @@ package com.example.matteo.trovatutto.models;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.matteo.trovatutto.R;
+import com.example.matteo.trovatutto.ReportActivity;
 
 import java.util.List;
 
@@ -30,6 +33,14 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             subtitle    = (TextView)  view.findViewById(R.id.tv_report_subtitle);
             thumbnail   = (ImageView) view.findViewById(R.id.iv_report_thumbnail);
             overflow    = (ImageView) view.findViewById(R.id.overflow);
+
+            thumbnail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent openReport = new Intent(view.getContext(), ReportActivity.class);
+                    view.getContext().startActivity(openReport);
+                }
+            });
         }
     }
 
@@ -59,10 +70,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                // showPopupMenu(holder.overflow);
             }
         });
     }
+
 
     /**
      * Showing popup menu when tapping on 3 dots
