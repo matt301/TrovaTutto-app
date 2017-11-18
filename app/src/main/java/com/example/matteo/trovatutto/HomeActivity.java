@@ -74,9 +74,8 @@ public class HomeActivity extends AppCompatActivity
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Eh volevi! Invece non faccio ancora un cazzo", Snackbar.LENGTH_LONG)
-                  //      .setAction("Action", null).show();
-                prepareReports();
+               Snackbar.make(view, "Eh volevi! Invece non faccio ancora un cazzo", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+               // prepareReports();
             }
         });
 
@@ -121,6 +120,7 @@ public class HomeActivity extends AppCompatActivity
     private void prepareReports() {
 
 
+
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -150,6 +150,7 @@ public class HomeActivity extends AppCompatActivity
                                      for(int i = 0; i < resp.getSegnalazioni().size(); i++){
 
                                          Segnalazione segnalazione = new Segnalazione();
+                                         segnalazione.setID(resp.getSegnalazioni().get(i).getID());
                                          segnalazione.setAutore(resp.getSegnalazioni().get(i).getAutore());
                                          segnalazione.setTitolo(resp.getSegnalazioni().get(i).getTitolo());
                                          segnalazione.setSottotitolo(resp.getSegnalazioni().get(i).getSottotitolo());

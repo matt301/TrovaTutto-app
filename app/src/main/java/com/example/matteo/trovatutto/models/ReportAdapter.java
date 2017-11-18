@@ -63,7 +63,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Segnalazione report = reportList.get(position);
+        final Segnalazione report = reportList.get(position);
         holder.title.setText(report.getTitolo());
         holder.subtitle.setText(report.getSottotitolo());
 
@@ -75,7 +75,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             public void onClick(View view) {
                 Intent openReport = new Intent(view.getContext(), ReportActivity.class);
                 view.getContext().startActivity(openReport);
-               // showPopupMenu(holder.overflow);
+
             }
         });
     }
