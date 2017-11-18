@@ -36,14 +36,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             thumbnail   = (ImageView) view.findViewById(R.id.iv_report_thumbnail);
             overflow    = (ImageView) view.findViewById(R.id.overflow);
 
-
-            thumbnail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent openReport = new Intent(view.getContext(), ReportActivity.class);
-                    view.getContext().startActivity(openReport);
-                }
-            });
         }
     }
 
@@ -70,10 +62,22 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         // loading report images using Glide library
         Glide.with(mContext).load(report.getFoto()).into(holder.thumbnail);
 
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openReport = new Intent(view.getContext(), ReportActivity.class);
+                openReport.putExtra("immagine",report.getFoto());
+                view.getContext().startActivity(openReport);
+            }
+        });
+
+
+
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent openReport = new Intent(view.getContext(), ReportActivity.class);
+                openReport.putExtra("immagine",report.getFoto());
                 view.getContext().startActivity(openReport);
 
             }

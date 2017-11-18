@@ -3,6 +3,7 @@ package com.example.matteo.trovatutto;
 /*
 
     TODO:   -Home Segnalazioni
+    TODO:   -Refresh della home, con banda piena o occupata in invio non fa visualizzare nulla
     TODO:   -Segnalazioni personali
     TODO:   -Geolocalizzazione e mappe
     TODO:   -Google contact

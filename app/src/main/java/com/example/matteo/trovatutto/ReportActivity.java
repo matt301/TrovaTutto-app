@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class ReportActivity extends AppCompatActivity {
             R.drawable.ic_rep_image,
             R.drawable.ic_rep_map
     };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class ReportActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+
+
     }
 
     private void setupTabIcons() {
@@ -53,8 +58,16 @@ public class ReportActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        Bundle bundle = new Bundle();
+        bundle.putString("immagine", getIntent().getExtras().getString("immagine") );
+
+        ReportImageFragment ImaF = new ReportImageFragment();
+        ImaF.setArguments(bundle);
+
+
         adapter.addFragment(new ReportTextFragment(), "REPORT");
-        adapter.addFragment(new ReportImageFragment(), "IMAGE");
+        adapter.addFragment(ImaF, "IMAGE");
         adapter.addFragment(new ReportMapFragment(), "MAP");
         viewPager.setAdapter(adapter);
     }

@@ -159,14 +159,16 @@ public class HomeActivity extends AppCompatActivity
                                          segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
                                          segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
+                                       //  Log.i("Foto di culi ",segnalazione.getFoto() );
+
                                          reportList.add(segnalazione);
 
                                      }
 
 
                                  }
-                                 Toast.makeText(HomeActivity.this, resp.getMessage(), Toast.LENGTH_LONG).show();
-                                // Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+
+                                 Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                              }
 
 
@@ -270,6 +272,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
 
