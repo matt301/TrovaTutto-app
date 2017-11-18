@@ -74,8 +74,9 @@ public class HomeActivity extends AppCompatActivity
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Eh volevi! Invece non faccio ancora un cazzo", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Eh volevi! Invece non faccio ancora un cazzo", Snackbar.LENGTH_LONG)
+                  //      .setAction("Action", null).show();
+                prepareReports();
             }
         });
 
