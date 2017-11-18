@@ -65,11 +65,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         pref = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
-        btn_login = (AppCompatButton)view.findViewById(R.id.btn_login);
-        tv_register = (TextView)view.findViewById(R.id.tv_register);
-        tv_reset_password = (TextView)view.findViewById(R.id.tv_reset_password);
-        et_email = (EditText)view.findViewById(R.id.et_email);
-        et_password = (EditText)view.findViewById(R.id.et_password);
+        btn_login           = (AppCompatButton)view.findViewById(R.id.btn_login);
+        tv_register         = (TextView)view.findViewById(R.id.tv_register);
+        tv_reset_password   = (TextView)view.findViewById(R.id.tv_reset_password);
+        et_email            = (EditText)view.findViewById(R.id.et_email);
+        et_password         = (EditText)view.findViewById(R.id.et_password);
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 

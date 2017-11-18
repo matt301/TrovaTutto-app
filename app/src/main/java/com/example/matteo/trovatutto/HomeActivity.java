@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,10 +32,21 @@ import android.widget.Toast;
 
 import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
+import com.example.matteo.trovatutto.models.ServerRequest;
+import com.example.matteo.trovatutto.models.ServerResponse;
+import com.example.matteo.trovatutto.models.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.matteo.trovatutto.Constants.TAG;
 
 
 public class HomeActivity extends AppCompatActivity
@@ -107,6 +119,58 @@ public class HomeActivity extends AppCompatActivity
      */
 
     private void prepareReports() {
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        //ArrayList<Segnalazione> segnalazioni= new ArrayList<Segnalazione>();
+
+        ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.DOWNLOAD_REPORT);
+        Call<ServerResponse> response = requestInterface.operation(request);
+
+
+        response.enqueue(new Callback<ServerResponse>() {
+                             @Override
+                             public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                                 ServerResponse resp = response.body();
+                                 if(resp.getResult().equals(Constants.SUCCESS)){
+
+                                    reportList.addAll(resp.getSegnalazioni());
+
+
+
+
+                                 }
+
+
+
+
+                                 //Snackbar.make(coordinatorLayout, resp.getMessage(), Snackbar.LENGTH_LONG).show()
+                             }
+
+
+
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                //progress.setVisibility(View.INVISIBLE);
+                Log.d(TAG,"failed");
+                //Snackbar.make(getView(), , Snackbar.LENGTH_LONG).show();
+
+            }
+        });
 
 
         Segnalazione a = new Segnalazione("True Romance", "very romance", "","","","","");
