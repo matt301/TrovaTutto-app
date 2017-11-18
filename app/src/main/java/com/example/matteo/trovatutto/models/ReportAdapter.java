@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import com.example.matteo.trovatutto.R;
 import com.example.matteo.trovatutto.ReportActivity;
 
@@ -65,7 +67,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         holder.subtitle.setText(report.getSottotitolo());
 
         // loading album cover using Glide library
-       // Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
+        //Glide.with(mContext).load(report.getFoto()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
