@@ -74,7 +74,7 @@ public class Segnalazione {
     }
 
     public void setFoto(String foto) {
-        this.foto = "https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+foto;
+        this.foto = foto;
     }
 
     public String getAutore() {

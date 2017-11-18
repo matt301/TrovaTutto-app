@@ -36,6 +36,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             thumbnail   = (ImageView) view.findViewById(R.id.iv_report_thumbnail);
             overflow    = (ImageView) view.findViewById(R.id.overflow);
 
+
             thumbnail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -72,7 +73,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent openReport = new Intent(view.getContext(), ReportActivity.class);
+                view.getContext().startActivity(openReport);
                // showPopupMenu(holder.overflow);
             }
         });

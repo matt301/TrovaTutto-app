@@ -147,15 +147,15 @@ public class HomeActivity extends AppCompatActivity
 
 
                                      for(int i = 0; i < resp.getSegnalazioni().size(); i++){
-                                         Segnalazione segnalazione = new Segnalazione();
 
+                                         Segnalazione segnalazione = new Segnalazione();
                                          segnalazione.setAutore(resp.getSegnalazioni().get(i).getAutore());
                                          segnalazione.setTitolo(resp.getSegnalazioni().get(i).getTitolo());
                                          segnalazione.setSottotitolo(resp.getSegnalazioni().get(i).getSottotitolo());
                                          segnalazione.setCategoria(resp.getSegnalazioni().get(i).getCategoria());
                                          segnalazione.setDescrizione(resp.getSegnalazioni().get(i).getDescrizione());
                                          segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
-                                         segnalazione.setFoto(resp.getSegnalazioni().get(i).getFoto());
+                                         segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
                                          reportList.add(segnalazione);
 
