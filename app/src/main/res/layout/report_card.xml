@@ -57,7 +57,7 @@
                 android:layout_marginEnd="@dimen/ic_report_overflow_margin_end"
                 android:layout_marginTop="@dimen/ic_report_overflow_margin_top"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_menu_gallery" />
+                android:src="@drawable/ic_enter_seg" />
 
         </RelativeLayout>
 
