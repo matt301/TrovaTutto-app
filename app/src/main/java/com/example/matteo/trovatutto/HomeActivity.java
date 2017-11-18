@@ -138,28 +138,20 @@ public class HomeActivity extends AppCompatActivity
         request.setOperation(Constants.DOWNLOAD_REPORT);
         Call<ServerResponse> response = requestInterface.operation(request);
 
-
         response.enqueue(new Callback<ServerResponse>() {
                              @Override
                              public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
 
                                  ServerResponse resp = response.body();
+
                                  if(resp.getResult().equals(Constants.SUCCESS)){
 
                                     reportList.addAll(resp.getSegnalazioni());
 
-
-
-
                                  }
 
-
-
-
-                                 //Snackbar.make(coordinatorLayout, resp.getMessage(), Snackbar.LENGTH_LONG).show()
+                                 Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                              }
-
-
 
 
             @Override
@@ -167,7 +159,7 @@ public class HomeActivity extends AppCompatActivity
 
                 //progress.setVisibility(View.INVISIBLE);
                 Log.d(TAG,"failed");
-                //Snackbar.make(getView(), , Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
 
             }
         });
