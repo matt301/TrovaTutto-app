@@ -94,7 +94,6 @@ public class HomeActivity extends AppCompatActivity
         txtEmail.setText(pref.getString(Constants.EMAIL, ""));
 
 
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         reportList = new ArrayList<>();
         adapter = new ReportAdapter(this, reportList);
@@ -146,7 +145,22 @@ public class HomeActivity extends AppCompatActivity
 
                                  if(resp.getResult().equals(Constants.SUCCESS)){
 
-                                    reportList.addAll(resp.getSegnalazioni());
+
+                                     for(int i = 0; i < resp.getSegnalazioni().size(); i++){
+                                         Segnalazione segnalazione = new Segnalazione();
+
+                                         segnalazione.setAutore(resp.getSegnalazioni().get(i).getAutore());
+                                         segnalazione.setTitolo(resp.getSegnalazioni().get(i).getTitolo());
+                                         segnalazione.setSottotitolo(resp.getSegnalazioni().get(i).getSottotitolo());
+                                         segnalazione.setCategoria(resp.getSegnalazioni().get(i).getCategoria());
+                                         segnalazione.setDescrizione(resp.getSegnalazioni().get(i).getDescrizione());
+                                         segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
+                                         segnalazione.setFoto(resp.getSegnalazioni().get(i).getFoto());
+
+                                         reportList.add(segnalazione);
+
+                                     }
+
 
                                  }
 

@@ -1,14 +1,14 @@
 package com.example.matteo.trovatutto.models;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ServerResponse {
 
     private String result;
     private String message;
     private User user;
-    private List<Segnalazione> segnalazioni;
+    private ArrayList<Segnalazione> segnalazioni;
 
     public String getResult() {
         return result;
@@ -22,7 +22,7 @@ public class ServerResponse {
         return user;
     }
 
-    public List<Segnalazione> getSegnalazioni() {
+    public ArrayList<Segnalazione> getSegnalazioni() {
         return segnalazioni;
     }
 }
