@@ -163,8 +163,8 @@ public class HomeActivity extends AppCompatActivity
 
 
                                  }
-
-                                 Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+                                 Toast.makeText(HomeActivity.this, resp.getMessage(), Toast.LENGTH_LONG).show();
+                                // Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                              }
 
 
@@ -178,7 +178,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-
+/*
         Segnalazione a = new Segnalazione("True Romance", "very romance", "","","","","");
         reportList.add(a);
 
@@ -202,7 +202,7 @@ public class HomeActivity extends AppCompatActivity
 
         Segnalazione h = new Segnalazione("True Romance", "very romance", "","","","","");
         reportList.add(h);
-
+*/
         adapter.notifyDataSetChanged();
 
     }
@@ -268,7 +268,6 @@ public class HomeActivity extends AppCompatActivity
 
 
     boolean doubleBackToExitPressedOnce = false;
-
     @Override
     public void onBackPressed() {
 
