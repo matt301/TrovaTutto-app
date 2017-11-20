@@ -7,18 +7,29 @@
 
 
     <Button
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/btn_dialog_gallery"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:text="Gallery" />
+        android:drawableLeft="@mipmap/ic_insert_photo_gallery"
+        android:text="Gallery"
+        android:background="#ffffff"/>
 
     <Button
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/btn_dialog_camera"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="0.5"
-
-        android:text="Camera" />
+        android:drawableLeft="@mipmap/ic_insert_photo_camera"
+        android:text="Camera"
+        android:background="#ffffff"/>
 
 </LinearLayout>
