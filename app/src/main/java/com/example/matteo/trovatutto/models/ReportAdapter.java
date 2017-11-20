@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.matteo.trovatutto.R;
 import com.example.matteo.trovatutto.ReportActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +25,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     private Context mContext;
     private List<Segnalazione> reportList;
+    private ArrayList<String> info = new ArrayList<String>();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title,subtitle;
@@ -59,25 +62,45 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         holder.title.setText(report.getTitolo());
         holder.subtitle.setText(report.getSottotitolo());
 
+
         // loading report images using Glide library
         Glide.with(mContext).load(report.getFoto()).into(holder.thumbnail);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                info.clear();
+                info.add(report.getTitolo());
+                info.add(report.getSottotitolo());
+                info.add(report.getDescrizione());
+                info.add(report.getIndirizzo());
+                Log.e("info ",info.toString());
+
+
                 Intent openReport = new Intent(view.getContext(), ReportActivity.class);
                 openReport.putExtra("immagine",report.getFoto());
+                openReport.putExtra("info",info);
                 view.getContext().startActivity(openReport);
+
             }
         });
-
 
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                info.clear();
+                info.add(report.getTitolo());
+                info.add(report.getSottotitolo());
+                info.add(report.getDescrizione());
+                info.add(report.getIndirizzo());
+                Log.e("info ",info.toString());
+
                 Intent openReport = new Intent(view.getContext(), ReportActivity.class);
                 openReport.putExtra("immagine",report.getFoto());
+                openReport.putStringArrayListExtra("info",info);
                 view.getContext().startActivity(openReport);
 
             }

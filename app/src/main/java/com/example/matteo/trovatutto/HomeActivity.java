@@ -59,8 +59,6 @@ public class HomeActivity extends AppCompatActivity
         private List<Segnalazione> reportList;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +95,6 @@ public class HomeActivity extends AppCompatActivity
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         reportList = new ArrayList<>();
         adapter = new ReportAdapter(this, reportList);
-
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);  // TODO: spanCount = numero di cards per riga
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
@@ -107,8 +104,7 @@ public class HomeActivity extends AppCompatActivity
         prepareReports();// TODO: bindare anche sul bottone "aggiorna"
 
 
-        //initFragment(); // TODO: rimuovere HomeFragment
-
+        //initFragment(); // TODO: rimuovere HomeFragment*/
 
     }
 
@@ -118,7 +114,6 @@ public class HomeActivity extends AppCompatActivity
      */
 
     private void prepareReports() {
-
 
 
         Gson gson = new GsonBuilder()
@@ -159,8 +154,8 @@ public class HomeActivity extends AppCompatActivity
                                          segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
                                          segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
-                                       //  Log.i("Foto di culi ",segnalazione.getFoto() );
 
+                                        // Log.i("Foto di culi ",segnalazione.getFoto() );
                                          reportList.add(segnalazione);
 
                                      }

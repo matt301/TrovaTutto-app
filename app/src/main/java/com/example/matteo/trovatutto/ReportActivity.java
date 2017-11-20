@@ -59,14 +59,22 @@ public class ReportActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        Bundle bundle = new Bundle();
-        bundle.putString("immagine", getIntent().getExtras().getString("immagine") );
+        Bundle bundle_im = new Bundle();
+        bundle_im.putString("immagine", getIntent().getExtras().getString("immagine") );
+
+        Bundle bundle_info = new Bundle();
+        bundle_info.putStringArrayList("info", getIntent().getStringArrayListExtra("info"));
+
+
 
         ReportImageFragment ImaF = new ReportImageFragment();
-        ImaF.setArguments(bundle);
+        ImaF.setArguments(bundle_im);
+
+        ReportTextFragment TxtF = new ReportTextFragment();
+        TxtF.setArguments(bundle_info);
 
 
-        adapter.addFragment(new ReportTextFragment(), "REPORT");
+        adapter.addFragment(TxtF, "REPORT");
         adapter.addFragment(ImaF, "IMAGE");
         adapter.addFragment(new ReportMapFragment(), "MAP");
         viewPager.setAdapter(adapter);
