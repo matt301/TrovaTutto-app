@@ -141,13 +141,13 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
                         } else {
 
-                            Snackbar.make(getView(), "Fields are empty you faggot!", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), "Fields are empty ", Snackbar.LENGTH_LONG).show();
                         }
                     }else{
-                        Snackbar.make(getView(), "Immage is empty stupid bitch !", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getView(), "Immage is empty !", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
-                    Snackbar.make(getView(), "Category is empty little cunt  !", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(getView(), "Category is empty !", Snackbar.LENGTH_LONG).show();
                 }
                 break;
 
