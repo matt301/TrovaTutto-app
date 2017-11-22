@@ -84,7 +84,6 @@ public class HomeActivity extends AppCompatActivity
                         new DownloadReports().execute();
                     }
                 }, 1000);
-                adapter.notifyDataSetChanged();
 
             }
         });
@@ -117,7 +116,7 @@ public class HomeActivity extends AppCompatActivity
         //prepareReports();// TODO: bindare anche sul bottone "aggiorna"
 
          new DownloadReports().execute();
-         adapter.notifyDataSetChanged();
+
         //initFragment(); // TODO: rimuovere HomeFragment
 
 
@@ -138,7 +137,7 @@ public class HomeActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
+            adapter.notifyDataSetChanged();
             Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
         }
