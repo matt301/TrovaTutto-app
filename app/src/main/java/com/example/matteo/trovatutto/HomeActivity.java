@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity
         private RecyclerView recyclerView;
         private ReportAdapter adapter;
         private List<Segnalazione> reportList;
-        private   FloatingActionButton update;
+        private FloatingActionButton update;
 
 
 
@@ -143,8 +143,6 @@ public class HomeActivity extends AppCompatActivity
         }
 
         private void prepareReports() {
-
-
 
             Gson gson = new GsonBuilder()
                     .setLenient()
@@ -255,9 +253,6 @@ public class HomeActivity extends AppCompatActivity
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
-
-
 
 
     private void initFragment(){

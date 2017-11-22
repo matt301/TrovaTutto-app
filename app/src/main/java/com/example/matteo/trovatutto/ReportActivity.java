@@ -123,7 +123,6 @@ public class ReportActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-
                 goToHome();
                 return true;
 

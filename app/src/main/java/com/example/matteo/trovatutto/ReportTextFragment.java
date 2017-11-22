@@ -1,24 +1,23 @@
 package com.example.matteo.trovatutto;
 
-import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 
-public class ReportTextFragment extends Fragment {
+public class ReportTextFragment extends Fragment implements View.OnClickListener{
 
 
     private TextView tv_titolo,tv_sottotitolo,tv_descrizione,tv_indirizzo,tv_autore;
+    private Button bt_delete;
     private ArrayList<String> info = new ArrayList<String>();
 
     public ReportTextFragment() {
@@ -56,7 +55,8 @@ public class ReportTextFragment extends Fragment {
         tv_sottotitolo  = view.findViewById(R.id.report_tv_sottotitolo);
         tv_descrizione  = view.findViewById(R.id.report_tv_descrizione);
         tv_indirizzo    = view.findViewById(R.id.report_tv_indirizzo);
-        tv_autore =  view.findViewById(R.id.report_tv_autore);
+        tv_autore       = view.findViewById(R.id.report_tv_autore);
+        bt_delete       = view.findViewById(R.id.report_bt_delete);
 
         tv_titolo.setText(titolo);
         tv_sottotitolo.setText(sottotitolo);
@@ -64,9 +64,24 @@ public class ReportTextFragment extends Fragment {
         tv_indirizzo.setText(indirizzo);
         tv_autore.setText(autore);
 
+        bt_delete.setOnClickListener(this);
 
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.report_bt_delete:
+                Snackbar.make(getView(), "Cancielo tuto", Snackbar.LENGTH_LONG).show();
+                break;
+
+
+
+
+
+        }
+    }
 
 
 }

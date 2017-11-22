@@ -1,11 +1,16 @@
 package com.example.matteo.trovatutto;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,24 +43,45 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
 
     private RecyclerView recyclerView;
     private ReportAdapter adapter;
-    private List<Segnalazione> reportList;
     private List<Segnalazione> myReportList;
     private SharedPreferences pref;
+    private View view;
+    private FloatingActionButton update;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_my_report, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_my_report, container, false);
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         pref = getActivity().getSharedPreferences("userInfo",MODE_PRIVATE);
-
-
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-       // reportList = new ArrayList<>();
-        myReportList = new ArrayList<>();
 
-        myReportList = chooseMyReport();
+        update = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                myReportList = new ArrayList<>();
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        new DownloadReports().execute();
+                    }
+                }, 1000);
+
+            }
+        });
+
+
+        myReportList = new ArrayList<>();
 
         adapter = new ReportAdapter(view.getContext(), myReportList);
 
@@ -65,17 +91,32 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        new DownloadReports().execute();
 
-        return view;
     }
 
 
-    private List<Segnalazione> chooseMyReport(){
+    private class DownloadReports extends AsyncTask<Void, Void, Void> {
 
-        final List<Segnalazione> tempList = new ArrayList<>();
+
+        @Override
+        protected Void doInBackground(Void...params) {
+            chooseMyReport();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            adapter.notifyDataSetChanged();
+            Snackbar.make(view.findViewById(R.id.my_content_frame), "miei report", Snackbar.LENGTH_LONG).show();
+
+        }
+
+    private void chooseMyReport(){
+
+     //   final List<Segnalazione> tempList = new ArrayList<>();
         User user = new User();
         user.setEmail(pref.getString(Constants.EMAIL,""));
-
 
 
         Gson gson = new GsonBuilder()
@@ -116,10 +157,9 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
                         segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
                         segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
-                        tempList.add(segnalazione);
+                        myReportList.add(segnalazione);
 
                     }
-
 
                 }
 
@@ -137,8 +177,9 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
             }
         });
 
-        return tempList;
     }
+    }
+
 
 
 
@@ -187,5 +228,10 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
     public void onClick(View v) {
 
     }
+
+
+
+
+
 
 }
