@@ -77,8 +77,14 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 reportList = new ArrayList<>();
-                new DownloadReports().execute();
+                new Handler().postDelayed(new Runnable() {
 
+                    @Override
+                    public void run() {
+                        new DownloadReports().execute();
+                    }
+                }, 1000);
+                adapter.notifyDataSetChanged();
 
             }
         });
@@ -111,7 +117,7 @@ public class HomeActivity extends AppCompatActivity
         //prepareReports();// TODO: bindare anche sul bottone "aggiorna"
 
          new DownloadReports().execute();
-
+         adapter.notifyDataSetChanged();
         //initFragment(); // TODO: rimuovere HomeFragment
 
 
@@ -132,14 +138,12 @@ public class HomeActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            adapter.notifyDataSetChanged();
-            Snackbar.make(findViewById(R.id.drawer_layout), "Nuovi report molto belli", Snackbar.LENGTH_LONG).show();
+
+            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
         }
 
         private void prepareReports() {
-
-
 
             Gson gson = new GsonBuilder()
                     .setLenient()
@@ -177,8 +181,6 @@ public class HomeActivity extends AppCompatActivity
                             segnalazione.setDescrizione(resp.getSegnalazioni().get(i).getDescrizione());
                             segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
                             segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
-
-
 
                             reportList.add(segnalazione);
 
