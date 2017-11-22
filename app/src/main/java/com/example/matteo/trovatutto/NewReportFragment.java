@@ -135,6 +135,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
                         if (!title.isEmpty() && !subtitle.isEmpty() && !description.isEmpty() && !address.isEmpty()) {
 
+
                             progress.setVisibility(View.VISIBLE);
                             sendReportProcess(userInfo.getString(Constants.EMAIL, ""), title, subtitle, category, description, address, encodedImage);
 

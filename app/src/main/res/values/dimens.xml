@@ -11,7 +11,7 @@
     <dimen name="backdrop_title">30dp</dimen>
     <dimen name="backdrop_subtitle">18dp</dimen>
     <dimen name="card_margin">5dp</dimen>
-    <dimen name="card_report_radius">0dp</dimen>
+    <dimen name="card_report_radius">3dp</dimen>
     <dimen name="report_image_height">160dp</dimen>
     <dimen name="report_title_padding">10dp</dimen>
     <dimen name="report_title">15dp</dimen>

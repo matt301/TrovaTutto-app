@@ -2,8 +2,8 @@ package com.example.matteo.trovatutto;
 
 /*
 
-    TODO:   -Home Segnalazioni
-    TODO:   -Refresh della home, con banda piena o occupata in invio non fa visualizzare nulla
+    TODO:   -Home Segnalazioni(da fixare)
+    TODO:   -Visualizzazione autore nel dettaglio segnalazioni (con possibilità di contatto?)
     TODO:   -Segnalazioni personali
     TODO:   -Geolocalizzazione e mappe
     TODO:   -Google contact

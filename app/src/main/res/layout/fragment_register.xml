@@ -43,7 +43,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:drawableRight="@drawable/ic_person"
-                    android:hint="Nome"
+                    android:hint="@string/user_name"
                     android:inputType="text"
                     />
 
@@ -64,7 +64,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/ic_person"
-                        android:hint="Cognome"
+                        android:hint="@string/user_surname"
                         android:inputType="textPersonName"
                         />
                 </android.support.design.widget.TextInputLayout>
@@ -127,7 +127,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/ic_data"
-                        android:hint="Data di Nascita"
+                        android:hint="@string/user_birthday"
                         android:inputType="date"
                       />
 
@@ -148,7 +148,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/ic_indirizzo"
-                        android:hint="Indirizzo"
+                        android:hint="@string/user_address"
                         android:inputType="textPostalAddress"
                         />
 
@@ -169,7 +169,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/ic_numerotel"
-                        android:hint="Numero di telefono"
+                        android:hint="@string/user_phone"
                         android:inputType="phone"
                         />
 
@@ -190,7 +190,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/ic_description"
-                        android:hint="Descrizione (Opzionale)"
+                        android:hint="@string/user_bio"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -203,7 +203,7 @@
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="30dp"
                     android:background="@color/colorPrimary"
-                    android:text="Register"
+                    android:text="@string/user_register_btn"
                     android:textColor="@android:color/white" />
 
             <TextView
@@ -211,7 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Already Registered ? Login Now !"
+                android:text="@string/user_already_registered"
                 android:textColor="@color/colorAccent"
                 />
 

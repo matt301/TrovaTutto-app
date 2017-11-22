@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ReportTextFragment extends Fragment {
 
 
-    private TextView tv_titolo,tv_sottotitolo,tv_descrizione,tv_indirizzo;
+    private TextView tv_titolo,tv_sottotitolo,tv_descrizione,tv_indirizzo,tv_autore;
     private ArrayList<String> info = new ArrayList<String>();
 
     public ReportTextFragment() {
@@ -50,16 +50,19 @@ public class ReportTextFragment extends Fragment {
         String sottotitolo  = info.get(1);
         String descrizione  = info.get(2);
         String indirizzo    = info.get(3);
+        String autore       = info.get(4);
 
         tv_titolo       = view.findViewById(R.id.report_tv_titolo);
         tv_sottotitolo  = view.findViewById(R.id.report_tv_sottotitolo);
         tv_descrizione  = view.findViewById(R.id.report_tv_descrizione);
         tv_indirizzo    = view.findViewById(R.id.report_tv_indirizzo);
+        tv_autore =  view.findViewById(R.id.report_tv_autore);
 
         tv_titolo.setText(titolo);
         tv_sottotitolo.setText(sottotitolo);
         tv_descrizione.setText(descrizione);
         tv_indirizzo.setText(indirizzo);
+        tv_autore.setText(autore);
 
 
     }

@@ -71,10 +71,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             public void onClick(View view) {
 
                 info.clear();
+
                 info.add(report.getTitolo());
                 info.add(report.getSottotitolo());
                 info.add(report.getDescrizione());
                 info.add(report.getIndirizzo());
+                info.add(report.getAutore());
                 Log.e("info ",info.toString());
 
 
@@ -96,6 +98,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
                 info.add(report.getSottotitolo());
                 info.add(report.getDescrizione());
                 info.add(report.getIndirizzo());
+                info.add(report.getAutore());
                 Log.e("info ",info.toString());
 
                 Intent openReport = new Intent(view.getContext(), ReportActivity.class);

@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:background="@color/colorPrimary"
-                android:text="Edit Profile"
+                android:text="@string/edit_profile_btn"
                 android:textColor="@android:color/white" />
 
             <android.support.v7.widget.AppCompatButton
@@ -80,7 +80,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorPrimary"
-                android:text="Change Password"
+                android:text="@string/change_password_btn"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

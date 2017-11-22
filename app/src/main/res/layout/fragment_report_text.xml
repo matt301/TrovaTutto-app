@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Titolo:"/>
+            android:text="@string/report_info_title"/>
 
         <TextView
             android:id="@+id/report_tv_titolo"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Sottotitolo:"/>
+            android:text="@string/report_info_subtitle"/>
 
         <TextView
             android:id="@+id/report_tv_sottotitolo"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Descrizione:"/>
+            android:text="@string/report_info_description"/>
 
         <TextView
             android:id="@+id/report_tv_descrizione"
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Indirizzo:"/>
+            android:text="@string/report_info_address"/>
 
         <TextView
             android:id="@+id/report_tv_indirizzo"
@@ -77,5 +77,24 @@
             android:layout_marginLeft="50dp"
             android:layout_weight="1" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/report_info_author"/>
+
+        <TextView
+            android:id="@+id/report_tv_autore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

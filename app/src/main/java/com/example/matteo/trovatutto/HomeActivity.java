@@ -3,6 +3,7 @@ package com.example.matteo.trovatutto;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -34,7 +35,6 @@ import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
-import com.example.matteo.trovatutto.models.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -57,6 +57,9 @@ public class HomeActivity extends AppCompatActivity
         private RecyclerView recyclerView;
         private ReportAdapter adapter;
         private List<Segnalazione> reportList;
+        private   FloatingActionButton update;
+
+
 
 
     @Override
@@ -68,12 +71,15 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
-        FloatingActionButton update = (FloatingActionButton) findViewById(R.id.fab_update);
+        update = (FloatingActionButton) findViewById(R.id.fab_update);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Snackbar.make(view, "Eh volevi! Invece non faccio ancora un cazzo", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-               // prepareReports();
+
+                reportList = new ArrayList<>();
+                new DownloadReports().execute();
+
+
             }
         });
 
@@ -95,116 +101,114 @@ public class HomeActivity extends AppCompatActivity
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         reportList = new ArrayList<>();
         adapter = new ReportAdapter(this, reportList);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);  // TODO: spanCount = numero di cards per riga
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);  // TODO: spanCount = numero di cards per riga
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        prepareReports();// TODO: bindare anche sul bottone "aggiorna"
+        //prepareReports();// TODO: bindare anche sul bottone "aggiorna"
 
+         new DownloadReports().execute();
 
-        //initFragment(); // TODO: rimuovere HomeFragment*/
+        //initFragment(); // TODO: rimuovere HomeFragment
+
 
     }
 
 
     /**
-     * Simulazione segnalazioni (da sostituire con la request al server)
+     * AsyncTask per download segnalazioni
      */
-
-    private void prepareReports() {
-
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-
-        //ArrayList<Segnalazione> segnalazioni= new ArrayList<Segnalazione>();
-
-        ServerRequest request = new ServerRequest();
-        request.setOperation(Constants.DOWNLOAD_REPORT);
-        Call<ServerResponse> response = requestInterface.operation(request);
-
-        response.enqueue(new Callback<ServerResponse>() {
-                             @Override
-                             public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
-
-                                 ServerResponse resp = response.body();
-
-                                 if(resp.getResult().equals(Constants.SUCCESS)){
+    private class DownloadReports extends AsyncTask<Void, Void, Void> {
 
 
-                                     for(int i = 0; i < resp.getSegnalazioni().size(); i++){
+        @Override
+        protected Void doInBackground(Void...params) {
+            prepareReports();
+            return null;
+        }
 
-                                         Segnalazione segnalazione = new Segnalazione();
-                                         segnalazione.setID(resp.getSegnalazioni().get(i).getID());
-                                         segnalazione.setAutore(resp.getSegnalazioni().get(i).getAutore());
-                                         segnalazione.setTitolo(resp.getSegnalazioni().get(i).getTitolo());
-                                         segnalazione.setSottotitolo(resp.getSegnalazioni().get(i).getSottotitolo());
-                                         segnalazione.setCategoria(resp.getSegnalazioni().get(i).getCategoria());
-                                         segnalazione.setDescrizione(resp.getSegnalazioni().get(i).getDescrizione());
-                                         segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
-                                         segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            adapter.notifyDataSetChanged();
+            Snackbar.make(findViewById(R.id.drawer_layout), "Nuovi report molto belli", Snackbar.LENGTH_LONG).show();
 
+        }
 
-                                        // Log.i("Foto di culi ",segnalazione.getFoto() );
-                                         reportList.add(segnalazione);
-
-                                     }
+        private void prepareReports() {
 
 
-                                 }
 
-                                 Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
-                             }
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+
+            RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
 
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
+            ServerRequest request = new ServerRequest();
+            request.setOperation(Constants.DOWNLOAD_REPORT);
+            Call<ServerResponse> response = requestInterface.operation(request);
 
-                //progress.setVisibility(View.INVISIBLE);
-                Log.d(TAG,"failed");
-                Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+            response.enqueue(new Callback<ServerResponse>() {
+                @Override
+                public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
 
-            }
-        });
+                    ServerResponse resp = response.body();
 
-/*
-        Segnalazione a = new Segnalazione("True Romance", "very romance", "","","","","");
-        reportList.add(a);
+                    if(resp.getResult().equals(Constants.SUCCESS)){
 
-        Segnalazione b = new Segnalazione("Lello", "so gud", "","","","","");
-        reportList.add(b);
 
-        Segnalazione c = new Segnalazione("GiuseppeenoKasaleeno ", "ez", "","","","","");
-        reportList.add(c);
+                        for(int i = 0; i < resp.getSegnalazioni().size(); i++){
 
-        Segnalazione d = new Segnalazione("True Romance", "very romance", "","","","","");
-        reportList.add(d);
+                            Segnalazione segnalazione = new Segnalazione();
+                            segnalazione.setID(resp.getSegnalazioni().get(i).getID());
+                            segnalazione.setAutore(resp.getSegnalazioni().get(i).getAutore());
+                            segnalazione.setTitolo(resp.getSegnalazioni().get(i).getTitolo());
+                            segnalazione.setSottotitolo(resp.getSegnalazioni().get(i).getSottotitolo());
+                            segnalazione.setCategoria(resp.getSegnalazioni().get(i).getCategoria());
+                            segnalazione.setDescrizione(resp.getSegnalazioni().get(i).getDescrizione());
+                            segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
+                            segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
-        Segnalazione e = new Segnalazione("True Romance", "very romance", "","","","","");
-        reportList.add(e);
 
-        Segnalazione f = new Segnalazione("Lello", "so gud", "","","","","");
-        reportList.add(f);
 
-        Segnalazione g = new Segnalazione("GiuseppeenoKasaleeno ", "ez", "","","","","");
-        reportList.add(g);
+                            reportList.add(segnalazione);
 
-        Segnalazione h = new Segnalazione("True Romance", "very romance", "","","","","");
-        reportList.add(h);
-*/
-        adapter.notifyDataSetChanged();
+                        }
 
+
+                    }
+
+                    //  Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+                }
+
+
+                @Override
+                public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                    //progress.setVisibility(View.INVISIBLE);
+                    //  Log.d(TAG,"failed");
+                    //   Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+
+                }
+            });
+
+            //adapter.notifyDataSetChanged();
+
+        }
     }
+
+
+
+
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -352,16 +356,19 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_home:
                 fragment = new HomeFragment();
                 title = "Home";
+                update.setVisibility(View.VISIBLE);
                 viewIsHome = true;
                 break;
             case R.id.nav_profilo:
                 fragment = new ProfileFragment();
                 title = "Profile";
+                update.setVisibility(View.INVISIBLE);
                 viewIsHome= false;
                 break;
             case R.id.nav_add_segnalazioni:
                 fragment = new NewReportFragment();
                 title = "New Report";
+                update.setVisibility(View.INVISIBLE);
                 viewIsHome= false;
                 break;
             case R.id.nav_logout:
@@ -375,6 +382,7 @@ public class HomeActivity extends AppCompatActivity
             default:
                 fragment = new HomeFragment();
                 title = "Home";
+                update.setVisibility(View.VISIBLE);
                 viewIsHome = true;
                 break;
         }
