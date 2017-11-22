@@ -10,7 +10,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -45,8 +44,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.matteo.trovatutto.Constants.TAG;
 
 
 public class HomeActivity extends AppCompatActivity
@@ -157,7 +154,7 @@ public class HomeActivity extends AppCompatActivity
 
 
             ServerRequest request = new ServerRequest();
-            request.setOperation(Constants.DOWNLOAD_REPORT);
+            request.setOperation(Constants.DOWNLOAD_REPORTS);
             Call<ServerResponse> response = requestInterface.operation(request);
 
             response.enqueue(new Callback<ServerResponse>() {

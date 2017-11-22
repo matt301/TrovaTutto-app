@@ -10,7 +10,8 @@ public class Constants {
     public static final String RESET_PASSWORD_INITIATE      = "resPassReq";
     public static final String RESET_PASSWORD_FINISH        = "resPass";
     public static final String INSERT_NEW_REPORT            = "insSgn";
-    public static final String DOWNLOAD_REPORT              = "dlRep";
+    public static final String DOWNLOAD_REPORTS             = "dlRep";
+    public static final String DOWNLOAD_MY_REPORTS          = "dlMyRep";
 
 
     public static final String SUCCESS      = "success";
