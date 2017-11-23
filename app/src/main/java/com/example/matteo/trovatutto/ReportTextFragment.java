@@ -1,6 +1,9 @@
 package com.example.matteo.trovatutto;
 
 
+import android.content.Context;
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.Snackbar;
@@ -8,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 
 public class ReportTextFragment extends Fragment implements View.OnClickListener{
@@ -73,12 +78,9 @@ public class ReportTextFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.report_bt_delete:
-                Snackbar.make(getView(), "Cancielo tuto", Snackbar.LENGTH_LONG).show();
+
+             Snackbar.make(getView(), "Cancielo tuto", Snackbar.LENGTH_LONG).show();
                 break;
-
-
-
-
 
         }
     }
