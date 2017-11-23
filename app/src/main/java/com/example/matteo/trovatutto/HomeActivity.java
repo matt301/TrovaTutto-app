@@ -20,9 +20,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
 import android.widget.TextView;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.view.animation.AnimationUtils;
 
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -40,6 +42,8 @@ import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.support.v7.widget.SearchView;
+import android.support.v4.view.MenuItemCompat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,8 +60,9 @@ public class HomeActivity extends AppCompatActivity
         private SharedPreferences pref;
         private RecyclerView recyclerView;
         private ReportAdapter adapter;
-        private List<Segnalazione> reportList;
+        private ArrayList<Segnalazione> reportList;
         private FloatingActionButton update;
+        private Animation rotate_360;
 
 
 
@@ -72,6 +77,7 @@ public class HomeActivity extends AppCompatActivity
         pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
         update = (FloatingActionButton) findViewById(R.id.fab_update);
+        rotate_360 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_360);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +88,9 @@ public class HomeActivity extends AppCompatActivity
                     @Override
                     public void run() {
                         new DownloadReports().execute();
+                        update.startAnimation(rotate_360);
                     }
-                }, 1000);
+                }, 500);
 
             }
         });
@@ -138,7 +145,7 @@ public class HomeActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Void aVoid) {
             adapter.notifyDataSetChanged();
-            Snackbar.make(findViewById(R.id.drawer_layout), "Nuovi report molto belli", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
         }
 
@@ -312,6 +319,9 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        search(searchView);
         return true;
     }
 
@@ -320,14 +330,34 @@ public class HomeActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+      //  int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-        }
+       // if (id == R.id.search) {
+        //}
 
         return super.onOptionsItemSelected(item);
     }
+    private void search(SearchView searchView) {
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+    }
+
+
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

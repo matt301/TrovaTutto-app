@@ -1,7 +1,6 @@
 package com.example.matteo.trovatutto;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -14,7 +13,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,10 +41,12 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
 
     private RecyclerView recyclerView;
     private ReportAdapter adapter;
-    private List<Segnalazione> myReportList;
+    private ArrayList<Segnalazione> reportList;
+    private ArrayList<Segnalazione> myReportList;
     private SharedPreferences pref;
     private View view;
-    private FloatingActionButton update;
+    private FloatingActionButton updateMy;
+
 
 
     @Override
@@ -63,8 +63,8 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         pref = getActivity().getSharedPreferences("userInfo",MODE_PRIVATE);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
-        update = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
-        update.setOnClickListener(new View.OnClickListener() {
+        updateMy = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
+        updateMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -93,6 +93,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
 
         new DownloadReports().execute();
 
+
     }
 
 
@@ -108,7 +109,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         @Override
         protected void onPostExecute(Void aVoid) {
             adapter.notifyDataSetChanged();
-            Snackbar.make(view.findViewById(R.id.my_content_frame), "miei report", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(getActivity().findViewById(R.id.my_content_frame), "miei report", Snackbar.LENGTH_LONG).show();
 
         }
 
@@ -117,6 +118,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
      //   final List<Segnalazione> tempList = new ArrayList<>();
         User user = new User();
         user.setEmail(pref.getString(Constants.EMAIL,""));
+
 
 
         Gson gson = new GsonBuilder()
@@ -160,6 +162,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
                         myReportList.add(segnalazione);
 
                     }
+
 
                 }
 

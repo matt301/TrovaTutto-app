@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,14 +20,15 @@ import com.example.matteo.trovatutto.R;
 import com.example.matteo.trovatutto.ReportActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHolder> {
+
+public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHolder> implements Filterable {
 
     private Context mContext;
-    private List<Segnalazione> reportList;
+    private ArrayList<Segnalazione> reportList;
     private ArrayList<String> info = new ArrayList<String>();
+    private ArrayList<Segnalazione> reportFilteredList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title,subtitle;
@@ -43,9 +46,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
     }
 
 
-    public ReportAdapter(Context mContext, List<Segnalazione> reportList) {
+    public ReportAdapter(Context mContext, ArrayList<Segnalazione> reportList) {
         this.mContext = mContext;
         this.reportList = reportList;
+        this.reportFilteredList = reportList;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final Segnalazione report = reportList.get(position);
+        final Segnalazione report = reportFilteredList.get(position);
         holder.title.setText(report.getTitolo());
         holder.subtitle.setText(report.getSottotitolo());
 
@@ -110,6 +114,50 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         });
     }
 
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+                Log.e("tettinesode",charString);
+
+                if (charString.isEmpty()) {
+
+                    reportFilteredList = reportList;
+
+                } else {
+
+                   ArrayList<Segnalazione> filteredList = new ArrayList<>() ;
+
+
+                    for (Segnalazione report : reportList) {
+
+                        if (report.getTitolo().toLowerCase().contains(charString) || report.getSottotitolo().toLowerCase().contains(charString) || report.getCategoria().toLowerCase().contains(charString)) {
+
+                            filteredList.add(report);
+                        }
+                    }
+
+                    reportFilteredList = filteredList;
+
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = reportFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                reportFilteredList = (ArrayList<Segnalazione>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 
     /**
      * Showing popup menu when tapping on 3 dots
@@ -151,6 +199,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
     */
     @Override
     public int getItemCount() {
-        return reportList.size();
+        return reportFilteredList.size();
     }
 }
