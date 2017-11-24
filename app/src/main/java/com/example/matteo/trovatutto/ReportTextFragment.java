@@ -2,6 +2,7 @@ package com.example.matteo.trovatutto;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -79,7 +80,10 @@ public class ReportTextFragment extends Fragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.report_bt_delete:
 
-             Snackbar.make(getView(), "Cancielo tuto", Snackbar.LENGTH_LONG).show();
+             //Snackbar.make(getView(), "Cancielo tuto", Snackbar.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
 
         }
