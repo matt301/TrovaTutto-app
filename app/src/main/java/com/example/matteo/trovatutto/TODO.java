@@ -11,11 +11,14 @@ package com.example.matteo.trovatutto;
     TODO:   -Pubblicazione su FB
 
 
+        AIzaSyCjNpkYHoKFbjKnZ5Hzhvgfk4dI24qOQN8 Api Key
+
+        Maiandra GD Font
+
         Blu icone : #08005a
         Bianco in trasparenza: #CCFFFFFF
 
-        Pagina dettaglio segnalazione con: text, foto, mappa
-        https://www.androidhive.info/2015/09/android-material-design-working-with-tabs/
+
         Login con Google Plus (opzionale)
         https://www.androidhive.info/2014/02/android-login-with-google-plus-account-1/
         Per notifiche

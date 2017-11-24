@@ -36,7 +36,8 @@
                 android:paddingRight="@dimen/report_title_padding"
                 android:paddingTop="@dimen/report_title_padding"
                 android:textColor="@color/report_title"
-                android:textSize="@dimen/report_title" />
+                android:textSize="@dimen/report_title"
+                />
 
           <TextView
                 android:id="@+id/tv_report_subtitle"
