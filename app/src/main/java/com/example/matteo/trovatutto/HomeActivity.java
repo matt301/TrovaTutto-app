@@ -1,6 +1,7 @@
 package com.example.matteo.trovatutto;
 
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -61,7 +62,8 @@ public class HomeActivity extends AppCompatActivity
         private ArrayList<Segnalazione> reportList;
         private FloatingActionButton update;
         private Animation rotate_360;
-        private ProgressBar progressUpdate;
+
+        private ProgressDialog progressUpdate;
 
 
 
@@ -75,7 +77,8 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
-        progressUpdate = (ProgressBar) findViewById(R.id.progressBarUpdate);
+        progressUpdate = new ProgressDialog(this);
+
         update = (FloatingActionButton) findViewById(R.id.fab_update);
         rotate_360 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_360);
         update.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +86,13 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 reportList = new ArrayList<>();
+                update.startAnimation(rotate_360);
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
                         new DownloadReports().execute();
-                        update.startAnimation(rotate_360);
+
                     }
                 }, 500);
 
@@ -137,16 +141,25 @@ public class HomeActivity extends AppCompatActivity
     /**
      * AsyncTask per download segnalazioni
      */
-    private class DownloadReports extends AsyncTask<Void, Void, Void> {
+    private class DownloadReports extends AsyncTask<Void, Integer, Void> {
 
 
         @Override
         protected void onPreExecute() {
-            progressUpdate.setVisibility(View.VISIBLE);
+
+            progressUpdate.setCancelable(true);
+            progressUpdate.setMessage("Reports downloading ...");
+            progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressUpdate.setProgress(0);
+            progressUpdate.setMax(100);
+            progressUpdate.show();
+
+
         }
         @Override
-        protected void onProgressUpdate(Void...params) {
-
+        protected void onProgressUpdate(Integer...progress) {
+            super.onProgressUpdate(progress);
+            progressUpdate.setProgress(progress[0]);
         }
 
 
@@ -158,7 +171,7 @@ public class HomeActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            progressUpdate.setVisibility(View.INVISIBLE);
+            progressUpdate.dismiss();
             adapter.notifyDataSetChanged();
             Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
@@ -210,7 +223,7 @@ public class HomeActivity extends AppCompatActivity
 
                     }
 
-                    //  Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+                    // Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
 
 
@@ -219,7 +232,7 @@ public class HomeActivity extends AppCompatActivity
 
                     //progress.setVisibility(View.INVISIBLE);
                     //  Log.d(TAG,"failed");
-                    //   Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                      Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
 
                 }
             });
