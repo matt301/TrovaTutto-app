@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -60,6 +61,7 @@ public class HomeActivity extends AppCompatActivity
         private ArrayList<Segnalazione> reportList;
         private FloatingActionButton update;
         private Animation rotate_360;
+        private ProgressBar progressUpdate;
 
 
 
@@ -73,6 +75,7 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         pref = getSharedPreferences("userInfo",MODE_PRIVATE);
 
+        progressUpdate = (ProgressBar) findViewById(R.id.progressBarUpdate);
         update = (FloatingActionButton) findViewById(R.id.fab_update);
         rotate_360 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_360);
         update.setOnClickListener(new View.OnClickListener() {
@@ -119,10 +122,14 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-         new DownloadReports().execute();
-
         //initFragment(); // TODO: rimuovere HomeFragment
 
+
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        new DownloadReports().execute();
 
     }
 
@@ -134,6 +141,16 @@ public class HomeActivity extends AppCompatActivity
 
 
         @Override
+        protected void onPreExecute() {
+            progressUpdate.setVisibility(View.VISIBLE);
+        }
+        @Override
+        protected void onProgressUpdate(Void...params) {
+
+        }
+
+
+        @Override
         protected Void doInBackground(Void...params) {
             prepareReports();
             return null;
@@ -141,6 +158,7 @@ public class HomeActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            progressUpdate.setVisibility(View.INVISIBLE);
             adapter.notifyDataSetChanged();
             Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
@@ -389,7 +407,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_mie_segnalazioni:
                 fragment = new MyReportFragment();
-                title = "My Report";
+                title = "My Reports";
                 update.setVisibility(View.INVISIBLE);
                 viewIsHome= false;
                 break;

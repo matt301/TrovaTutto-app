@@ -33,7 +33,6 @@ public class ReportActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ImageView image;
-    //private Animation zoom;
     private int[] tabIcons = {
             R.drawable.ic_rep_text,
          //   R.drawable.ic_rep_image,
@@ -53,7 +52,6 @@ public class ReportActivity extends AppCompatActivity {
 
         initCollapsingToolbar();
 
-        // zoom=  AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoom_in);
 
         image = (ImageView) findViewById(R.id.backdrop);
         image.setOnClickListener(new View.OnClickListener(){
