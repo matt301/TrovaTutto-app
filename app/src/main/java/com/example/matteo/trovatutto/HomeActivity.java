@@ -66,8 +66,6 @@ public class HomeActivity extends AppCompatActivity
         private ProgressDialog progressUpdate;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -237,6 +235,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
 
+
             //adapter.notifyDataSetChanged();
 
         }
@@ -348,6 +347,7 @@ public class HomeActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search_menu, menu);
         MenuItem search = menu.findItem(R.id.search);
+
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
         search(searchView);
         return true;
@@ -461,7 +461,6 @@ public class HomeActivity extends AppCompatActivity
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
-
 
 
     }

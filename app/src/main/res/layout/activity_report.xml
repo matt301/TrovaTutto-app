@@ -1,94 +1,153 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/main_content"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@android:color/white"
-android:fitsSystemWindows="true">
-
-<android.support.design.widget.AppBarLayout
-    android:id="@+id/appbar"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/sfondo"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/detail_backdrop_height"
-    android:fitsSystemWindows="true"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:id="@+id/collapsing_toolbar"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:contentScrim="?attr/colorPrimary"
-        app:expandedTitleMarginEnd="64dp"
-        app:expandedTitleMarginStart="48dp"
-        app:expandedTitleTextAppearance="@android:color/transparent"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        android:scrollbars="none">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="#CCFFFFFF"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/reportACT_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:text="TITOLO"
+                android:textAlignment="center"
+                android:textSize="32sp"/>
+            <TextView
+                android:id="@+id/reportACT_tv_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:text="Sottotitolo"
+                android:textAlignment="center"
+                android:textSize="24sp"/>
 
             <ImageView
-                android:id="@+id/backdrop"
+                android:id="@+id/reportACT_iv_image"
+                android:layout_width="425dp"
+                android:layout_height="250dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/no_image"
+                />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/report_detail_title"
+                    android:id="@+id/reportACT_tv_staticTxAutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80dp"
+                    android:text="AUTORE: " />
 
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/backdrop_title" />
 
                 <TextView
-                    android:id="@+id/report_detail_subtitle"
+                    android:id="@+id/reportACT_tv_autor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@+id/reportACT_tv_staticTxAutor"
+                    android:layout_toEndOf="@+id/reportACT_tv_staticTxAutor"
+                    android:text="Andrea Raineri" />
 
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/backdrop_subtitle" />
-
-            </LinearLayout>
-        </RelativeLayout>
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    </android.support.design.widget.CollapsingToolbarLayout>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill" />
+                <Button
+                    android:id="@+id/reportACT_bt_autor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="80dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text="Show" />
 
 
-</android.support.design.widget.AppBarLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/reportACT_tv_staticTxDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:text="DESCRIZIONE: " />
+
+                <TextView
+                    android:id="@+id/reportACT_tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="80dp"
+                    android:layout_alignStart="@+id/reportACT_tv_staticTxDescription"
+                    android:layout_below="@+id/reportACT_tv_staticTxDescription"
+                    android:text="Descrivo tutto" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/reportACT_tv_staticTxAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80dp"
+                    android:text="Map " />
 
 
-<android.support.v4.view.ViewPager
-    android:id="@+id/viewpager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:scrollbars="vertical"/>
+                <TextView
+                    android:id="@+id/reportACT_tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@+id/reportACT_tv_staticTxAddress"
+                    android:layout_toEndOf="@+id/reportACT_tv_staticTxAddress"
+                    android:text="Indirizzo" />
+
+                <Button
+                    android:id="@+id/reportACT_bt_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="80dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text=">>>" />
 
 
+            </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

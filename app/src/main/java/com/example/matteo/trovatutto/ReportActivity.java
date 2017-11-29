@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -29,7 +30,8 @@ import java.util.List;
 public class ReportActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView report_title, report_subtitle;
+    private TextView report_title, report_subtitle, report_autor, report_description,report_address;
+    private Button bt_BigShow, bt_map;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ImageView image;
@@ -42,15 +44,63 @@ public class ReportActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+   /*     toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
-        initCollapsingToolbar();
+
+        report_title = (TextView) findViewById(R.id.reportACT_tv_title);
+        report_title.setText(getIntent().getStringArrayListExtra("info").get(0));
+
+        report_subtitle = (TextView) findViewById(R.id.reportACT_tv_subtitle);
+        report_subtitle.setText(getIntent().getStringArrayListExtra("info").get(1));
+
+        report_description = (TextView) findViewById(R.id.reportACT_tv_description);
+        report_description.setText(getIntent().getStringArrayListExtra("info").get(2));
+
+        report_address = (TextView) findViewById(R.id.reportACT_tv_address);
+        report_address.setText(getIntent().getStringArrayListExtra("info").get(3));
+
+        report_autor = (TextView) findViewById(R.id.reportACT_tv_autor);
+        report_autor.setText(getIntent().getStringArrayListExtra("info").get(4));
+
+        bt_BigShow = (Button) findViewById(R.id.reportACT_bt_autor);
+        bt_map = (Button) findViewById(R.id.reportACT_bt_address);
+
+        image = (ImageView) findViewById(R.id.reportACT_iv_image);
+        image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //image.startAnimation(zoom);
+            }
+        });
+
+        try {
+            Glide.with(this).load(getIntent().getExtras().getString("immagine") ).into((ImageView) findViewById(R.id.reportACT_iv_image));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        bt_BigShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bt_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+      /*  initCollapsingToolbar();
 
 
         image = (ImageView) findViewById(R.id.backdrop);
@@ -78,7 +128,7 @@ public class ReportActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
+        setupTabIcons();*/
 
 
     }
@@ -162,7 +212,7 @@ public class ReportActivity extends AppCompatActivity {
     /**
      * Initializing collapsing toolbar
      * Will show and hide the toolbar title on scroll
-     */
+
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -189,7 +239,7 @@ public class ReportActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    }*/
 
 
 
