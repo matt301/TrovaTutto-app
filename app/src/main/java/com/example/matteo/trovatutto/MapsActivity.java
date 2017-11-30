@@ -1,5 +1,7 @@
 package com.example.matteo.trovatutto;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -10,9 +12,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private List<Address> address_geo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +45,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
+        try {
+             address_geo = geoCoder.getFromLocationName(getIntent().getExtras().getString("ADDRESS") , 1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         // Add a marker in Genova and move the camera
-        LatLng sydney = new LatLng(44.4264, 8.91519);
+        LatLng sydney = new LatLng(address_geo.get(0).getLatitude(), address_geo.get(0).getLongitude());
         mMap.addMarker(new MarkerOptions().position(sydney).title("Ehi ciao!"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+
+
+
 }

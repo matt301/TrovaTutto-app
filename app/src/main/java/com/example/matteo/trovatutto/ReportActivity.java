@@ -1,6 +1,8 @@
 package com.example.matteo.trovatutto;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -8,11 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
 public class ReportActivity extends AppCompatActivity {
@@ -30,7 +37,6 @@ public class ReportActivity extends AppCompatActivity {
         toolbar.setTitle(getIntent().getStringArrayListExtra("info").get(0));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         report_title = (TextView) findViewById(R.id.reportACT_tv_title);
         report_title.setText(getIntent().getStringArrayListExtra("info").get(0));
@@ -83,8 +89,10 @@ public class ReportActivity extends AppCompatActivity {
         report_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(ReportActivity.this, MapsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("ADDRESS",getIntent().getStringArrayListExtra("info").get(3).toString());
                 startActivity(intent);
 
             }
