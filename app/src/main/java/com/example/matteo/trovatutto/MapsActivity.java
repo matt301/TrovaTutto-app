@@ -58,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(address_geo.get(0).getLatitude(), address_geo.get(0).getLongitude());
         mMap.addMarker(new MarkerOptions().position(sydney).title("Ehi ciao!"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMinZoomPreference(16);
     }
 
 

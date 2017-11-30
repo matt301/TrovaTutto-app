@@ -73,6 +73,7 @@ public class ReportActivity extends AppCompatActivity {
                 bundle.putString("immagine", getIntent().getStringExtra("immagine"));
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 transaction.replace(R.id.report_frame_layout, fragment).commit();
             }
         });

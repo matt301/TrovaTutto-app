@@ -144,7 +144,7 @@ public class HomeActivity extends AppCompatActivity
         @Override
         protected void onPreExecute() {
 
-            progressUpdate.setCancelable(true);
+            progressUpdate.setCancelable(false);
             progressUpdate.setMessage("Reports downloading ...");
             progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressUpdate.setProgress(0);
