@@ -13,6 +13,8 @@ import android.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -59,10 +61,14 @@ public class ReportActivity extends AppCompatActivity {
         report_description.setText(getIntent().getStringArrayListExtra("info").get(2));
 
         report_address = (TextView) findViewById(R.id.reportACT_tv_address);
-        report_address.setText(getIntent().getStringArrayListExtra("info").get(3));
+        SpannableString content_add = new SpannableString(getIntent().getStringArrayListExtra("info").get(3));
+        content_add.setSpan(new UnderlineSpan(), 0, content_add.length(), 0);
+        report_address.setText(content_add);
 
         report_autor = (TextView) findViewById(R.id.reportACT_tv_autor);
-        report_autor.setText(getIntent().getStringArrayListExtra("info").get(4));
+        SpannableString content_aut = new SpannableString(getIntent().getStringArrayListExtra("info").get(4));
+        content_aut.setSpan(new UnderlineSpan(), 0, content_aut.length(), 0);
+        report_autor.setText(content_aut);
 
 
         image =  findViewById(R.id.reportACT_iv_image);

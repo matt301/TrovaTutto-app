@@ -40,12 +40,10 @@ public class ReportImageFragment extends Fragment {
     }
 
     private void initViews(View view){
-        Log.e("InitViews", "ci sono");
+
         String immagine = getArguments().getString("immagine");
         iv_image = view.findViewById(R.id.report_iv_image);
         Glide.with(view.getContext()).load(immagine).into(iv_image);
-
-
         iv_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
