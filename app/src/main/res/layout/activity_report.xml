@@ -6,151 +6,189 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/report_frame_layout">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
-
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_report"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:background="#CCFFFFFF"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <TextView
-                android:id="@+id/reportACT_tv_title"
+    </android.support.design.widget.AppBarLayout>
+
+
+    <FrameLayout
+        android:id="@+id/report_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:textAlignment="center"
-                android:textSize="32sp"/>
-            <TextView
-                android:id="@+id/reportACT_tv_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:textAlignment="center"
-                android:textSize="24sp"/>
-
-            <ImageView
-                android:id="@+id/reportACT_iv_image"
-                android:layout_width="425dp"
-                android:layout_height="250dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/no_image"
-                />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:background="#CCFFFFFF"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/reportACT_tv_staticTxAutor"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/reportACT_tv_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="80dp"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/report_info_author" />
-
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="center"
+                    android:textSize="32sp" />
 
                 <TextView
-                    android:id="@+id/reportACT_tv_autor"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/reportACT_tv_subtitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/reportACT_tv_staticTxAutor"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toEndOf="@+id/reportACT_tv_staticTxAutor"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="italic" />
-
-                <Button
-                    android:id="@+id/reportACT_bt_autor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="80dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:text="Show" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:id="@+id/reportACT_tv_staticTxDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/report_info_description"
-                    android:layout_marginBottom="5dp"/>
-
-                <TextView
-                    android:id="@+id/reportACT_tv_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="80dp"
-                    android:layout_alignStart="@+id/reportACT_tv_staticTxDescription"
-                    android:layout_below="@+id/reportACT_tv_staticTxDescription"
-                    android:textSize="18sp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:id="@+id/reportACT_tv_staticTxAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginLeft="80dp"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/report_info_address" />
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/reportACT_tv_address"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/reportACT_iv_image"
+                    android:layout_width="425dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:src="@drawable/no_image" />
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/reportACT_tv_staticTxAddress"
-                    android:layout_alignStart="@+id/reportACT_tv_staticTxAddress"
-                    android:textColor="#4169e1"
-                    android:textSize="18sp" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    card_view:cardCornerRadius="4dp"
+                    card_view:contentPadding="10dp">
 
 
-            </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/reportACT_tv_staticTxAutor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="70dp"
+                            android:text="@string/report_info_author"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
 
-        </LinearLayout>
-    </ScrollView>
+                        <TextView
+                            android:id="@+id/reportACT_tv_autor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/reportACT_tv_staticTxAutor"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toEndOf="@+id/reportACT_tv_staticTxAutor"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"
+                            android:textStyle="italic" />
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    card_view:cardCornerRadius="4dp"
+                    card_view:contentPadding="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/reportACT_tv_staticTxDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="70dp"
+                            android:text="@string/report_info_description"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/reportACT_tv_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/reportACT_tv_staticTxDescription"
+                            android:layout_below="@+id/reportACT_tv_staticTxDescription"
+                            android:layout_marginRight="80dp"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    card_view:cardCornerRadius="4dp"
+                    card_view:contentPadding="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/reportACT_tv_staticTxAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="70dp"
+                            android:text="@string/report_info_address"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/reportACT_tv_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/reportACT_tv_staticTxAddress"
+                            android:layout_below="@+id/reportACT_tv_staticTxAddress"
+                            android:textColor="#4169e1"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
     </FrameLayout>
 </LinearLayout>

@@ -26,9 +26,6 @@ public class ReportActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView report_title, report_subtitle, report_autor, report_description,report_address;
-    private Button bt_BigShow, bt_map;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     private ImageView image;
     private TouchImageView iv_big_image;
     private int[] tabIcons = {
@@ -46,9 +43,10 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-   /*   toolbar = (Toolbar) findViewById(R.id.toolbar);
+      toolbar = (Toolbar) findViewById(R.id.toolbar_report);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        toolbar.setTitle(getIntent().getStringArrayListExtra("info").get(0));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         report_title = (TextView) findViewById(R.id.reportACT_tv_title);
@@ -66,7 +64,6 @@ public class ReportActivity extends AppCompatActivity {
         report_autor = (TextView) findViewById(R.id.reportACT_tv_autor);
         report_autor.setText(getIntent().getStringArrayListExtra("info").get(4));
 
-        bt_BigShow = (Button) findViewById(R.id.reportACT_bt_autor);
 
         image =  findViewById(R.id.reportACT_iv_image);
 
@@ -89,12 +86,6 @@ public class ReportActivity extends AppCompatActivity {
         });
 
 
-        bt_BigShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         report_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,14 +129,6 @@ public class ReportActivity extends AppCompatActivity {
 
 
     }
-
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        //tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-    }
-
-
 
 
     private void goToHome(){
