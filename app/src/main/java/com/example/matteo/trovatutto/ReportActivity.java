@@ -1,29 +1,24 @@
 package com.example.matteo.trovatutto;
 
+import android.app.AlertDialog;
+
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
+import android.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.widget.TextView;
-import android.view.animation.AnimationUtils;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +30,15 @@ public class ReportActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ImageView image;
+    private TouchImageView iv_big_image;
     private int[] tabIcons = {
             R.drawable.ic_rep_text,
          //   R.drawable.ic_rep_image,
             R.drawable.ic_rep_map
     };
-
+    private boolean zoomOut =  false;
+    private AlertDialog dialog;
+    private Bitmap bitmap;
 
 
     @Override
@@ -48,7 +46,7 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-   /*     toolbar = (Toolbar) findViewById(R.id.toolbar);
+   /*   toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
@@ -69,21 +67,26 @@ public class ReportActivity extends AppCompatActivity {
         report_autor.setText(getIntent().getStringArrayListExtra("info").get(4));
 
         bt_BigShow = (Button) findViewById(R.id.reportACT_bt_autor);
-        bt_map = (Button) findViewById(R.id.reportACT_bt_address);
 
-        image = (ImageView) findViewById(R.id.reportACT_iv_image);
-        image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                //image.startAnimation(zoom);
-            }
-        });
+        image =  findViewById(R.id.reportACT_iv_image);
 
         try {
             Glide.with(this).load(getIntent().getExtras().getString("immagine") ).into((ImageView) findViewById(R.id.reportACT_iv_image));
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new ReportImageFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("immagine",getIntent().getStringExtra("immagine"));
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.report_frame_layout, fragment).commit();
+            }
+        });
 
 
         bt_BigShow.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +95,12 @@ public class ReportActivity extends AppCompatActivity {
 
             }
         });
-        bt_map.setOnClickListener(new View.OnClickListener() {
+        report_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ReportActivity.this, MapsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
 
             }
         });
@@ -139,53 +145,7 @@ public class ReportActivity extends AppCompatActivity {
         //tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        Bundle bundle_info = new Bundle();
-        bundle_info.putStringArrayList("info", getIntent().getStringArrayListExtra("info"));
-
-        //ReportImageFragment ImaF = new ReportImageFragment();
-        //ImaF.setArguments(bundle_im);
-
-        ReportTextFragment TxtF = new ReportTextFragment();
-        TxtF.setArguments(bundle_info);
-
-
-        adapter.addFragment(TxtF, "REPORT");
-        //adapter.addFragment(ImaF, "IMAGE");
-        adapter.addFragment(new ReportMapFragment(), "MAP");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
 
 
     private void goToHome(){

@@ -1,10 +1,12 @@
 package com.example.matteo.trovatutto;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import com.example.matteo.trovatutto.models.Segnalazione;
 public class ReportImageFragment extends Fragment {
 
 
-    private ImageView iv_image;
+    private TouchImageView iv_image;
 
 
     public ReportImageFragment() {
@@ -38,10 +40,20 @@ public class ReportImageFragment extends Fragment {
     }
 
     private void initViews(View view){
-
+        Log.e("InitViews", "ci sono");
         String immagine = getArguments().getString("immagine");
         iv_image = view.findViewById(R.id.report_iv_image);
-        Glide.with(getContext()).load(immagine).into(iv_image);
+        Glide.with(view.getContext()).load(immagine).into(iv_image);
+
+
+        iv_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getFragmentManager().beginTransaction().remove(ReportImageFragment.this).commit();
+            }
+        });
+
+
 
     }
 

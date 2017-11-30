@@ -6,6 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/report_frame_layout">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +34,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
-                android:text="TITOLO"
                 android:textAlignment="center"
                 android:textSize="32sp"/>
             <TextView
@@ -39,7 +43,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
-                android:text="Sottotitolo"
                 android:textAlignment="center"
                 android:textSize="24sp"/>
 
@@ -63,18 +66,22 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="80dp"
-                    android:text="AUTORE: " />
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/report_info_author" />
 
 
                 <TextView
                     android:id="@+id/reportACT_tv_autor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignTop="@+id/reportACT_tv_staticTxAutor"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
                     android:layout_toEndOf="@+id/reportACT_tv_staticTxAutor"
-                    android:text="Andrea Raineri" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
 
                 <Button
                     android:id="@+id/reportACT_bt_autor"
@@ -98,7 +105,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"
-                    android:text="DESCRIZIONE: " />
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/report_info_description"
+                    android:layout_marginBottom="5dp"/>
 
                 <TextView
                     android:id="@+id/reportACT_tv_description"
@@ -107,9 +117,10 @@
                     android:layout_marginRight="80dp"
                     android:layout_alignStart="@+id/reportACT_tv_staticTxDescription"
                     android:layout_below="@+id/reportACT_tv_staticTxDescription"
-                    android:text="Descrivo tutto" />
+                    android:textSize="18sp"/>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,30 +130,21 @@
                     android:id="@+id/reportACT_tv_staticTxAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="80dp"
-                    android:text="Map " />
-
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/report_info_address" />
 
                 <TextView
                     android:id="@+id/reportACT_tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignTop="@+id/reportACT_tv_staticTxAddress"
-                    android:layout_toEndOf="@+id/reportACT_tv_staticTxAddress"
-                    android:text="Indirizzo" />
-
-                <Button
-                    android:id="@+id/reportACT_bt_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="80dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:text=">>>" />
+                    android:layout_below="@+id/reportACT_tv_staticTxAddress"
+                    android:layout_alignStart="@+id/reportACT_tv_staticTxAddress"
+                    android:textColor="#4169e1"
+                    android:textSize="18sp" />
 
 
             </RelativeLayout>
@@ -150,4 +152,5 @@
 
         </LinearLayout>
     </ScrollView>
+    </FrameLayout>
 </LinearLayout>
