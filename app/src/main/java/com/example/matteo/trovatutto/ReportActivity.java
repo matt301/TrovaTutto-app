@@ -1,53 +1,34 @@
 package com.example.matteo.trovatutto;
 
-import android.app.AlertDialog;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class ReportActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView report_title, report_subtitle, report_autor, report_description,report_address;
+    private TextView report_title, report_subtitle, report_autor, report_description, report_address;
     private ImageView image;
-    private TouchImageView iv_big_image;
-    private int[] tabIcons = {
-            R.drawable.ic_rep_text,
-         //   R.drawable.ic_rep_image,
-            R.drawable.ic_rep_map
-    };
-    private boolean zoomOut =  false;
-    private AlertDialog dialog;
-    private Bitmap bitmap;
-
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-      toolbar = (Toolbar) findViewById(R.id.toolbar_report);
-        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_report);
         toolbar.setTitle(getIntent().getStringArrayListExtra("info").get(0));
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -71,10 +52,9 @@ public class ReportActivity extends AppCompatActivity {
         report_autor.setText(content_aut);
 
 
-        image =  findViewById(R.id.reportACT_iv_image);
-
+        image = findViewById(R.id.reportACT_iv_image);
         try {
-            Glide.with(this).load(getIntent().getExtras().getString("immagine") ).into((ImageView) findViewById(R.id.reportACT_iv_image));
+            Glide.with(this).load(getIntent().getExtras().getString("immagine")).into((ImageView) findViewById(R.id.reportACT_iv_image));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,10 +64,18 @@ public class ReportActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Fragment fragment = new ReportImageFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("immagine",getIntent().getStringExtra("immagine"));
+                bundle.putString("immagine", getIntent().getStringExtra("immagine"));
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.report_frame_layout, fragment).commit();
+            }
+        });
+
+        report_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
             }
         });
 
@@ -102,42 +90,10 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-
-      /*  initCollapsingToolbar();
-
-
-        image = (ImageView) findViewById(R.id.backdrop);
-        image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                //image.startAnimation(zoom);
-            }
-        });
-
-        try {
-            Glide.with(this).load(getIntent().getExtras().getString("immagine") ).into((ImageView) findViewById(R.id.backdrop));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        report_title = (TextView) findViewById(R.id.report_detail_title);
-        report_title.setText(getIntent().getStringArrayListExtra("info").get(0));
-        report_subtitle = (TextView) findViewById(R.id.report_detail_subtitle);
-        report_subtitle.setText(getIntent().getStringArrayListExtra("info").get(1));
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();*/
-
-
     }
 
 
-    private void goToHome(){
+    private void goToHome() {
 
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -157,39 +113,5 @@ public class ReportActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    /**
-     * Initializing collapsing toolbar
-     * Will show and hide the toolbar title on scroll
-
-    private void initCollapsingToolbar() {
-        final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-        appBarLayout.setExpanded(true);
-
-        // hiding & showing the title when toolbar expanded & collapsed
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle(report_title.getText());
-                    isShow = true;
-                } else if (isShow) {
-                    collapsingToolbar.setTitle(" ");
-                    isShow = false;
-                }
-            }
-        });
-    }*/
-
-
 
 }

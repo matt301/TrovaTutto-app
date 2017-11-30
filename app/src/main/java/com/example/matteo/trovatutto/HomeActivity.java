@@ -62,7 +62,6 @@ public class HomeActivity extends AppCompatActivity
         private ArrayList<Segnalazione> reportList;
         private FloatingActionButton update;
         private Animation rotate_360;
-
         private ProgressDialog progressUpdate;
 
 
@@ -124,7 +123,7 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        //initFragment(); // TODO: rimuovere HomeFragment
+       //--TODO: rimuovere HomeFragment
 
 
     }
@@ -187,8 +186,6 @@ public class HomeActivity extends AppCompatActivity
                     .build();
 
             RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-
-
             ServerRequest request = new ServerRequest();
             request.setOperation(Constants.DOWNLOAD_REPORTS);
             Call<ServerResponse> response = requestInterface.operation(request);
@@ -217,27 +214,16 @@ public class HomeActivity extends AppCompatActivity
                             reportList.add(segnalazione);
 
                         }
-
-
                     }
-
-                    // Snackbar.make(findViewById(R.id.drawer_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
-
 
                 @Override
                 public void onFailure(Call<ServerResponse> call, Throwable t) {
 
-                    //progress.setVisibility(View.INVISIBLE);
-                    //  Log.d(TAG,"failed");
                       Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
 
                 }
             });
-
-
-            //adapter.notifyDataSetChanged();
-
         }
     }
 
@@ -289,16 +275,6 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-    private void initFragment(){
-        android.app.Fragment fragment;
-
-            fragment = new HomeFragment();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame,fragment);
-            ft.commit();
-    }
-
-
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -329,18 +305,6 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-
-    /*@Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-        if (viewIsHome) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            displayView(R.id.nav_home);
-
-        }
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
