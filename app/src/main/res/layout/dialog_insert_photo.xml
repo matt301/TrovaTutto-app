@@ -15,8 +15,15 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_weight="0.5"
-        android:drawableTop="@drawable/ic_ins_photo_gallery"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_ins_photo_gallery"
+        android:drawablePadding="2dip"
+        android:gravity="center"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
         android:text="Gallery"
+        android:textSize="24sp"
         android:background="#ffffff"/>
 
     <Button
@@ -28,9 +35,15 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_weight="0.5"
-        android:drawableTop="@drawable/ic_ins_photo_camera"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_ins_photo_camera"
+        android:drawablePadding="2dip"
+        android:gravity="center"
+        android:paddingLeft="30dip"
+        android:paddingRight="26dip"
+        android:singleLine="true"
         android:text="Camera"
-
+        android:textSize="24sp"
         android:background="#ffffff"/>
 
 </LinearLayout>
