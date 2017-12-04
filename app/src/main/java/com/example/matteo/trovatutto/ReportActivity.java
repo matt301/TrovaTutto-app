@@ -99,18 +99,20 @@ public class ReportActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
-                View v = inflater.inflate(R.layout.dialog_change_profile, null);
+                view = inflater.inflate(R.layout.dialog_public_profile, null);
 
-                author_name     = v.findViewById(R.id.tv_pp_author_name);
-                author_email    = v.findViewById(R.id.tv__pp_author_email);
-                author_ntel     = v.findViewById(R.id.tv_pp_author_ntel);
-                send_email      = v.findViewById(R.id.btn_pp_send_email);
-                new_contact     = v.findViewById(R.id.btn_pp_new_contact);
+                author_name     = view.findViewById(R.id.tv_pp_author_name);
+                author_email    = view.findViewById(R.id.tv_pp_author_email);
+                author_ntel     = view.findViewById(R.id.tv_pp_author_ntel);
+                send_email      = view.findViewById(R.id.btn_pp_send_email);
+                new_contact     = view.findViewById(R.id.btn_pp_new_contact);
 
 
-                author_name.setText("nome e cognome");
+                String nome = "nome e cognome";
+                String tel = "numero telefono azzurro";
+                author_name.setText(nome.toString());
                 author_email.setText(report_author.getText());
-                author_ntel.setText("numero telefono azzurro");
+                author_ntel.setText(tel.toString());
 
 
 
