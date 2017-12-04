@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         if(pref.getBoolean(Constants.IS_LOGGED_IN,false)){
             Intent openHome = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(openHome);
+            this.finish();
+
         }else {
             fragment = new LandingFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -39,18 +41,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
     @Override
     public void onBackPressed() {
 
-        int count = getFragmentManager().getBackStackEntryCount();
+        super.onBackPressed();
+
+      /* int count = getFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
             super.onBackPressed();
-            //additional code
         } else {
             getFragmentManager().popBackStack();
-        }
+        }*/
 
     }
+
 
 }

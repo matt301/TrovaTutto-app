@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
@@ -135,18 +136,19 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
                         if (!title.isEmpty() && !subtitle.isEmpty() && !description.isEmpty() && !address.isEmpty()) {
 
+
                             progress.setVisibility(View.VISIBLE);
                             sendReportProcess(userInfo.getString(Constants.EMAIL, ""), title, subtitle, category, description, address, encodedImage);
 
                         } else {
 
-                            Snackbar.make(getView(), "Fields are empty you faggot!", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), "Fields are empty ", Snackbar.LENGTH_LONG).show();
                         }
                     }else{
-                        Snackbar.make(getView(), "Immage is empty stupid bitch !", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getView(), "Immage is empty !", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
-                    Snackbar.make(getView(), "Category is empty little cunt  !", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(getView(), "Category is empty !", Snackbar.LENGTH_LONG).show();
                 }
                 break;
 
@@ -192,6 +194,16 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 progress.setVisibility(View.INVISIBLE);
 
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Intent openHome = new Intent(getActivity(), HomeActivity.class);
+                        startActivity(openHome);
+                    }
+                }, 1500);
+
+
             }
 
             @Override
@@ -217,7 +229,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             btn_dialog_camera =  view.findViewById(R.id.btn_dialog_camera);
 
             builder.setView(view);
-            builder.setTitle("Where?");
+            builder.setTitle("From?");
             dialog = builder.create();
             dialog.show();
 

@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
+    android:background="@drawable/sfondo"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -16,25 +15,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#CCFFFFFF"
             android:gravity="center"
-            android:orientation="vertical"
-            android:background="#CCFFFFFF">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
-                android:background="@drawable/titolo"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/titolo" />
 
-                <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/et_report_title"
@@ -43,31 +43,28 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:drawableRight="@drawable/ic_title"
-                    android:hint="Title"
-                    android:inputType="text"
-                    />
+                    android:hint="@string/report_info_title"
+                    android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="2"
-                   >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="2">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_report_subtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:hint="Subtitle"
-                        android:drawableRight="@drawable/ic_subtitle"
-                        android:inputType="text"
-                        />
-                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_report_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/ic_subtitle"
+                    android:hint="@string/report_info_subtitle"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -82,8 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
-                    android:hint="Category"
-                    />
+                    android:hint="@string/report_info_category" />
 
                 <Spinner
                     android:id="@+id/sp_report_category"
@@ -91,64 +87,60 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:textAlignment="center"
-                    android:spinnerMode="dialog" />
+                    android:spinnerMode="dialog"
+                    android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3">
+
+                <EditText
+                    android:id="@+id/et_report_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="3"
-                    >
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/ic_description"
+                    android:hint="@string/report_info_description"
+                    android:inputType="textEmailAddress" />
 
-                    <EditText
-                        android:id="@+id/et_report_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:drawableRight="@drawable/ic_description"
-                        android:hint="Description"
-                        android:inputType="textEmailAddress"
-                        />
-
-                </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
 
-                <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="5"
+                android:gravity="bottom|fill_vertical">
+
+                <EditText
+                    android:id="@+id/et_report_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="5"
-                    android:gravity="bottom|fill_vertical"
-                   >
-
-                    <EditText
-                        android:id="@+id/et_report_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:drawableRight="@drawable/ic_indirizzo"
-                        android:hint="Address"
-                        android:inputType="textPostalAddress"
-                      />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/ic_indirizzo"
+                    android:hint="@string/report_info_address"
+                    android:inputType="textPostalAddress" />
 
 
-
-                </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
             <ImageView
                 android:id="@+id/iv_report"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/im_border"/>
+                android:background="@drawable/im_border"
+                android:src="@drawable/no_image_send"/>
 
 
             <android.support.v7.widget.AppCompatButton
@@ -157,33 +149,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="8dp"
                 android:background="#4169e1"
-                android:text="Insert photo"
+                android:text="@string/insert_photo_btn"
                 android:textColor="@android:color/white" />
-
-
-
-            <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_sendreport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Send report"
-                    android:textColor="@android:color/white" />
 
 
             <ProgressBar
                 android:id="@+id/progress"
-                style="@style/Base.Widget.AppCompat.ProgressBar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:indeterminate="true"
                 android:visibility="invisible" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_sendreport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/send_report_btn"
+                android:textColor="@android:color/white" />
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

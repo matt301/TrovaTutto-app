@@ -7,18 +7,43 @@
 
 
     <Button
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/btn_dialog_gallery"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
         android:layout_weight="0.5"
-        android:text="Gallery" />
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_ins_photo_gallery"
+        android:drawablePadding="2dp"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:paddingRight="26dp"
+        android:singleLine="true"
+        android:text="Gallery"
+        android:textSize="24sp"
+        android:background="#ffffff"/>
 
     <Button
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/btn_dialog_camera"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
         android:layout_weight="0.5"
-
-        android:text="Camera" />
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/ic_ins_photo_camera"
+        android:drawablePadding="2dip"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:paddingRight="26dp"
+        android:singleLine="true"
+        android:text="Camera"
+        android:textSize="24sp"
+        android:background="#ffffff"/>
 
 </LinearLayout>

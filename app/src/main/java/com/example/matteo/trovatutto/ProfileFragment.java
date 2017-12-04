@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
@@ -38,6 +39,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private AlertDialog dialog;
     private ProgressBar progress;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -61,8 +63,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void initViews(View view){
 
-        tv_nome = (TextView)view.findViewById(R.id.tv_nome);
-        tv_email = (TextView)view.findViewById(R.id.tv_email);
+        tv_nome = (TextView)view.findViewById(R.id.tv_profile_nome);
+        tv_email = (TextView)view.findViewById(R.id.tv_profile_email);
         tv_birthdate = (TextView)view.findViewById(R.id.tv_birthdate);
         tv_ntel = (TextView)view.findViewById(R.id.tv_ntel);
         tv_address = (TextView)view.findViewById(R.id.tv_address);
@@ -150,7 +152,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
             builder.setView(view);
-            builder.setTitle("Change Profile");
+            builder.setTitle("Edit Profile");
             builder.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

@@ -7,22 +7,54 @@
 
     <string name="search_item">Search item</string>
 
+    <!-- Profile -->
+    <string name="edit_profile_btn">Edit Profile</string>
+    <string name="change_password_btn">Change Password</string>
+    <string name="user_name">Name</string>
+    <string name="user_surname">Surname</string>
+    <string name="user_birthday">Birthday</string>
+    <string name="user_address">Address</string>
+    <string name="user_phone">Phone number</string>
+    <string name="user_bio">Biography(Optional)</string>
+    <string name="user_register_btn">Register</string>
+    <string name="user_already_registered">Already registered ? Login Now !</string>
+
+
+    <!-- Login & Forgot password -->
+    <string name="forgot_password">Forgot Password</string>
+    <string name="not_registered_yet">Not registered yet ? Register Now !</string>
+    <string name="login_btn">Login</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_email">Email</string>
+    <string name="code_pass_forgot">Code</string>
+    <string name="back_to_login">Back to login</string>
+
+
+    <!-- Report details -->
+    <string name="report_info_title">Title</string>
+    <string name="report_info_subtitle">Subtitle</string>
+    <string name="report_info_description">Description</string>
+    <string name="report_info_address">Address</string>
+    <string name="report_info_author">Author</string>
+    <string name="report_info_category">Category</string>
+    <string-array name="category_array">
+        <item>Effetti personali (leggilo in inglese)</item>
+        <item>Electronic device</item>
+        <item>Book</item>
+        <item>Jewel</item>
+        <item>Dress</item>
+        <item>Documents</item>
+        <item>Animal</item>
+        <item>Ass</item>
+        <item>Other...</item>
+    </string-array>
+    <string name="insert_photo_btn">Insert photo</string>
+    <string name="send_report_btn">Send report</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello my nigga</string>
-
-
-    <string-array name="category_array">
-        <item>Effetti personali</item>
-        <item>Dispositivi eletronici</item>
-        <item>Libri</item>
-        <item>Gioielli</item>
-        <item>Vestiario</item>
-        <item>Documenti</item>
-        <item>Animali</item>
-        <item>Culi</item>
-        <item>Altro...</item>
-    </string-array>
-
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
