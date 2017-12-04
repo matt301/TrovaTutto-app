@@ -3,9 +3,11 @@ package com.example.matteo.trovatutto;
 /*
 
     TODO:   -Visualizzazione autore nel dettaglio segnalazioni (con possibilità di contatto?)
+    TODO:   -AutoCrop Image
+    TODO:   -InfoWindow
     TODO:   -Google contact
-    TODO:   -Notifiche
-    TODO:   -Pubblicazione su FB
+    TODO:   -Notifiche(Geolocalizzate?)
+
 
 
         AIzaSyCjNpkYHoKFbjKnZ5Hzhvgfk4dI24qOQN8 Api Key

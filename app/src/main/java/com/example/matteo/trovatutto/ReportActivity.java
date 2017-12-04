@@ -124,7 +124,7 @@ public class ReportActivity extends AppCompatActivity {
                 send_email      = (ImageButton)view.findViewById(R.id.btn_pp_send_email);
                 new_contact     = (ImageButton)view.findViewById(R.id.btn_pp_new_contact);
 
-                showAuthorProfile(author_email.getText().toString());
+                showAuthorProfile(report_author.getText().toString());
 
 
                 send_email.setOnClickListener(new View.OnClickListener() {
@@ -240,7 +240,7 @@ public class ReportActivity extends AppCompatActivity {
 
                 if(resp.getResult().equals(Constants.SUCCESS)){
 
-                    String nome = resp.getUser().getName() + resp.getUser().getCognome();
+                    String nome = resp.getUser().getName() +' '+ resp.getUser().getCognome();
                     String tel = resp.getUser().getNtel();
                     String desc = resp.getUser().getDescrizione();
                     author_name.setText(nome);
