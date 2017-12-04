@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.matteo.trovatutto.models.ServerRequest;
+import com.example.matteo.trovatutto.models.ServerResponse;
+import com.example.matteo.trovatutto.models.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.matteo.trovatutto.Constants.TAG;
 
 
 public class ReportActivity extends AppCompatActivity {
@@ -98,6 +111,8 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 view = inflater.inflate(R.layout.dialog_public_profile, null);
@@ -109,14 +124,8 @@ public class ReportActivity extends AppCompatActivity {
                 send_email      = (ImageButton)view.findViewById(R.id.btn_pp_send_email);
                 new_contact     = (ImageButton)view.findViewById(R.id.btn_pp_new_contact);
 
+                showAuthorProfile(author_email.getText().toString());
 
-                String nome = "nome e cognome";
-                String tel = "numero telefono azzurro";
-                String desc = "descrizione";
-                author_name.setText(nome);
-                author_email.setText(report_author.getText());
-                author_ntel.setText(tel);
-                author_bio.setText(desc);
 
                 send_email.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -200,6 +209,57 @@ public class ReportActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showAuthorProfile(String email){
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        User user = new User();
+        user.setEmail(email);
+
+        ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.SHOW_PUBLIC_PROFILE);
+        request.setUser(user);
+        final Call<ServerResponse> response = requestInterface.operation(request);
+
+        response.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+
+                if(resp.getResult().equals(Constants.SUCCESS)){
+
+                    String nome = resp.getUser().getName() + resp.getUser().getCognome();
+                    String tel = resp.getUser().getNtel();
+                    String desc = resp.getUser().getDescrizione();
+                    author_name.setText(nome);
+                    author_email.setText(report_author.getText());
+                    author_ntel.setText(tel);
+                    author_bio.setText(desc);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                Log.d(TAG,"failed");
+                Snackbar.make(findViewById(R.id.report_activity_layout), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+
+            }
+        });
     }
 
 }
