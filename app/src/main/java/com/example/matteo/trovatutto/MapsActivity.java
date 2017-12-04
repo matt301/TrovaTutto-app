@@ -23,6 +23,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private List<Address> address_geo;
+    private AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
             mMap.setMinZoomPreference(16);
         }else {
-            final AlertDialog alert;
-            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
 
             builder.setTitle("Wrong Address").setMessage("The address isn't correct!!");
             builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
