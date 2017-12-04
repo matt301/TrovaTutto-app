@@ -10,7 +10,6 @@ package com.example.matteo.trovatutto;
 
 
 
-
         AIzaSyCjNpkYHoKFbjKnZ5Hzhvgfk4dI24qOQN8 Api Key
 
         Maiandra GD Font
