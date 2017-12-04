@@ -25,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/colorAccent"
-                android:textSize="35sp" />
+                android:textSize="30sp"
+                android:layout_marginBottom="25dp"/>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -36,8 +37,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:textSize="24sp"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="20sp"
+                    android:layout_marginStart="8dp"
+                    />
 
                 <android.support.v7.widget.AppCompatImageButton
                     android:id="@+id/btn_pp_send_email"
@@ -46,6 +48,7 @@
                     android:src="@drawable/ic_send_email"
                     android:layout_gravity="center"
                     android:background="#00ffffff"
+                    android:layout_marginTop="40dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"/>
 
@@ -61,8 +64,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:textSize="24sp"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="20sp"
+                    android:layout_marginStart="8dp"
+                    />
 
                 <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/btn_pp_new_contact"
@@ -70,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_new_contact"
                 android:background="#00ffffff"
+                android:layout_marginTop="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 />
