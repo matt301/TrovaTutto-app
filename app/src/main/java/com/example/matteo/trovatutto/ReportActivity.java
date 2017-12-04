@@ -26,7 +26,7 @@ public class ReportActivity extends AppCompatActivity {
     private TextView report_title, report_subtitle, report_author, report_description, report_address, author_name,author_email,author_ntel;
     private ImageView image;
     private AlertDialog authorProfile;
-    private Button send_email,new_contact
+    private Button send_email,new_contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

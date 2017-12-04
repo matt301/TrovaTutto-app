@@ -2,10 +2,7 @@ package com.example.matteo.trovatutto;
 
 /*
 
-    TODO:   -Home Segnalazioni(da fixare)
     TODO:   -Visualizzazione autore nel dettaglio segnalazioni (con possibilità di contatto?)
-    TODO:   -Segnalazioni personali
-    TODO:   -Geolocalizzazione e mappe
     TODO:   -Google contact
     TODO:   -Notifiche
     TODO:   -Pubblicazione su FB
