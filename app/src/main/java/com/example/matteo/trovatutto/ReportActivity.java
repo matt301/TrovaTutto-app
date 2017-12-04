@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
@@ -13,7 +14,6 @@ import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +24,7 @@ import com.bumptech.glide.Glide;
 public class ReportActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView report_title, report_subtitle, report_author, report_description, report_address, author_name,author_email,author_ntel;
+    private TextView report_title, report_subtitle, report_author, report_description, report_address, author_name,author_email,author_ntel,author_bio;
     private ImageView image;
     private AlertDialog authorProfile;
     private ImageButton send_email,new_contact;
@@ -105,26 +105,43 @@ public class ReportActivity extends AppCompatActivity {
                 author_name     = view.findViewById(R.id.tv_pp_author_name);
                 author_email    = view.findViewById(R.id.tv_pp_author_email);
                 author_ntel     = view.findViewById(R.id.tv_pp_author_ntel);
+                author_bio      = view.findViewById(R.id.tv_pp_author_description);
                 send_email      = (ImageButton)view.findViewById(R.id.btn_pp_send_email);
                 new_contact     = (ImageButton)view.findViewById(R.id.btn_pp_new_contact);
 
 
                 String nome = "nome e cognome";
                 String tel = "numero telefono azzurro";
-                author_name.setText(nome.toString());
+                String desc = "descrizione";
+                author_name.setText(nome);
                 author_email.setText(report_author.getText());
-                author_ntel.setText(tel.toString());
+                author_ntel.setText(tel);
+                author_bio.setText(desc);
 
+                send_email.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Snackbar.make(findViewById(R.id.report_activity_layout),"Invia email", Snackbar.LENGTH_LONG).show();
+                    }
+                });
+                new_contact.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
 
 
                 builder.setView(view);
                 builder.setTitle("Author");
-                builder.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                builder.setIcon(R.drawable.ic_person);
+               /* builder.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
+                */
                 builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
