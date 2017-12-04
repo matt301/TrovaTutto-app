@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class ReportActivity extends AppCompatActivity {
     private TextView report_title, report_subtitle, report_author, report_description, report_address, author_name,author_email,author_ntel;
     private ImageView image;
     private AlertDialog authorProfile;
-    private Button send_email,new_contact;
+    private ImageButton send_email,new_contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +105,8 @@ public class ReportActivity extends AppCompatActivity {
                 author_name     = view.findViewById(R.id.tv_pp_author_name);
                 author_email    = view.findViewById(R.id.tv_pp_author_email);
                 author_ntel     = view.findViewById(R.id.tv_pp_author_ntel);
-                send_email      = view.findViewById(R.id.btn_pp_send_email);
-                new_contact     = view.findViewById(R.id.btn_pp_new_contact);
+                send_email      = (ImageButton)view.findViewById(R.id.btn_pp_send_email);
+                new_contact     = (ImageButton)view.findViewById(R.id.btn_pp_new_contact);
 
 
                 String nome = "nome e cognome";
