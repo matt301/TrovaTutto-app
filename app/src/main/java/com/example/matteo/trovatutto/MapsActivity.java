@@ -1,9 +1,12 @@
 package com.example.matteo.trovatutto;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -50,15 +53,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
              address_geo = geoCoder.getFromLocationName(getIntent().getExtras().getString("ADDRESS") , 1);
 
         } catch (IOException e) {
+
             e.printStackTrace();
         }
 
 
-        // Add a marker in Genova and move the camera
-        LatLng sydney = new LatLng(address_geo.get(0).getLatitude(), address_geo.get(0).getLongitude());
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Ehi ciao!"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.setMinZoomPreference(16);
+        if(address_geo.size() != 0) {
+            // Add a marker in Genova and move the camera
+            LatLng sydney = new LatLng(address_geo.get(0).getLatitude(), address_geo.get(0).getLongitude());
+            mMap.addMarker(new MarkerOptions().position(sydney).title("Ehi ciao!"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            mMap.setMinZoomPreference(16);
+        }else {
+            final AlertDialog alert;
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+
+
+            builder.setTitle("Wrong Address").setMessage("The address isn't correct!!");
+            builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alert = builder.create();
+            alert.show();
+            alert.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    MapsActivity.super.onBackPressed();
+                }
+            });
+        }
     }
 
 
