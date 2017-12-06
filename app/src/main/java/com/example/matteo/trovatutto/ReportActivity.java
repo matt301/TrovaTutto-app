@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -160,7 +161,10 @@ public class ReportActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                        emailIntent.putExtra(Intent.EXTRA_EMAIL, getIntent().getStringArrayListExtra("info").get(3));
+                        emailIntent.setData(Uri.parse("mailto:"));
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{getIntent().getStringArrayListExtra("info").get(4)});
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TrovaTutto: Report Ask");
                         startActivity(Intent.createChooser(emailIntent, "Send mail..."));
 
                         Snackbar.make(findViewById(R.id.report_activity_layout),"Invia email", Snackbar.LENGTH_LONG).show();

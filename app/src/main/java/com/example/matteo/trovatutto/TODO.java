@@ -2,9 +2,8 @@ package com.example.matteo.trovatutto;
 
 /*
 
-    TODO:   -Visualizzazione autore nel dettaglio segnalazioni (con possibilità di contatto?)
+
     TODO:   -AutoCrop Image
-    TODO:   -InfoWindow
     TODO:   -Google contact
     TODO:   -Notifiche(Geolocalizzate?)
 
