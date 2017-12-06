@@ -50,6 +50,7 @@
     </string-array>
     <string name="insert_photo_btn">Insert photo</string>
     <string name="send_report_btn">Send report</string>
+    <string name="btn_rep_delete">Delete</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

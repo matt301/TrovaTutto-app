@@ -15,6 +15,7 @@ public class User {
     private String new_password;
     private String code;
 
+    public User() {}
 
     public String getName() {return nome;}
 

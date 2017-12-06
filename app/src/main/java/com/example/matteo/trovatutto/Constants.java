@@ -13,6 +13,7 @@ public class Constants {
     public static final String DOWNLOAD_REPORTS             = "dlRep";
     public static final String DOWNLOAD_MY_REPORTS          = "dlMyRep";
     public static final String SHOW_PUBLIC_PROFILE          = "pubProf";
+    public static final String DELETE_REPORT                = "delRep";
 
 
     public static final String SUCCESS      = "success";

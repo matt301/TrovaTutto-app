@@ -5,9 +5,11 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -20,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
@@ -41,16 +44,21 @@ public class ReportActivity extends AppCompatActivity {
     private ImageView image;
     private AlertDialog authorProfile;
     private ImageButton send_email,new_contact;
+    private AppCompatButton delete;
+    private SharedPreferences userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+        userInfo = getSharedPreferences("userInfo",MODE_PRIVATE);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_report);
         toolbar.setTitle(getIntent().getStringArrayListExtra("info").get(0));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         report_title = (TextView) findViewById(R.id.reportACT_tv_title);
         report_title.setText(getIntent().getStringArrayListExtra("info").get(0));
@@ -70,6 +78,21 @@ public class ReportActivity extends AppCompatActivity {
         SpannableString content_aut = new SpannableString(getIntent().getStringArrayListExtra("info").get(4));
         content_aut.setSpan(new UnderlineSpan(), 0, content_aut.length(), 0);
         report_author.setText(content_aut);
+
+        delete = (AppCompatButton) findViewById(R.id.btn_rep_delete);
+
+        delete.setVisibility(View.GONE);
+
+        if(userInfo.getString(Constants.EMAIL,"").equals(report_author.getText().toString())){
+            delete.setVisibility(View.VISIBLE);
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteReport(userInfo.getString(Constants.EMAIL,""),getIntent().getStringArrayListExtra("info").get(5));
+                    goToHome();
+                }
+            });
+        }
 
 
         image = findViewById(R.id.reportACT_iv_image);
@@ -119,12 +142,14 @@ public class ReportActivity extends AppCompatActivity {
                 LayoutInflater inflater = getLayoutInflater();
                 view = inflater.inflate(R.layout.dialog_public_profile, null);
 
-                author_name     = view.findViewById(R.id.tv_pp_author_name);
-                author_email    = view.findViewById(R.id.tv_pp_author_email);
-                author_ntel     = view.findViewById(R.id.tv_pp_author_ntel);
-                author_bio      = view.findViewById(R.id.tv_pp_author_description);
+                author_name     = (TextView)view.findViewById(R.id.tv_pp_author_name);
+                author_email    = (TextView)view.findViewById(R.id.tv_pp_author_email);
+                author_ntel     = (TextView)view.findViewById(R.id.tv_pp_author_ntel);
+                author_bio      = (TextView)view.findViewById(R.id.tv_pp_author_description);
                 send_email      = (ImageButton)view.findViewById(R.id.btn_pp_send_email);
                 new_contact     = (ImageButton)view.findViewById(R.id.btn_pp_new_contact);
+
+
 
                 showAuthorProfile(report_author.getText().toString());
 
@@ -242,7 +267,7 @@ public class ReportActivity extends AppCompatActivity {
 
                 if(resp.getResult().equals(Constants.SUCCESS)){
 
-                    String nome = resp.getUser().getName() +' '+ resp.getUser().getCognome();
+                    String nome = resp.getUser().getName() +" "+ resp.getUser().getCognome();
                     String tel = resp.getUser().getNtel();
                     String desc = resp.getUser().getDescrizione();
                     author_name.setText(nome);
@@ -262,6 +287,52 @@ public class ReportActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void deleteReport(String email, String id){
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+
+        Segnalazione report = new Segnalazione();
+        report.setID(id);
+        report.setAutore(email);
+
+        ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.DELETE_REPORT);
+        request.setSegnalazione(report);
+        final Call<ServerResponse> response = requestInterface.operation(request);
+
+        response.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+
+                if(resp.getResult().equals(Constants.SUCCESS)){
+                    Snackbar.make(findViewById(R.id.report_activity_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                Log.d(TAG,"failed");
+                Snackbar.make(findViewById(R.id.report_activity_layout), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+
+            }
+        });
+
     }
 
 }
