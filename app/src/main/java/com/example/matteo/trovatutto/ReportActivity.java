@@ -161,11 +161,14 @@ public class ReportActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
+                        String TO = author_email.getText().toString();
+
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
                         emailIntent.setData(Uri.parse("mailto:"));
                         emailIntent.setType("text/plain");
-                        emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{getIntent().getStringArrayListExtra("info").get(4)});
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TrovaTutto: Report Ask");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{TO});
+                        emailIntent.putExtra(Intent.EXTRA_TEXT   , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+ userInfo.getString(Constants.SURNAME,"") + ". I need to contact you for " + "\"" + report_title.getText().toString() + "\"");
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TrovaTutto: Report Ask for " + report_title.getText().toString());
                         startActivity(Intent.createChooser(emailIntent, "Send mail..."));
 
                         Snackbar.make(findViewById(R.id.report_activity_layout),"Invia email", Snackbar.LENGTH_LONG).show();
@@ -237,7 +240,7 @@ public class ReportActivity extends AppCompatActivity {
         smsIntent.setData(Uri.parse("smsto:"));
         smsIntent.setType("vnd.android-dir/mms-sms");
         smsIntent.putExtra("address"  ,author_ntel.getText().toString() );
-        smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +". I need to contact you for "+ report_title.getText().toString());
+        smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +"\""+". I need to contact you for "+ report_title.getText().toString()+"\"");
 
         try {
            startActivity(smsIntent);
