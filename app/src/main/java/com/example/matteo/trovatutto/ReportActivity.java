@@ -101,6 +101,7 @@ public class ReportActivity extends AppCompatActivity {
                 Intent intent = new Intent(ReportActivity.this, MapsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("ADDRESS",getIntent().getStringArrayListExtra("info").get(3).toString());
+                intent.putStringArrayListExtra("INFO",getIntent().getStringArrayListExtra("info"));
                 startActivity(intent);
 
             }

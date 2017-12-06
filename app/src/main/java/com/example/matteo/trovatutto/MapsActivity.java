@@ -7,13 +7,16 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +27,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private List<Address> address_geo;
     private AlertDialog alert;
+
+    class MyInfoWindowAdapter implements InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyInfoWindowAdapter() {
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.info_title));
+            tvTitle.setText(getIntent().getStringArrayListExtra("INFO").get(0).toString());
+            TextView tvSubtitle = ((TextView)myContentsView.findViewById(R.id.info_subtitle));
+            tvSubtitle.setText(getIntent().getStringArrayListExtra("INFO").get(1).toString());
+            TextView tvDescription = ((TextView)myContentsView.findViewById(R.id.info_description));
+            tvDescription.setText(getIntent().getStringArrayListExtra("INFO").get(2).toString());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +95,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(address_geo.size() != 0) {
             // Add a marker in Genova and move the camera
             LatLng sydney = new LatLng(address_geo.get(0).getLatitude(), address_geo.get(0).getLongitude());
-            mMap.addMarker(new MarkerOptions().position(sydney).title("Ehi ciao!"));
+           Marker marker =  mMap.addMarker(new MarkerOptions().position(sydney).title("Ehi ciao!"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
             mMap.setMinZoomPreference(16);
+            mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+
         }else {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
