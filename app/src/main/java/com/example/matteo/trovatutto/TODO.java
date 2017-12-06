@@ -5,7 +5,12 @@ package com.example.matteo.trovatutto;
     TODO:   -AutoCrop Image
     TODO:   -Google contact
     TODO:   -Notifiche(Geolocalizzate?)
-
+    !TODO:   -Cancellare Search bar mie seganlazioni
+            -caricamento miei report
+            -caricamento report home quando deleti
+            -pulsante close profilo pubblico
+            -titolo
+            -togliere snackbar
 
 
         AIzaSyCjNpkYHoKFbjKnZ5Hzhvgfk4dI24qOQN8 Api Key
