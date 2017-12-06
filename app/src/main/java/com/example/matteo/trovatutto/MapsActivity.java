@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Address> address_geo;
     private AlertDialog alert;
 
+
     class MyInfoWindowAdapter implements InfoWindowAdapter {
 
         private final View myContentsView;
@@ -48,13 +48,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             TextView tvDescription = ((TextView)myContentsView.findViewById(R.id.info_description));
             tvDescription.setText(getIntent().getStringArrayListExtra("INFO").get(2).toString());
 
-            ImageView imImage = ((ImageView)myContentsView.findViewById(R.id.info_image));
-            try {
-                Log.e("immagine",getIntent().getExtras().getString("IMAGE"));
-                Glide.with(MapsActivity.this).load(getIntent().getExtras().getString("IMAGE")).into((ImageView) findViewById(R.id.info_image));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             return myContentsView;
         }
 
@@ -65,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
 
 
 
@@ -102,7 +96,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             e.printStackTrace();
         }
-
 
         if(address_geo.size() != 0) {
             // Add a marker in Genova and move the camera
