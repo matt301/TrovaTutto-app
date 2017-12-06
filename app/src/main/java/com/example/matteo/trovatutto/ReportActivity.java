@@ -47,6 +47,7 @@ public class ReportActivity extends AppCompatActivity {
     private AppCompatButton delete;
     private SharedPreferences userInfo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,6 +158,11 @@ public class ReportActivity extends AppCompatActivity {
                 send_email.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, getIntent().getStringArrayListExtra("info").get(3));
+                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
                         Snackbar.make(findViewById(R.id.report_activity_layout),"Invia email", Snackbar.LENGTH_LONG).show();
                     }
                 });
