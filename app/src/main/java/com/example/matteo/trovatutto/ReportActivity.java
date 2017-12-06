@@ -240,7 +240,8 @@ public class ReportActivity extends AppCompatActivity {
         smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +". I need to contact you for "+ report_title.getText().toString());
 
         try {
-            startActivity(smsIntent);
+           startActivity(smsIntent);
+
             finish();
             Log.i("Finished sending SMS...", "");
         }
