@@ -2,9 +2,7 @@ package com.example.matteo.trovatutto;
 
 /*
 
-    TODO:   -Visualizzazione autore nel dettaglio segnalazioni (con possibilità di contatto?)
     TODO:   -AutoCrop Image
-    TODO:   -InfoWindow
     TODO:   -Google contact
     TODO:   -Notifiche(Geolocalizzate?)
 
@@ -16,7 +14,6 @@ package com.example.matteo.trovatutto;
 
         Blu icone : #08005a
         Bianco in trasparenza: #CCFFFFFF
-
 
         Login con Google Plus (opzionale)
         https://www.androidhive.info/2014/02/android-login-with-google-plus-account-1/

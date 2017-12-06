@@ -38,7 +38,7 @@
     <string name="report_info_author">Author</string>
     <string name="report_info_category">Category</string>
     <string-array name="category_array">
-        <item>Effetti personali (leggilo in inglese)</item>
+        <item>Personal effects</item>
         <item>Electronic device</item>
         <item>Book</item>
         <item>Jewel</item>
