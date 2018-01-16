@@ -279,7 +279,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         }
-        //TODO:-- L'immagine è una preview bisogna inserire la foto vera -> non è vero
+
         if (reqCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
 

@@ -85,7 +85,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
 
         adapter = new ReportAdapter(view.getContext(), myReportList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);  // TODO: spanCount = numero di cards per riga
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);  //  spanCount = numero di cards per riga
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -110,7 +110,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         @Override
         protected void onPostExecute(Void aVoid) {
             adapter.notifyDataSetChanged();
-            Snackbar.make(getActivity().findViewById(R.id.my_content_frame), "miei report", Snackbar.LENGTH_LONG).show();
+            //Snackbar.make(getActivity().findViewById(R.id.my_content_frame), "", Snackbar.LENGTH_LONG).show();
 
         }
 

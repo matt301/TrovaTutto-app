@@ -7,13 +7,13 @@ package com.example.matteo.trovatutto;
 
 
        TODO:   -Login Tramite G+
-       TODO:   -Cancellare SearchBar mie seganlazioni (provare se funziona) , profilo , new report
        TODO:   -Titolo --> Lingua                                                                                       A
        TODO:   -Togliere snackbar
        TODO:   -Grafica                                                                                                 A
-       TODO:   -Dopo registrazaione andare al login
        TODO:   -Data in sovraimpressione 0000-00-00                                                                     A
        TODO:   -AutoComplete Indirizzo New Segnalazione
+
+       // !!! Da valutare l'effettivo problema !!!
        TODO:   -Caricamento doppio delle mie segnalazioni, secondo caricamento in barra caricamento, caricamento
 
 

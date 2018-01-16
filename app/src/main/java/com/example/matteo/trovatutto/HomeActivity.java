@@ -63,6 +63,7 @@ public class HomeActivity extends AppCompatActivity
         private FloatingActionButton update;
         private Animation rotate_360;
         private ProgressDialog progressUpdate;
+        private MenuItem search;
 
 
     @Override
@@ -73,6 +74,8 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         pref = getSharedPreferences("userInfo",MODE_PRIVATE);
+
+
 
         progressUpdate = new ProgressDialog(this);
 
@@ -115,7 +118,7 @@ public class HomeActivity extends AppCompatActivity
         reportList = new ArrayList<>();
         adapter = new ReportAdapter(this, reportList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);  // TODO: spanCount = numero di cards per riga
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);  // spanCount = numero di cards per riga
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -123,7 +126,6 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-       //--TODO: rimuovere HomeFragment
 
 
     }
@@ -309,8 +311,8 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.search_menu, menu);
-        MenuItem search = menu.findItem(R.id.search);
+      getMenuInflater().inflate(R.menu.search_menu, menu);
+        search = menu.findItem(R.id.search);
 
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
         search(searchView);
@@ -373,25 +375,32 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_home:
                 fragment = new HomeFragment();
                 title = "Home";
+                recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
+                search.setVisible(true);
                 viewIsHome = true;
                 break;
             case R.id.nav_profilo:
                 fragment = new ProfileFragment();
                 title = "Profile";
                 update.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.INVISIBLE);
+                search.setVisible(false);
                 viewIsHome= false;
                 break;
             case R.id.nav_mie_segnalazioni:
                 fragment = new MyReportFragment();
                 title = "My Reports";
                 update.setVisibility(View.INVISIBLE);
+                search.setVisible(false);
                 viewIsHome= false;
                 break;
             case R.id.nav_add_segnalazioni:
                 fragment = new NewReportFragment();
                 title = "New Report";
                 update.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.INVISIBLE);
+                search.setVisible(false);
                 viewIsHome= false;
                 break;
             case R.id.nav_logout:
@@ -405,7 +414,9 @@ public class HomeActivity extends AppCompatActivity
             default:
                 fragment = new HomeFragment();
                 title = "Home";
+                recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
+                search.setVisible(true);
                 viewIsHome = true;
                 break;
         }

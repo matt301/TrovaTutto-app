@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -52,6 +53,9 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
         et_indirizzo = (EditText)view.findViewById(R.id.et_indirizzo);
         et_ntel = (EditText)view.findViewById(R.id.et_ntel);
         et_descrizione = (EditText)view.findViewById(R.id.et_descrizione);
+
+
+
 
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
@@ -132,6 +136,7 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
                 ServerResponse resp = response.body();
                 Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
                 progress.setVisibility(View.INVISIBLE);
+                goToLogin();
             }
 
             @Override
