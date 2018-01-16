@@ -288,6 +288,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean(Constants.IS_LOGGED_IN,true);
+            editor.putString(Constants.EMAIL,result.getSignInAccount().getEmail());
+            editor.putString(Constants.NAME,result.getSignInAccount().getGivenName());
+            editor.putString(Constants.SURNAME,result.getSignInAccount().getFamilyName());
+
+            editor.apply();
             goToHome();
         } else {
             // Signed out, show unauthenticated UI.
