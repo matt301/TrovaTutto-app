@@ -28,6 +28,7 @@
     <string name="tv_email">Email</string>
     <string name="code_pass_forgot">Code</string>
     <string name="back_to_login">Back to login</string>
+    <string name="loading">Loading…</string>
 
 
     <!-- Report details -->

@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "803687810401-89vbn770sh365rg2omos7113gh5k56dq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matteo.trovatutto",
+            "certificate_hash": "e5c39ab17648ffa744ac2bfd6ee9a0d3ef6db35d"
+          }
+        },
+        {
+          "client_id": "803687810401-aui7abmv2r953t6m5kgsqnc3p44m9ftm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matteo.trovatutto",
+            "certificate_hash": "2c7761ea8a792176d1d62ead48d84fe0cc9d1d65"
+          }
+        },
+        {
           "client_id": "803687810401-hd0bpb315jbajlj07ln22rsredfpsumg.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803687810401-hd0bpb315jbajlj07ln22rsredfpsumg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

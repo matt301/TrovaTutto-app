@@ -80,6 +80,14 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
 
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"/>
+
             <TextView
                 android:id="@+id/tv_reset_password"
                 android:layout_width="wrap_content"
