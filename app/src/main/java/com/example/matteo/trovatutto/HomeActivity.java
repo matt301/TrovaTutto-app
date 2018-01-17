@@ -75,6 +75,7 @@ public class HomeActivity extends AppCompatActivity
         boolean mSignInClicked;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

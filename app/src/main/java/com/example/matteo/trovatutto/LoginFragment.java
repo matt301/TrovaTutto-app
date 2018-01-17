@@ -123,6 +123,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
         return view;
     }
 
+
+
     private void initViews(View view){
 
         pref = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -159,6 +161,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
 
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
+
                 break;
 
             case R.id.tv_register:
@@ -243,6 +246,65 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
     }
 
 
+    private void loginGoogleProcess(String email, String Nome, String Cognome){
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        User user = new User();
+        user.setEmail(email);
+        user.setName(Nome);
+        user.setCognome(Cognome);
+        ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.LOGIN_GOOGLE_OPERATION);
+        request.setUser(user);
+        Call<ServerResponse> response = requestInterface.operation(request);
+
+        response.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+                Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+
+
+
+                if(resp.getResult().equals(Constants.SUCCESS)){
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putBoolean(Constants.IS_LOGGED_IN,true);
+                    editor.putString(Constants.EMAIL,resp.getUser().getEmail());
+                    editor.putString(Constants.NAME,resp.getUser().getName());
+                    editor.putString(Constants.SURNAME,resp.getUser().getCognome());
+                    editor.putString(Constants.BIRTHDATE,resp.getUser().getDatadinascita());
+                    editor.putString(Constants.NTEL,resp.getUser().getNtel());
+                    editor.putString(Constants.ADDRESS,resp.getUser().getIndirizzo());
+                    editor.putString(Constants.BIO,resp.getUser().getDescrizione());
+                    editor.apply();
+                    goToHome();
+
+                }
+                progress.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                progress.setVisibility(View.INVISIBLE);
+                Log.d(TAG,"failed");
+                Snackbar.make(getView(), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
     private void goToResetPassword(){
 
         Fragment reset = new ResetPasswordFragment();
@@ -288,14 +350,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean(Constants.IS_LOGGED_IN,true);
-            editor.putString(Constants.EMAIL,result.getSignInAccount().getEmail());
-            editor.putString(Constants.NAME,result.getSignInAccount().getGivenName());
-            editor.putString(Constants.SURNAME,result.getSignInAccount().getFamilyName());
-
-            editor.apply();
-            goToHome();
+            loginGoogleProcess( result.getSignInAccount().getEmail(),  result.getSignInAccount().getGivenName(), result.getSignInAccount().getFamilyName());
         } else {
             // Signed out, show unauthenticated UI.
 
