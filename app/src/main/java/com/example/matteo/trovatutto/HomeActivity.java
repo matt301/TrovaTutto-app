@@ -313,6 +313,7 @@ public class HomeActivity extends AppCompatActivity
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 super.onBackPressed();
+                System.exit(0);
 
             }
 
@@ -325,8 +326,11 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void run() {
                     doubleBackToExitPressedOnce = false;
+
                 }
             }, 2000);
+
+
         } else{
             displayView(R.id.nav_home);
         }

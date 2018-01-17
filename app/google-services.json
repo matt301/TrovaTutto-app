@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "803687810401-b7enl4hnotjosj72op3462c0ma6ctkbm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matteo.trovatutto",
+            "certificate_hash": "cca04930afca9aad8ab26cad15e61d6514cbeea8"
+          }
+        },
+        {
           "client_id": "803687810401-89vbn770sh365rg2omos7113gh5k56dq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

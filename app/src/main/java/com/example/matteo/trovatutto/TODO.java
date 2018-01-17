@@ -7,9 +7,9 @@ package com.example.matteo.trovatutto;
 
 
        TODO:   -Login Tramite G+
-                -- Richiesta al server esistenza utente. Se esiste scarica i dati mancanti, altrimenti crea nuovo utente con nome cognome email (gli altri campi sono vuoti)
                 -- Se utente non esiste apre direttamente la pagina profilo
 
+       TODO:   -Doppio back al primo login è paxerello dio can'
        TODO:   -Titolo --> Lingua                                                                                       A
        TODO:   -Togliere snackbar
        TODO:   -Grafica                                                                                                 A
