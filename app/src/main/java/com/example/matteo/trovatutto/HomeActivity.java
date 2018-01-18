@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -60,10 +62,14 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -355,6 +361,9 @@ public class HomeActivity extends AppCompatActivity
                             segnalazione.setIndirizzo(resp.getSegnalazioni().get(i).getIndirizzo());
                             segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
+
+                            Log.d("caccaPUPU ", String.valueOf(Distance(segnalazione.getIndirizzo())));
+
                             reportList.add(segnalazione);
 
                         }
@@ -370,6 +379,35 @@ public class HomeActivity extends AppCompatActivity
             });
         }
     }
+
+    @SuppressLint("MissingPermission")
+    private Float Distance(String indirizzo){
+        float[] result = new float[1];
+        List<Address> address_geo = null;
+
+
+        mLastLocation = LocationServices.FusedLocationApi
+                .getLastLocation(mGoogleApiClient);
+
+        Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
+
+        try {
+            address_geo = geoCoder.getFromLocationName(indirizzo, 1);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        if(address_geo.size() != 0 && mLastLocation != null ) {
+                Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
+
+        }
+
+        return result[0];
+    }
+
+
 
 
     /**
