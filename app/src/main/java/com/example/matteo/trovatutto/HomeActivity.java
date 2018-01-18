@@ -1,37 +1,38 @@
 package com.example.matteo.trovatutto;
 
-import android.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.content.res.Resources;
-import android.graphics.Rect;
-import android.view.animation.AnimationUtils;
-
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.matteo.trovatutto.models.ReportAdapter;
@@ -43,37 +44,36 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
-
-import android.support.v7.widget.SearchView;
-import android.support.v4.view.MenuItemCompat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
+;
 
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-        boolean viewIsHome = true;
-        private SharedPreferences pref;
-        private RecyclerView recyclerView;
-        private ReportAdapter adapter;
-        private ArrayList<Segnalazione> reportList;
-        private FloatingActionButton update;
-        private Animation rotate_360;
-        private ProgressDialog progressUpdate;
-        private MenuItem search;
-        private GoogleApiClient mGoogleApiClient;
-        boolean mSignInClicked;
-
+    boolean viewIsHome = true;
+    private SharedPreferences pref;
+    private RecyclerView recyclerView;
+    private ReportAdapter adapter;
+    private ArrayList<Segnalazione> reportList;
+    private FloatingActionButton update;
+    private Animation rotate_360;
+    private ProgressDialog progressUpdate;
+    private MenuItem search;
+    private GoogleApiClient mGoogleApiClient;
+    private FusedLocationProviderClient mFusedLocationClient;
 
 
     @Override
@@ -83,16 +83,16 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        pref = getSharedPreferences("userInfo",MODE_PRIVATE);
+        pref = getSharedPreferences("userInfo", MODE_PRIVATE);
 
 
-
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
 
         progressUpdate = new ProgressDialog(this);
 
         update = (FloatingActionButton) findViewById(R.id.fab_update);
-        rotate_360 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_360);
+        rotate_360 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_360);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -121,7 +121,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         TextView txtProfileName = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.nome1);
-        txtProfileName.setText((pref.getString(Constants.NAME, "")+" "+(pref.getString(Constants.SURNAME, ""))));
+        txtProfileName.setText((pref.getString(Constants.NAME, "") + " " + (pref.getString(Constants.SURNAME, ""))));
         TextView txtEmail = navigationView.getHeaderView(MODE_PRIVATE).findViewById(R.id.tv_email);
         txtEmail.setText(pref.getString(Constants.EMAIL, ""));
 
@@ -137,10 +137,9 @@ public class HomeActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
 
 
-
-
-
     }
+
+
     @Override
     protected void onStart() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -150,8 +149,33 @@ public class HomeActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         mGoogleApiClient.connect();
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                        }
+                        //Log.e("LOCATION", location.toString());
+                    }
+                });
+
         super.onStart();
     }
+
 
 
     @Override

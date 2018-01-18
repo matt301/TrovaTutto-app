@@ -240,17 +240,17 @@ public class ReportActivity extends AppCompatActivity {
         smsIntent.setData(Uri.parse("smsto:"));
         smsIntent.setType("vnd.android-dir/mms-sms");
         smsIntent.putExtra("address"  ,author_ntel.getText().toString() );
-        smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +"\""+". I need to contact you for "+ report_title.getText().toString()+"\"");
+        smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +". I need to contact you for "+ report_title.getText().toString()+"\"");
 
         try {
            startActivity(smsIntent);
 
             finish();
-            Log.i("Finished sending SMS...", "");
+            Log.i("Finish sending SMS...", "");
         }
         catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(ReportActivity.this,
-                    "SMS faild, please try again later.", Toast.LENGTH_SHORT).show();
+                    "SMS failed, please try again later.", Toast.LENGTH_SHORT).show();
         }
     }
 

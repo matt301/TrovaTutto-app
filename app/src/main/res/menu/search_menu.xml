@@ -10,4 +10,3 @@
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>
-<!-- TODO: Inserire search button per ricerca segnalazioni-->

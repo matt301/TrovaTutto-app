@@ -5,19 +5,20 @@ package com.example.matteo.trovatutto;
        TODO:   -Feature Aggiuntiva : Segnalazioni nel raggio di .. da te
        TODO:   -Salvare contatto in rubrica
 
+       TODO:   -Aggiornamento segnalazioni totali e personali con "tirando verso il basso"
+
 
        TODO:   -Login Tramite G+
                 -- Se utente non esiste apre direttamente la pagina profilo
 
        TODO:   -Doppio back al primo login è paxerello dio can'
-       TODO:   -Titolo --> Lingua                                                                                       A
+       TODO:   -Titolo --> Lingua                                                                                      A
        TODO:   -Togliere snackbar
-       TODO:   -Grafica                                                                                                 A
-       TODO:   -Data in sovraimpressione 0000-00-00                                                                     A
+       TODO:   -Grafica                                                                                                A
+       TODO:   -Data in sovraimpressione 0000-00-00                                                                    A
        TODO:   -AutoComplete Indirizzo New Segnalazione
 
-       // !!! Da valutare l'effettivo problema !!!
-       TODO:   -Caricamento doppio delle mie segnalazioni, secondo caricamento in barra caricamento, caricamento
+
 
 
        TODO:   -Scaricare solo un tot e scaricarne altre quando sei in un punto
@@ -42,6 +43,5 @@ package com.example.matteo.trovatutto;
 
         Mappe(un po' vecchie)
         https://www.androidhive.info/2013/08/android-working-with-google-maps-v2/
-
 
 */
