@@ -1,11 +1,13 @@
 package com.example.matteo.trovatutto;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.location.Location;
@@ -15,6 +17,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -26,6 +29,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,14 +43,23 @@ import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
+
+
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.FusedLocationProviderClient;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
+
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -57,11 +70,11 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-;
+
 
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ConnectionCallbacks, OnConnectionFailedListener {
 
     boolean viewIsHome = true;
     private SharedPreferences pref;
@@ -72,8 +85,26 @@ public class HomeActivity extends AppCompatActivity
     private Animation rotate_360;
     private ProgressDialog progressUpdate;
     private MenuItem search;
+
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
+
+    private Location mLastLocation;
+
+    // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
-    private FusedLocationProviderClient mFusedLocationClient;
+
+    // boolean flag to toggle periodic location updates
+    private boolean mRequestingLocationUpdates = false;
+
+    private LocationRequest mLocationRequest;
+
+    // Location updates intervals in sec
+    private static int UPDATE_INTERVAL = 10000; // 10 sec
+    private static int FATEST_INTERVAL = 5000; // 5 sec
+    private static int DISPLACEMENT = 10; // 10 meters
 
 
     @Override
@@ -81,12 +112,19 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
 
+        // First we need to check availability of play services
+        if (checkPlayServices()) {
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+            // Building the GoogleApi client
+            buildGoogleApiClient();
+
+        }
 
 
         progressUpdate = new ProgressDialog(this);
@@ -140,38 +178,68 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-    @Override
-    protected void onStart() {
+    /**
+     * Creating google api client object
+     * */
+    protected synchronized void buildGoogleApiClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .addApi(LocationServices.API)
                 .build();
-        mGoogleApiClient.connect();
+    }
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+    /**
+     * Method to verify google play services on the device
+     * */
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "This device is not supported.", Toast.LENGTH_LONG)
+                        .show();
+                finish();
+            }
+            return false;
         }
+        return true;
+    }
 
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            // Logic to handle location object
-                        }
-                        //Log.e("LOCATION", location.toString());
-                    }
-                });
+    /**
+     * Method to display the location on UI
+     * */
+    @SuppressLint("MissingPermission")
+    private void displayLocation() {
+
+        mLastLocation = LocationServices.FusedLocationApi
+                .getLastLocation(mGoogleApiClient);
+
+        if (mLastLocation != null) {
+            double latitude = mLastLocation.getLatitude();
+            double longitude = mLastLocation.getLongitude();
+
+            Log.e("POSIZIONE","latitude , longitude");
+
+        } else {
+
+            Log.e("POSIZIONE","eh no");
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
 
         super.onStart();
     }
@@ -181,8 +249,33 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onResume(){
         super.onResume();
-        new DownloadReports().execute();
 
+        new DownloadReports().execute();
+        checkPlayServices();
+
+    }
+
+
+    /**
+     * Google api callback methods
+     */
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = "
+                + result.getErrorCode());
+    }
+
+    @Override
+    public void onConnected(Bundle arg0) {
+
+        // Once connected with google api, get the location
+        displayLocation();
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int arg0) {
+        mGoogleApiClient.connect();
     }
 
 
@@ -486,8 +579,8 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
 
         // set the toolbar title
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
+        if (getActionBar() != null) {
+            getActionBar().setTitle(title);
         }
 
 
