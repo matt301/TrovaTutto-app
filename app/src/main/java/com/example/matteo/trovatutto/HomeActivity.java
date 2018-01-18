@@ -112,6 +112,8 @@ public class HomeActivity extends AppCompatActivity
     private static int FATEST_INTERVAL = 5000; // 5 sec
     private static int DISPLACEMENT = 10; // 10 meters
 
+    private List<Address> address_geo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,11 +235,11 @@ public class HomeActivity extends AppCompatActivity
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
 
-            Log.e("POSIZIONE","latitude , longitude");
+            Log.e("POSIZIONE",String.valueOf(latitude)+','+String.valueOf(longitude));
 
         } else {
 
-            Log.e("POSIZIONE","eh no");
+            Log.e("POSIZIONE","Posizione non disponibile");
         }
     }
 
@@ -245,6 +247,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onStart() {
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
+
         }
 
         super.onStart();
@@ -362,9 +365,8 @@ public class HomeActivity extends AppCompatActivity
                             segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
 
-                            Log.d("caccaPUPU ", String.valueOf(Distance(segnalazione.getIndirizzo())));
-
-                            reportList.add(segnalazione);
+                           if(Distance(segnalazione.getIndirizzo())<50000)
+                                reportList.add(segnalazione);
 
                         }
                     }
@@ -382,9 +384,9 @@ public class HomeActivity extends AppCompatActivity
 
     @SuppressLint("MissingPermission")
     private Float Distance(String indirizzo){
-        float[] result = new float[1];
-        List<Address> address_geo = null;
 
+
+        float[] result = new float[1];
 
         mLastLocation = LocationServices.FusedLocationApi
                 .getLastLocation(mGoogleApiClient);

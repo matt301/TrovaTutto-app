@@ -15,8 +15,19 @@ package com.example.matteo.trovatutto;
        TODO:   -Titolo --> Lingua                                                                                      A
        TODO:   -Togliere snackbar
        TODO:   -Grafica                                                                                                A
-       TODO:   -Data in sovraimpressione 0000-00-00                                                                    A
        TODO:   -AutoComplete Indirizzo New Segnalazione
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
