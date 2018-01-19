@@ -16,6 +16,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -84,6 +85,7 @@ public class HomeActivity extends AppCompatActivity
 
     boolean viewIsHome = true;
     private SharedPreferences pref;
+    private SharedPreferences preferences;
     private RecyclerView recyclerView;
     private ReportAdapter adapter;
     private ArrayList<Segnalazione> reportList;
@@ -125,6 +127,7 @@ public class HomeActivity extends AppCompatActivity
 
 
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // First we need to check availability of play services
         if (checkPlayServices()) {
@@ -365,7 +368,7 @@ public class HomeActivity extends AppCompatActivity
                             segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
 
-                           if(Distance(segnalazione.getIndirizzo())<50000)
+                           if(Distance(segnalazione.getIndirizzo())< (preferences.getInt("seekbar_preference",0) *1000) )
                                 reportList.add(segnalazione);
 
                         }
@@ -589,6 +592,15 @@ public class HomeActivity extends AppCompatActivity
                 search.setVisible(false);
                 viewIsHome= false;
                 break;
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+                title = "Settings";
+                update.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.INVISIBLE);
+                search.setVisible(false);
+                viewIsHome= false;
+                break;
+
             case R.id.nav_logout:
                 fragment = null;
                 title = "";
