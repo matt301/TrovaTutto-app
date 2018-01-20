@@ -71,10 +71,22 @@
     <string name="utility_from">Seleziona da</string>
 
 
+    <!-- Activity Home Drawer -->
+
+    <string name="home_drawer_home">Home</string>
+    <string name="home_drawer_profile">Profilo</string>
+    <string name="home_drawer_setting">Preferenze</string>
+    <string name="home_drawer_rep">Segnalazioni</string>
+    <string name="home_drawer_show_my_rep">Le mie segnalazioni</string>
+    <string name="home_drawer_send_rep">Invia nuova segnalazione</string>
+    <string name="home_drawer_logout">Esci</string>
+
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="key_seekbar_preference">Preferenze</string>
     <string name="title_activity_maps">Mappa</string>
 
-    +
+
 </resources>

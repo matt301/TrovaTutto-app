@@ -65,16 +65,30 @@
     <string name="d_insert_photo_camera">Camera</string>
 
 
-
     <!-- Utility-->
 
     <string name="utility_from">Selected from</string>
+
+
+    <!-- Activity Home Drawer -->
+
+    <string name="home_drawer_home">Home</string>
+    <string name="home_drawer_profile">Profile</string>
+    <string name="home_drawer_setting">Settings</string>
+    <string name="home_drawer_rep">Reports</string>
+    <string name="home_drawer_show_my_rep">Show my reports</string>
+    <string name="home_drawer_send_rep">Send new report</string>
+    <string name="home_drawer_logout">Logout</string>
+
+
 
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="key_seekbar_preference">Seekbar preference</string>
     <string name="title_activity_maps">Map</string>
+
+
 
 
 </resources>
