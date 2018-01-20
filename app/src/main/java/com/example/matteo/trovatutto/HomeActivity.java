@@ -86,11 +86,14 @@ public class HomeActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private ReportAdapter adapter;
     private ArrayList<Segnalazione> reportList;
+    private ArrayList<Segnalazione> segnalazioni;
+
     private FloatingActionButton update;
     private Animation rotate_360;
     private ProgressDialog progressUpdate;
     private MenuItem search;
-    private int radius;
+    private float radius;
+    private Geocoder geoCoder;
 
 
 
@@ -114,11 +117,11 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        radius = (preferences.getInt("seekbar_preference",0))*1000;
+        radius = (preferences.getFloat("seekbar_preference",0))*1000;
 
 
 
@@ -139,15 +142,20 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 reportList = new ArrayList<>();
+                segnalazioni = new ArrayList<>();
                 update.startAnimation(rotate_360);
+
+                new DownloadReports().execute();
+
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
-                        new DownloadReports().execute();
+
+                        new ShowReports().execute();
 
                     }
-                }, 100);
+                }, 500);
 
             }
         });
@@ -168,7 +176,10 @@ public class HomeActivity extends AppCompatActivity
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
         reportList = new ArrayList<>();
+        segnalazioni = new ArrayList<>();
+
         adapter = new ReportAdapter(this, reportList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);  // spanCount = numero di cards per riga
@@ -224,7 +235,7 @@ public class HomeActivity extends AppCompatActivity
 
         }
         new DownloadReports().execute();
-
+        new ShowReports().execute();
         super.onStart();
     }
 
@@ -264,6 +275,82 @@ public class HomeActivity extends AppCompatActivity
     public void onConnectionSuspended(int arg0) {
         mGoogleApiClient.connect();
     }
+
+
+    /**
+     * AsyncTask per mostrare segnalazioni
+     */
+    private class ShowReports extends AsyncTask<Void, Integer, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+            progressUpdate.setCancelable(false);
+            progressUpdate.setMessage("Choosing reports ...");
+            progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressUpdate.setProgress(0);
+            progressUpdate.setMax(100);
+            progressUpdate.show();
+
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            progressUpdate.setProgress(progress[0]);
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            chooseReports();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressUpdate.dismiss();
+            adapter.notifyDataSetChanged();
+            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Adapted !", Snackbar.LENGTH_LONG).show();
+
+        }
+
+        private void chooseReports() {
+
+            for (int i = 0; i < segnalazioni.size(); i++) {
+                if (distance(segnalazioni.get(i).getIndirizzo()) <= radius) {
+                    reportList.add(segnalazioni.get(i));
+                    Log.e("segnalazione", segnalazioni.get(i).toString());
+                }
+
+            }
+
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+        private Float distance(String indirizzo){
+
+            float[] result = new float[1];
+
+
+            try {
+                address_geo = geoCoder.getFromLocationName(indirizzo, 1);
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+            if(address_geo.size() != 0 && mLastLocation != null ) {
+                Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
+
+            }
+             Log.e("segnalazione", String.valueOf(result[0]));
+            return result[0];
+        }
 
 
     /**
@@ -344,8 +431,9 @@ public class HomeActivity extends AppCompatActivity
                             segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
 
-                            if(distance(segnalazione.getIndirizzo())< radius)
-                                reportList.add(segnalazione);
+                            segnalazioni.add(segnalazione);
+                           /* if(distance(segnalazione.getIndirizzo())< radius)
+                                reportList.add(segnalazione);*/
 
                         }
                     }
@@ -359,7 +447,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
         }
-        @SuppressLint("MissingPermission")
+    /*    @SuppressLint("MissingPermission")
         private Float distance(String indirizzo){
 
 
@@ -383,63 +471,8 @@ public class HomeActivity extends AppCompatActivity
             }
 
             return result[0];
-        }
+        }*/
     }
-/*
-    private class Distance extends AsyncTask<String, Void, Float> {
-
-
-        @Override
-        protected void onPreExecute() {
-
-        }
-        @Override
-        protected void onProgressUpdate(Void...voids) {
-
-        }
-
-        @Override
-        protected Float doInBackground(String... strings) {
-
-            return distance(strings[0]);
-        }
-
-        @Override
-        protected void onPostExecute(Float result) {
-            super.onPostExecute(result);
-
-        }
-
-        @SuppressLint("MissingPermission")
-        private Float distance(String indirizzo){
-
-
-            float[] result = new float[1];
-
-
-            Geocoder geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-
-            try {
-                address_geo = geoCoder.getFromLocationName(indirizzo, 1);
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            }
-
-            if(address_geo.size() != 0 && mLastLocation != null ) {
-                Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
-
-            }
-
-            return result[0];
-        }
-    }
-*/
-
-
-
-
 
 
     /**
@@ -487,7 +520,6 @@ public class HomeActivity extends AppCompatActivity
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -548,6 +580,7 @@ public class HomeActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
     private void search(SearchView searchView) {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -565,8 +598,6 @@ public class HomeActivity extends AppCompatActivity
             }
         });
     }
-
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -665,6 +696,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     }
+
     private void logout() {
 
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(

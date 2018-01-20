@@ -8,9 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+
+import com.pavelsikun.seekbarpreference.SeekBarPreferenceCompat;
 
 
 public class SettingsFragment extends PreferenceFragment {
+
 
 
     public SettingsFragment() {
@@ -24,6 +28,7 @@ public class SettingsFragment extends PreferenceFragment {
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
+
     }
 
 
