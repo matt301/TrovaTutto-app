@@ -690,6 +690,7 @@ public class HomeActivity extends AppCompatActivity
         editor.putString(Constants.NAME,"");
         editor.clear();
         editor.apply();
+
         this.finish();
         goToLogin();
     }

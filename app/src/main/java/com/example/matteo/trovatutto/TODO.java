@@ -2,21 +2,16 @@ package com.example.matteo.trovatutto;
 
 /*
 
-       TODO:   -Feature Aggiuntiva : Segnalazioni nel raggio di .. da te
-                -- Aggiungere spinner per selezionare distanza
 
 
-       TODO:   -Salvare contatto in rubrica
 
-       TODO:   -Aggiornamento segnalazioni totali e personali con "tirando verso il basso"
+
+       TODO:   -FIX show my report
 
 
        TODO:   -Login Tramite G+
                 -- Se utente non esiste apre direttamente la pagina profilo
 
-       TODO:   -Doppio back al primo login è paxerello dio can'
-       TODO:   -Titolo --> Lingua       ☻                                                                               A
-       TODO:   -Togliere snackbar
        TODO:   -Grafica                                                                                                A
        TODO:   -AutoComplete Indirizzo New Segnalazione
 

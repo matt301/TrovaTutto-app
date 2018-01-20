@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             addPreferencesFromResource(R.xml.preferences);
 
             // seekbar change listener
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.key_seekbar_preference)));
+            //bindPreferenceSummaryToValue(findPreference(getString(R.string.key_seekbar_preference)));
 
 
         }
@@ -65,7 +65,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
-
+/*
     private static void bindPreferenceSummaryToValue(Preference preference) {
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
@@ -78,7 +78,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
-     */
+
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -103,7 +103,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return true;
         }
     };
-
+*/
     @Override
     public void onBackPressed() {
         Intent openHome = new Intent(SettingsActivity.this, HomeActivity.class);
