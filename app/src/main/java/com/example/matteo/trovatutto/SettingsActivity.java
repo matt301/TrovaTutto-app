@@ -4,14 +4,18 @@ package com.example.matteo.trovatutto;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import android.preference.SwitchPreference;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
@@ -99,6 +103,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return true;
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent openHome = new Intent(SettingsActivity.this, HomeActivity.class);
+        startActivity(openHome);
+        this.finish();
+
+    }
+
+
 
 
 }

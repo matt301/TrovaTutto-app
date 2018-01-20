@@ -75,8 +75,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-
-
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ConnectionCallbacks, OnConnectionFailedListener {
 
@@ -256,8 +254,6 @@ public class HomeActivity extends AppCompatActivity
         super.onStart();
     }
 
-
-
     @Override
     public void onResume(){
         super.onResume();
@@ -266,7 +262,45 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onBackPressed() {
 
+        if(viewIsHome) {
+
+            if (doubleBackToExitPressedOnce) {
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+
+                onDestroy();
+
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+
+                }
+            }, 2000);
+
+
+        } else{
+            displayView(R.id.nav_home);
+        }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+
+        int id= android.os.Process.myPid();
+        android.os.Process.killProcess(id);
+    }
 
     /**
      * Google api callback methods
@@ -456,31 +490,6 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
         }
-    /*    @SuppressLint("MissingPermission")
-        private Float distance(String indirizzo){
-
-
-
-            float[] result = new float[1];
-
-
-            Geocoder geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-
-            try {
-                address_geo = geoCoder.getFromLocationName(indirizzo, 1);
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            }
-
-            if(address_geo.size() != 0 && mLastLocation != null ) {
-                Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
-
-            }
-
-            return result[0];
-        }*/
     }
 
 
@@ -532,37 +541,7 @@ public class HomeActivity extends AppCompatActivity
 
     boolean doubleBackToExitPressedOnce = false;
 
-    @Override
-    public void onBackPressed() {
 
-        if(viewIsHome) {
-
-            if (doubleBackToExitPressedOnce) {
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                super.onBackPressed();
-                System.exit(0);
-
-            }
-
-            this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce = false;
-
-                }
-            }, 2000);
-
-
-        } else{
-            displayView(R.id.nav_home);
-        }
-    }
 
 
     @Override
