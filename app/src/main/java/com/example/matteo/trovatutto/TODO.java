@@ -3,6 +3,9 @@ package com.example.matteo.trovatutto;
 /*
 
        TODO:   -Feature Aggiuntiva : Segnalazioni nel raggio di .. da te
+                -- Aggiungere spinner per selezionare distanza
+
+
        TODO:   -Salvare contatto in rubrica
 
        TODO:   -Aggiornamento segnalazioni totali e personali con "tirando verso il basso"
@@ -23,16 +26,6 @@ package com.example.matteo.trovatutto;
 
 
 
-
-
-
-
-
-
-
-
-
-       TODO:   -Scaricare solo un tot e scaricarne altre quando sei in un punto
 
 
 
