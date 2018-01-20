@@ -3,6 +3,7 @@ package com.example.matteo.trovatutto.models;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -156,6 +157,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             }
         };
     }
+
 
 
     @Override

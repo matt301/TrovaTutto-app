@@ -1,7 +1,6 @@
 package com.example.matteo.trovatutto;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
@@ -21,7 +20,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -63,7 +61,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -93,6 +90,8 @@ public class HomeActivity extends AppCompatActivity
     private Animation rotate_360;
     private ProgressDialog progressUpdate;
     private MenuItem search;
+    private int radius;
+
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -103,16 +102,6 @@ public class HomeActivity extends AppCompatActivity
 
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
-
-    // boolean flag to toggle periodic location updates
-    private boolean mRequestingLocationUpdates = false;
-
-    private LocationRequest mLocationRequest;
-
-    // Location updates intervals in sec
-    private static int UPDATE_INTERVAL = 10000; // 10 sec
-    private static int FATEST_INTERVAL = 5000; // 5 sec
-    private static int DISPLACEMENT = 10; // 10 meters
 
     private List<Address> address_geo;
 
@@ -129,9 +118,12 @@ public class HomeActivity extends AppCompatActivity
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        radius = (preferences.getInt("seekbar_preference",0))*1000;
+
+
+
         // First we need to check availability of play services
         if (checkPlayServices()) {
-
             // Building the GoogleApi client
             buildGoogleApiClient();
 
@@ -155,7 +147,7 @@ public class HomeActivity extends AppCompatActivity
                         new DownloadReports().execute();
 
                     }
-                }, 500);
+                }, 100);
 
             }
         });
@@ -225,33 +217,13 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    /**
-     * Method to display the location on UI
-     * */
-    @SuppressLint("MissingPermission")
-    private void displayLocation() {
-
-        mLastLocation = LocationServices.FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
-
-        if (mLastLocation != null) {
-            double latitude = mLastLocation.getLatitude();
-            double longitude = mLastLocation.getLongitude();
-
-            Log.e("POSIZIONE",String.valueOf(latitude)+','+String.valueOf(longitude));
-
-        } else {
-
-            Log.e("POSIZIONE","Posizione non disponibile");
-        }
-    }
-
     @Override
     protected void onStart() {
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
 
         }
+        new DownloadReports().execute();
 
         super.onStart();
     }
@@ -261,11 +233,11 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onResume(){
         super.onResume();
-
-        new DownloadReports().execute();
+       // new DownloadReports().execute();
         checkPlayServices();
 
     }
+
 
 
     /**
@@ -277,11 +249,14 @@ public class HomeActivity extends AppCompatActivity
                 + result.getErrorCode());
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onConnected(Bundle arg0) {
 
         // Once connected with google api, get the location
-        displayLocation();
+        //displayLocation();
+        mLastLocation = LocationServices.FusedLocationApi
+                .getLastLocation(mGoogleApiClient);
 
     }
 
@@ -306,6 +281,7 @@ public class HomeActivity extends AppCompatActivity
             progressUpdate.setProgress(0);
             progressUpdate.setMax(100);
             progressUpdate.show();
+
 
 
         }
@@ -368,7 +344,7 @@ public class HomeActivity extends AppCompatActivity
                             segnalazione.setFoto("https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/img-segnalazioni/"+resp.getSegnalazioni().get(i).getFoto());
 
 
-                           if(Distance(segnalazione.getIndirizzo())< (preferences.getInt("seekbar_preference",0) *1000) )
+                            if(distance(segnalazione.getIndirizzo())< radius)
                                 reportList.add(segnalazione);
 
                         }
@@ -383,34 +359,85 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
         }
-    }
-
-    @SuppressLint("MissingPermission")
-    private Float Distance(String indirizzo){
+        @SuppressLint("MissingPermission")
+        private Float distance(String indirizzo){
 
 
-        float[] result = new float[1];
 
-        mLastLocation = LocationServices.FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
+            float[] result = new float[1];
 
-        Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
 
-        try {
-            address_geo = geoCoder.getFromLocationName(indirizzo, 1);
+            Geocoder geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
 
-        } catch (IOException e) {
+            try {
+                address_geo = geoCoder.getFromLocationName(indirizzo, 1);
 
-            e.printStackTrace();
-        }
+            } catch (IOException e) {
 
-        if(address_geo.size() != 0 && mLastLocation != null ) {
+                e.printStackTrace();
+            }
+
+            if(address_geo.size() != 0 && mLastLocation != null ) {
                 Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
 
+            }
+
+            return result[0];
+        }
+    }
+/*
+    private class Distance extends AsyncTask<String, Void, Float> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected void onProgressUpdate(Void...voids) {
+
         }
 
-        return result[0];
+        @Override
+        protected Float doInBackground(String... strings) {
+
+            return distance(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Float result) {
+            super.onPostExecute(result);
+
+        }
+
+        @SuppressLint("MissingPermission")
+        private Float distance(String indirizzo){
+
+
+            float[] result = new float[1];
+
+
+            Geocoder geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
+
+            try {
+                address_geo = geoCoder.getFromLocationName(indirizzo, 1);
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+            if(address_geo.size() != 0 && mLastLocation != null ) {
+                Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
+
+            }
+
+            return result[0];
+        }
     }
+*/
+
+
 
 
 
@@ -593,7 +620,8 @@ public class HomeActivity extends AppCompatActivity
                 viewIsHome= false;
                 break;
             case R.id.nav_settings:
-                fragment = new SettingsFragment();
+                fragment=null;
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                 title = "Settings";
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
