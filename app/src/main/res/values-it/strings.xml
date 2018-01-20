@@ -70,4 +70,11 @@
 
     <string name="utility_from">Seleziona da</string>
 
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="key_seekbar_preference">Preferenze</string>
+    <string name="title_activity_maps">Mappa</string>
+
+    +
 </resources>
