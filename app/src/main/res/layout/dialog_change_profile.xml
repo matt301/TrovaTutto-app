@@ -21,7 +21,7 @@
 
             <EditText
                 android:id="@+id/et_new_nome"
-                android:hint="Nome"
+                android:hint="@string/user_name"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"
@@ -29,7 +29,7 @@
 
             <EditText
                 android:id="@+id/et_new_cognome"
-                android:hint="Cognome"
+                android:hint="@string/user_surname"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"
@@ -37,28 +37,28 @@
 
             <EditText
                 android:id="@+id/et_new_address"
-                android:hint="Indirizzo"
+                android:hint="@string/user_address"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/et_new_birthdate"
-                android:hint="Data di Nascita"
+                android:hint="@string/user_birthday"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/et_new_ntel"
-                android:hint="Numero di Telefono"
+                android:hint="@string/user_phone"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/et_new_description"
-                android:hint="Descrizione"
+                android:hint="@string/user_bio"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
