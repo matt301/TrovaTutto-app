@@ -180,13 +180,13 @@ public class HomeActivity extends AppCompatActivity
         reportList = new ArrayList<>();
         segnalazioni = new ArrayList<>();
 
-        adapter = new ReportAdapter(this, reportList);
+        //adapter = new ReportAdapter(this, reportList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);  // spanCount = numero di cards per riga
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
 
 
     }
@@ -236,9 +236,7 @@ public class HomeActivity extends AppCompatActivity
         }
 
         reportList = new ArrayList<>();
-        segnalazioni = new ArrayList<>();
-        update.startAnimation(rotate_360);
-        adapter = new ReportAdapter(HomeActivity.this, reportList);
+        adapter = new ReportAdapter(this, reportList);
         recyclerView.setAdapter(adapter);
         new DownloadReports().execute();
 
