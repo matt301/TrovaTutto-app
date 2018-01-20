@@ -85,7 +85,7 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="key_seekbar_preference">Seekbar preference</string>
+    <string name="key_seekbar_preference">seekbar_preference</string>
     <string name="title_activity_maps">Map</string>
 
 

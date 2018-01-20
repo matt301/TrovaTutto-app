@@ -121,8 +121,9 @@ public class HomeActivity extends AppCompatActivity
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        radius = (preferences.getFloat("seekbar_preference",0))*1000;
+        radius = (preferences.getInt("seekbar_preference",0))*1000;
 
+        Log.e("radius",String.valueOf(radius));
 
 
         // First we need to check availability of play services
@@ -144,7 +145,8 @@ public class HomeActivity extends AppCompatActivity
                 reportList = new ArrayList<>();
                 segnalazioni = new ArrayList<>();
                 update.startAnimation(rotate_360);
-
+                adapter = new ReportAdapter(HomeActivity.this, reportList);
+                recyclerView.setAdapter(adapter);
                 new DownloadReports().execute();
 
                 new Handler().postDelayed(new Runnable() {
@@ -234,8 +236,23 @@ public class HomeActivity extends AppCompatActivity
             mGoogleApiClient.connect();
 
         }
+
+        reportList = new ArrayList<>();
+        segnalazioni = new ArrayList<>();
+        update.startAnimation(rotate_360);
+        adapter = new ReportAdapter(HomeActivity.this, reportList);
+        recyclerView.setAdapter(adapter);
         new DownloadReports().execute();
-        new ShowReports().execute();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                new ShowReports().execute();
+
+            }
+        }, 500);
         super.onStart();
     }
 
@@ -244,7 +261,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onResume(){
         super.onResume();
-       // new DownloadReports().execute();
+
         checkPlayServices();
 
     }
@@ -320,9 +337,10 @@ public class HomeActivity extends AppCompatActivity
         private void chooseReports() {
 
             for (int i = 0; i < segnalazioni.size(); i++) {
+                Log.e("Sengalazione",String.valueOf(segnalazioni.get(i).getIndirizzo()));
                 if (distance(segnalazioni.get(i).getIndirizzo()) <= radius) {
                     reportList.add(segnalazioni.get(i));
-                    Log.e("segnalazione", segnalazioni.get(i).toString());
+                    Log.e("s", segnalazioni.get(i).toString());
                 }
 
             }
@@ -348,7 +366,7 @@ public class HomeActivity extends AppCompatActivity
                 Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
 
             }
-             Log.e("segnalazione", String.valueOf(result[0]));
+             Log.e("distanza", String.valueOf(result[0]));
             return result[0];
         }
 
@@ -362,20 +380,11 @@ public class HomeActivity extends AppCompatActivity
         @Override
         protected void onPreExecute() {
 
-            progressUpdate.setCancelable(false);
-            progressUpdate.setMessage("Reports downloading ...");
-            progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressUpdate.setProgress(0);
-            progressUpdate.setMax(100);
-            progressUpdate.show();
-
-
 
         }
         @Override
         protected void onProgressUpdate(Integer...progress) {
-            super.onProgressUpdate(progress);
-            progressUpdate.setProgress(progress[0]);
+
         }
 
 
@@ -387,8 +396,8 @@ public class HomeActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            progressUpdate.dismiss();
-            adapter.notifyDataSetChanged();
+
+
             Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
         }

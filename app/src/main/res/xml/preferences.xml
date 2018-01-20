@@ -24,7 +24,7 @@
         <com.pavelsikun.seekbarpreference.SeekBarPreference
             android:key="@string/key_seekbar_preference"
             android:title="Choose your radius "
-            android:summary="You can choose the radius of items visualized remember the things go SKRRAAAAAA "
+            android:summary="You can choose the radius of items visualized "
             android:enabled="true"
             android:defaultValue="50"
 
