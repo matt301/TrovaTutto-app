@@ -295,7 +295,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onDestroy(){
         super.onDestroy();
-
+//peni
         int id= android.os.Process.myPid();
         android.os.Process.killProcess(id);
     }
