@@ -15,7 +15,7 @@ package com.example.matteo.trovatutto;
                 -- Se utente non esiste apre direttamente la pagina profilo
 
        TODO:   -Doppio back al primo login è paxerello dio can'
-       TODO:   -Titolo --> Lingua                                                                                      A
+       TODO:   -Titolo --> Lingua       ☻                                                                               A
        TODO:   -Togliere snackbar
        TODO:   -Grafica                                                                                                A
        TODO:   -AutoComplete Indirizzo New Segnalazione

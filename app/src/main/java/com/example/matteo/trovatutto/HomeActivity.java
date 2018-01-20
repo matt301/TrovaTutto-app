@@ -338,7 +338,7 @@ public class HomeActivity extends AppCompatActivity
         protected void onPreExecute() {
 
             progressUpdate.setCancelable(false);
-            progressUpdate.setMessage("Choosing reports ...");
+            progressUpdate.setMessage("Loading reports ...");
             progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressUpdate.setProgress(0);
             progressUpdate.setMax(100);
@@ -364,7 +364,7 @@ public class HomeActivity extends AppCompatActivity
         protected void onPostExecute(Void aVoid) {
             progressUpdate.dismiss();
             adapter.notifyDataSetChanged();
-            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Adapted !", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
         }
 
@@ -431,8 +431,6 @@ public class HomeActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Void aVoid) {
 
-
-            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
 
         }
 
