@@ -268,9 +268,7 @@ public class HomeActivity extends AppCompatActivity
             if (doubleBackToExitPressedOnce) {
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
-                onDestroy();
-
+                super.onBackPressed();
             }
 
             this.doubleBackToExitPressedOnce = true;
@@ -292,13 +290,6 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-//peni
-        int id= android.os.Process.myPid();
-        android.os.Process.killProcess(id);
-    }
 
     /**
      * Google api callback methods

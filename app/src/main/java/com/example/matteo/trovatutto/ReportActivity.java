@@ -373,4 +373,11 @@ public class ReportActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent openHome = new Intent(ReportActivity.this, HomeActivity.class);
+        startActivity(openHome);
+        this.finish();
+
+    }
 }

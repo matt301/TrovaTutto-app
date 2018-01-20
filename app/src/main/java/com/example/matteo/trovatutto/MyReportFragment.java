@@ -17,6 +17,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
@@ -44,6 +46,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
     private ArrayList<Segnalazione> reportList;
     private ArrayList<Segnalazione> myReportList;
     private SharedPreferences pref;
+    private Animation rotate_360;
     private View view;
     private FloatingActionButton updateMy;
 
@@ -64,10 +67,11 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
         updateMy = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
+        rotate_360 = AnimationUtils.loadAnimation(this.getActivity(), R.anim.rotate_360);
         updateMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateMy.startAnimation(rotate_360);
                 myReportList = new ArrayList<>();
                 new Handler().postDelayed(new Runnable() {
 
