@@ -56,10 +56,25 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my_report, container, false);
-
         return view;
     }
 
+
+    @Override
+    public void onResume(){
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                new DownloadReports().execute();
+
+            }
+        }, 500);
+
+        super.onResume();
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -87,6 +102,9 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
 
         myReportList = new ArrayList<>();
 
+        new DownloadReports().execute();
+
+
         adapter = new ReportAdapter(view.getContext(), myReportList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);  //  spanCount = numero di cards per riga
@@ -94,9 +112,6 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
-        new DownloadReports().execute();
-
 
     }
 
