@@ -5,8 +5,8 @@ package com.example.matteo.trovatutto;
        TODO:   -Feature Aggiuntiva : Segnalazioni nel raggio di .. da te
                 -- Aggiungere spinner per selezionare distanza
 
-        TODO: indietro da password dimenticata e da registrazione
-
+        TODO:  -Indietro da password dimenticata e da registrazione
+        TODO:  -riga29 support activity
 
        TODO:   -Salvare contatto in rubrica
 
