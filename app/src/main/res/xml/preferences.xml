@@ -3,18 +3,18 @@
     xmlns:sample="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="Radius Search">
+        android:title="@string/pref_title">
 
         <SwitchPreference
             android:defaultValue="true"
             android:key="ch_radius_preference"
-            android:title="See all Items"
+            android:title="@string/pref_subtitle1"
             />
 
         <com.pavelsikun.seekbarpreference.SeekBarPreference
             android:key="seekbar_preference"
-            android:title="Choose your radius "
-            android:summary="You can choose the radius of items visualized "
+            android:title="@string/pref_subtitle2"
+            android:summary="@string/pref_summary"
             android:enabled="true"
             android:defaultValue="50"
 

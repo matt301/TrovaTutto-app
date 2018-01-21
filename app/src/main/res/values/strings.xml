@@ -81,6 +81,15 @@
     <string name="home_drawer_logout">Logout</string>
 
 
+    <!-- Preferences -->
+
+    <string name="pref_title">Radius Search</string>
+    <string name="pref_subtitle1">See all Items</string>
+    <string name="pref_subtitle2">Choose your radius</string>
+    <string name="pref_summary">You can choose the radius of items visualized</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="key_seekbar_preference">seekbar_preference</string>
     <string name="title_activity_maps">Map</string>

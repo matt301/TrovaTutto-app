@@ -1,7 +1,7 @@
 package com.example.matteo.trovatutto;
 
 /*
-       TODO:   -Salvare contatto in rubrica
+       TODO:   -Salvare contatto in rubrica    ☻
 
        TODO:   -Aggiornamento segnalazioni totali e personali con "tirando verso il basso"
 
@@ -14,7 +14,7 @@ package com.example.matteo.trovatutto;
        TODO:   -Togliere snackbar
 
 
-        ☻
+
 
         AIzaSyCjNpkYHoKFbjKnZ5Hzhvgfk4dI24qOQN8 Api Key
 
@@ -23,16 +23,6 @@ package com.example.matteo.trovatutto;
         Blu icone : #08005a
         Bianco in trasparenza: #CCFFFFFF
 
-        Login con Google Plus (opzionale)
-        https://www.androidhive.info/2014/02/android-login-with-google-plus-account-1/
-        https://developers.google.com/identity/sign-in/android/
 
-        Per notifiche
-        https://www.androidhive.info/2016/02/android-push-notifications-using-gcm-php-mysql-realtime-chat-app-part-1/
-        Chat
-        https://www.androidhive.info/2016/02/android-push-notifications-using-gcm-php-mysql-realtime-chat-app-part-1/
-
-        Mappe(un po' vecchie)
-        https://www.androidhive.info/2013/08/android-working-with-google-maps-v2/
 
 */

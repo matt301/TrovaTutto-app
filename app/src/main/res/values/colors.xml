@@ -3,6 +3,7 @@
     <color name="colorPrimary">#a40000</color>
     <color name="colorPrimaryDark">#330000</color>
     <color name="colorAccent">#000000</color>
+    <color name="bordeaux">#4c0000</color>
     <color name="grey">#808080</color>
     <color name="report_title">#4c4c4c</color>
     <color name="button">#000000</color>
