@@ -372,26 +372,26 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @SuppressLint("MissingPermission")
-        private Float distance(String indirizzo){
+    private Float distance(String indirizzo){
 
-            float[] result = new float[1];
+        float[] result = new float[1];
 
 
-            try {
-                address_geo = geoCoder.getFromLocationName(indirizzo, 1);
+        try {
+            address_geo = geoCoder.getFromLocationName(indirizzo, 1);
 
-            } catch (IOException e) {
+        } catch (IOException e) {
 
-                e.printStackTrace();
-            }
-
-            if(address_geo.size() != 0 && mLastLocation != null ) {
-                Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
-
-            }
-             Log.e("distanza", String.valueOf(result[0]));
-            return result[0];
+            e.printStackTrace();
         }
+
+        if(address_geo.size() != 0 && mLastLocation != null ) {
+            Location.distanceBetween(mLastLocation.getLatitude(), mLastLocation.getLongitude(), address_geo.get(0).getLatitude(),address_geo.get(0).getLongitude(), result);
+
+        }
+        Log.e("distanza", String.valueOf(result[0]));
+        return result[0];
+    }
 
 
     /**
@@ -472,7 +472,7 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void onFailure(Call<ServerResponse> call, Throwable t) {
 
-                      Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(R.id.drawer_layout),t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
 
                 }
             });
@@ -534,7 +534,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-      getMenuInflater().inflate(R.menu.search_menu, menu);
+        getMenuInflater().inflate(R.menu.search_menu, menu);
         search = menu.findItem(R.id.search);
 
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
@@ -547,10 +547,10 @@ public class HomeActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-      //  int id = item.getItemId();
+        //  int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       // if (id == R.id.search) {
+        // if (id == R.id.search) {
         //}
 
         return super.onOptionsItemSelected(item);
@@ -579,7 +579,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-      //  int id = item.getItemId();
+        //  int id = item.getItemId();
 
         displayView(item.getItemId());
         return true;
@@ -587,7 +587,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-   //--nuova
+    //--nuova
     public void displayView(int viewId) {
 
         Fragment fragment;
