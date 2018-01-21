@@ -27,11 +27,20 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -47,11 +56,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewReportFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     public static final int GALLERY_INTENT_CALLED = 1;
+    public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 12345;
 
     private AppCompatButton btn_sendreport, btn_insertfoto;
     private Button btn_dialog_gallery, btn_dialog_camera;
-    private EditText et_report_title, et_report_subtitle, et_report_address,et_report_description;
+    private EditText et_report_title, et_report_subtitle,et_report_description;
     private TextView tv_report_category;
     private Spinner category_spinner;
     private String categoryChoose;
@@ -59,13 +69,16 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
     private AlertDialog dialog;
     private ImageView iv_report;
     private String mCurrentPhotoPath;
+    private String  address;
     private SharedPreferences userInfo;
+    private PlaceAutocompleteFragment places;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_new_report,container,false);
         initViews(view);
+
         return view;
     }
 
@@ -87,7 +100,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         et_report_title       = view.findViewById(R.id.et_report_title);
         et_report_subtitle    = view.findViewById(R.id.et_report_subtitle);
         tv_report_category    = view.findViewById(R.id.tv_report_category);
-        et_report_address     = view.findViewById(R.id.et_report_address);
+     //   et_report_address     = view.findViewById(R.id.et_report_address);
         et_report_description = view.findViewById(R.id.et_report_description);
         iv_report             = view.findViewById(R.id.iv_report);
 
@@ -97,6 +110,32 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         btn_insertfoto.setOnClickListener(this);
 
         category_spinner.setOnItemSelectedListener(this);
+
+
+
+        PlaceAutocompleteFragment fragment = (PlaceAutocompleteFragment)
+                getChildFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        fragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i("Place", "Place: " + place.getName());
+
+                String placeDetailsStr = place.getAddress() + "\n";
+                address = placeDetailsStr;
+                Log.e("Address",  address);
+
+            }
+
+            @Override
+            public void onError(Status status) { // Handle the error
+                Log.i("Place", "An error occurred: " + status);
+            }
+        });
+
+
+
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -121,7 +160,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 String title = et_report_title.getText().toString();
                 String subtitle = et_report_subtitle.getText().toString();
                 String description = et_report_description.getText().toString();
-                String address = et_report_address.getText().toString();
+                //et_report_address.getText().toString();
 
                 if(categoryChoose != null) {
                     String category = categoryChoose;
@@ -151,7 +190,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                     Snackbar.make(getView(), "Category is empty !", Snackbar.LENGTH_LONG).show();
                 }
                 break;
-
         }
 
     }
@@ -203,7 +241,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                     }
                 }, 1500);
 
-
             }
 
             @Override
@@ -212,7 +249,6 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 progress.setVisibility(View.INVISIBLE);
                 Log.d(Constants.TAG,"failed");
                 Snackbar.make(getView(), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
-
 
             }
         });
