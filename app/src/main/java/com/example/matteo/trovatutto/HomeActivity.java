@@ -235,20 +235,23 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
-        reportList = new ArrayList<>();
-        adapter = new ReportAdapter(this, reportList);
-        recyclerView.setAdapter(adapter);
-        new DownloadReports().execute();
+        if(viewIsHome){
 
-        new Handler().postDelayed(new Runnable() {
+            reportList = new ArrayList<>();
+            adapter = new ReportAdapter(this, reportList);
+            recyclerView.setAdapter(adapter);
+            new DownloadReports().execute();
 
-            @Override
-            public void run() {
+            new Handler().postDelayed(new Runnable() {
 
-                new ShowReports().execute();
+                @Override
+                public void run() {
 
-            }
-        }, 500);
+                    new ShowReports().execute();
+
+                }
+            }, 500);
+        }
         super.onStart();
     }
 
