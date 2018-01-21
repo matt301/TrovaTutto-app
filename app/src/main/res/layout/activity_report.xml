@@ -245,7 +245,7 @@
                     android:text="@string/btn_rep_delete"
                     android:textColor="#ffffff"
                     android:textSize="24sp"
-                    android:background="#8e0000" />
+                    android:background="@color/colorPrimary" />
             </LinearLayout>
     </FrameLayout>
 </ScrollView>

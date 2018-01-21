@@ -229,7 +229,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             btn_dialog_camera =  view.findViewById(R.id.btn_dialog_camera);
 
             builder.setView(view);
-            builder.setTitle("@strings/utility_from");
+            builder.setTitle("From?");
             dialog = builder.create();
             dialog.show();
 
