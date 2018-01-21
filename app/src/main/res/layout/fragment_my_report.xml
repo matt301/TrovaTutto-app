@@ -20,7 +20,7 @@
     </FrameLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
+ <!--   <android.support.design.widget.FloatingActionButton
         android:id="@+id/my_fab_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +28,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/stat_notify_sync"
         tools:layout_editor_absoluteX="328dp"
-        tools:layout_editor_absoluteY="455dp" />
+        tools:layout_editor_absoluteY="455dp" /> -->
 
 </android.support.design.widget.CoordinatorLayout>

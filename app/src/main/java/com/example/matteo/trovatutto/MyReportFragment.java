@@ -81,7 +81,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         pref = getActivity().getSharedPreferences("userInfo",MODE_PRIVATE);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
-        updateMy = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
+  /*      updateMy = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
         rotate_360 = AnimationUtils.loadAnimation(this.getActivity(), R.anim.rotate_360);
         updateMy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +97,12 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
                 }, 1000);
 
             }
-        });
+        });*/
 
 
         myReportList = new ArrayList<>();
 
         new DownloadReports().execute();
-
 
         adapter = new ReportAdapter(view.getContext(), myReportList);
 

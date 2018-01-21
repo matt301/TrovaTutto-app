@@ -92,6 +92,7 @@ public class HomeActivity extends AppCompatActivity
     private MenuItem search;
     private float radius;
     private Geocoder geoCoder;
+    private Boolean showAll;
 
 
 
@@ -120,6 +121,9 @@ public class HomeActivity extends AppCompatActivity
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         radius = (preferences.getInt("seekbar_preference",0))*1000;
+
+        showAll = (preferences.getBoolean("ch_radius_preference",false));
+
 
         Log.e("radius",String.valueOf(radius));
 

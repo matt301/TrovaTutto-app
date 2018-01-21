@@ -3,16 +3,6 @@
     xmlns:sample="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="Privacy">
-
-        <CheckBoxPreference
-            android:key="ch_privacy_preference"
-            android:title="Show Telephone Number"
-            android:defaultValue="true"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="Radius Search">
 
         <SwitchPreference
