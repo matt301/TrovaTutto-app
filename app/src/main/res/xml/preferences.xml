@@ -17,7 +17,6 @@
             android:summary="@string/pref_summary"
             android:enabled="true"
             android:defaultValue="50"
-
             sample:msbp_minValue="1"
             sample:msbp_maxValue="200"
             sample:msbp_interval="5"

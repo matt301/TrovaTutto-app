@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TrovaTutto-app.iml" filepath="$PROJECT_DIR$/TrovaTutto-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TrovaTuttoApp.iml" filepath="$PROJECT_DIR$/TrovaTuttoApp.iml" />
+      <module fileurl="file://D:\Andrea\Documents\Universita\Android\Esame\TrovaTutto-app\TrovaTuttoApp.iml" filepath="D:\Andrea\Documents\Universita\Android\Esame\TrovaTutto-app\TrovaTuttoApp.iml" />
       <module fileurl="file://C:\Users\user\AndroidStudioProjects\TrovaTutto-app\TrovaTuttoApp.iml" filepath="C:\Users\user\AndroidStudioProjects\TrovaTutto-app\TrovaTuttoApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

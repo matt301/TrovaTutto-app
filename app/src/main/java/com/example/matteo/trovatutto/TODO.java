@@ -3,9 +3,6 @@ package com.example.matteo.trovatutto;
 /*
        TODO:   -Salvare contatto in rubrica    ☻
 
-       TODO:   -Aggiornamento segnalazioni totali e personali con "tirando verso il basso"
-
-
        TODO:   -Login Tramite G+
                 -- Se utente non esiste apre direttamente la pagina profilo
 

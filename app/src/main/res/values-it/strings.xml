@@ -85,7 +85,7 @@
     <!-- Preferences -->
 
     <string name="pref_title">Ricerca per raggio</string>
-    <string name="pref_subtitle1">Mostra tutti gli elementi</string>
+    <string name="pref_subtitle1">Mostra elementi in un raggio</string>
     <string name="pref_subtitle2">Scegli il raggio</string>
     <string name="pref_summary">Puoi scegliere il raggio degli elementi visualizzati</string>
 
