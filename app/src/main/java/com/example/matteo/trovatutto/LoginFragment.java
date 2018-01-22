@@ -238,6 +238,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                     editor.putString(Constants.NTEL,resp.getUser().getNtel());
                     editor.putString(Constants.ADDRESS,resp.getUser().getIndirizzo());
                     editor.putString(Constants.BIO,resp.getUser().getDescrizione());
+                    editor.putString(Constants.PROFILE_PHOTO,"https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/user-pic.png");
                     editor.apply();
                     goToHome();
 

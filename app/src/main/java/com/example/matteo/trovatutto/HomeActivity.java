@@ -666,12 +666,13 @@ public class HomeActivity extends AppCompatActivity
 
 
             default:
-                fragment = new HomeFragment();
+                fragment =null;
                 title = "Home";
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);
                 viewIsHome = true;
+                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 break;
         }
 
