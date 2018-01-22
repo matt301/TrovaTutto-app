@@ -610,11 +610,11 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_home:
                 fragment =null;
                 title = "Home";
-                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);
                 viewIsHome = true;
+                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 break;
             case R.id.nav_profilo:
               /*  fragment = new ProfileFragment();
@@ -649,12 +649,12 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 fragment=null;
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                 title = "Settings";
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
                 viewIsHome= false;
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                 break;
 
             case R.id.nav_logout:
