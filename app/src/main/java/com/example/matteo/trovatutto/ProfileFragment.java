@@ -15,9 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
@@ -38,6 +40,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private EditText et_new_nome,et_new_cognome,et_new_birthdate,et_new_ntel,et_new_address,et_new_description;
     private AlertDialog dialog;
     private ProgressBar progress;
+    private ImageView iv_photo;
 
 
     @Override
@@ -59,10 +62,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tv_address.setText(pref.getString(Constants.ADDRESS,""));
         tv_description.setText(pref.getString(Constants.BIO,""));
 
+        //TODO: glide
+        Glide.with(getActivity()).load(pref.getString(Constants.PROFILE_PHOTO,"")).into(iv_photo);
+
     }
 
     private void initViews(View view){
 
+        iv_photo = (ImageView) view.findViewById(R.id.avatar);//TODO: avatar
         tv_nome = (TextView)view.findViewById(R.id.tv_profile_nome);
         tv_email = (TextView)view.findViewById(R.id.tv_profile_email);
         tv_birthdate = (TextView)view.findViewById(R.id.tv_birthdate);
@@ -71,6 +78,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tv_description = (TextView)view.findViewById(R.id.tv_description);
         btn_change_password = (AppCompatButton)view.findViewById(R.id.btn_chg_password);
         btn_change_profile = (AppCompatButton)view.findViewById(R.id.btn_chg_profile);
+
 
 
 

@@ -89,7 +89,6 @@
     <string name="pref_summary">You can choose the radius of items visualized</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="key_seekbar_preference">seekbar_preference</string>
     <string name="title_activity_maps">Map</string>

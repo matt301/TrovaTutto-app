@@ -38,13 +38,12 @@
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_email"
                     android:hint="@string/tv_email"
-                    android:inputType="textEmailAddress"
-                   />
+                    android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
 

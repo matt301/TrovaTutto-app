@@ -115,14 +115,19 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
 
         geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        radius = (preferences.getInt("seekbar_preference",0))*1000;
 
-        showAll = (preferences.getBoolean("ch_radius_preference",false));
+        if( showAll = (preferences.getBoolean("ch_radius_preference",false)))
+            radius=40000000;
+        else
+            radius = (preferences.getInt("seekbar_preference",0))*1000;
+
+        //showAll = (preferences.getBoolean("ch_radius_preference",false));
 
 
         Log.e("radius",String.valueOf(radius));
@@ -239,6 +244,13 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
+
+        super.onStart();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         if(viewIsHome){
 
             reportList = new ArrayList<>();
@@ -256,12 +268,6 @@ public class HomeActivity extends AppCompatActivity
                 }
             }, 500);
         }
-        super.onStart();
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
 
         checkPlayServices();
 
@@ -602,15 +608,24 @@ public class HomeActivity extends AppCompatActivity
 
         switch (viewId) {
             case R.id.nav_home:
-                fragment = new HomeFragment();
+                fragment =null;
                 title = "Home";
+                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);
                 viewIsHome = true;
                 break;
             case R.id.nav_profilo:
-                fragment = new ProfileFragment();
+              /*  fragment = new ProfileFragment();
+                title = "Profile";
+                update.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.INVISIBLE);
+                search.setVisible(false);
+                viewIsHome= false;
+                break;
+                */
+                fragment=new LayoutProva();
                 title = "Profile";
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
@@ -672,8 +687,8 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
 
         // set the toolbar title
-        if (getActionBar() != null) {
-            getActionBar().setTitle(title);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
         }
 
 
