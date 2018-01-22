@@ -11,7 +11,7 @@
     <com.github.florent37.diagonallayout.DiagonalLayout
         android:id="@+id/diagonalLayout"
         android:layout_width="match_parent"
-        android:layout_height="266dp"
+        android:layout_height="300dp"
         diagonal:diagonal_angle="10"
         android:elevation="0dp"
         android:paddingBottom="16dp"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hugh Jackman"
+            android:id="@+id/tv_profile_nome"
             android:textColor="@android:color/white"
             android:layout_gravity="top|left"
             android:fontFamily="sans-serif-light"
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ACTOR"
+                android:text="USER"
                 android:textColor="@android:color/white"
                 android:layout_gravity="top|left"
                 android:textStyle="bold"
@@ -60,17 +60,7 @@
                 android:textSize="14sp"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PRODUCER"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:layout_gravity="top|left"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
-                android:textSize="14sp"
-                />
+
         </LinearLayout>
 
     </com.github.florent37.diagonallayout.DiagonalLayout>
@@ -82,7 +72,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="190dp"
         android:elevation="15dp"
-        android:background="@drawable/no_image"
+        android:background="@drawable/diagonallayout_circle"
         android:src="@drawable/no_image"/>
 
     <LinearLayout
@@ -116,7 +106,7 @@
                 android:text="Followers"
                 android:textColor="#3E3E3E"
                 android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="50dp"
                 android:textSize="14sp"/>
 
             <TextView
@@ -126,8 +116,9 @@
                 android:textStyle="bold"
                 android:textColor="#3E3E3E"
                 android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="50dp"
                 android:textSize="14sp"/>
+
 
         </LinearLayout>
 
@@ -162,6 +153,7 @@
 
     </LinearLayout>
 
+    <!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -170,6 +162,76 @@
         android:layout_marginRight="30dp"
         android:textColor="#717171"
         android:text="Ciao"/>
+     -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diagonalLayout"
+        android:layout_marginTop="320dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
+
+
+        <TextView
+            android:id="@+id/tv_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_birthdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_ntel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_chg_profile"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/button"
+            android:text="@string/edit_profile_btn"
+            android:textColor="@android:color/white" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_chg_password"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/button"
+            android:text="@string/change_password_btn"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

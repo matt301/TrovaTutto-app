@@ -91,6 +91,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="key_seekbar_preference">seekbar_preference</string>
+    <string name="ch_radius_preference">ch_radius_preference</string>
     <string name="title_activity_maps">Mappa</string>
 
 

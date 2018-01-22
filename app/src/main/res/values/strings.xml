@@ -90,7 +90,8 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="key_seekbar_preference">seekbar_preference</string>
+    <string name="key_seekbar_preference" translatable="false">seekbar_preference</string>
+    <string name="ch_radius_preference" translatable="false">ch_radius_preference</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_google_places_autocomplete">GooglePlacesAutocompleteActivity
     </string>

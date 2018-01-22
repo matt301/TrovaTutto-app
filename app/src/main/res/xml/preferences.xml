@@ -6,7 +6,7 @@
         android:title="@string/pref_title">
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="ch_radius_preference"
             android:title="@string/pref_subtitle1"
             />

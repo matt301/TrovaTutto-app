@@ -625,7 +625,7 @@ public class HomeActivity extends AppCompatActivity
                 viewIsHome= false;
                 break;
                 */
-                fragment=new LayoutProva();
+                fragment=new ProfileFragment();
                 title = "Profile";
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
