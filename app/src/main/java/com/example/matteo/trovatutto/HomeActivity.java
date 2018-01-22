@@ -617,14 +617,6 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 break;
             case R.id.nav_profilo:
-              /*  fragment = new ProfileFragment();
-                title = "Profile";
-                update.setVisibility(View.INVISIBLE);
-                recyclerView.setVisibility(View.INVISIBLE);
-                search.setVisible(false);
-                viewIsHome= false;
-                break;
-                */
                 fragment=new ProfileFragment();
                 title = "Profile";
                 update.setVisibility(View.INVISIBLE);
