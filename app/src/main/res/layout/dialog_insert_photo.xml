@@ -22,7 +22,7 @@
         android:paddingLeft="30dp"
         android:paddingRight="26dp"
         android:singleLine="true"
-        android:text="Gallery"
+        android:text="@string/d_insert_photo_gallery"
         android:textSize="24sp"
         android:background="#ffffff"/>
 
@@ -42,7 +42,7 @@
         android:paddingLeft="30dp"
         android:paddingRight="26dp"
         android:singleLine="true"
-        android:text="Camera"
+        android:text="@string/d_insert_photo_camera"
         android:textSize="24sp"
         android:background="#ffffff"/>
 

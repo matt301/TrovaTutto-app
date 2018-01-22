@@ -5,38 +5,43 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_home"
-            android:title="Home" />
+            android:title="@string/home_drawer_home" />
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_menu_profile"
-            android:title="Profile" />
+            android:title="@string/home_drawer_profile" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_setting"
+            android:title="@string/home_drawer_setting" />
 
     </group>
 
-    <item android:title="Reports">
+    <item android:title="@string/home_drawer_rep">
         <menu>
             <group
                android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_mie_segnalazioni"
                     android:icon="@drawable/ic_myreport"
-                    android:title="Show my reports" />
+                    android:title="@string/home_drawer_show_my_rep" />
                 <item
                     android:id="@+id/nav_add_segnalazioni"
                     android:icon="@drawable/ic_send"
-                    android:title="Send new report " />
+                    android:title="@string/home_drawer_send_rep" />
             </group>
         </menu>
     </item>
 
-    <item android:title="Logout">
+    <item android:title="@string/home_drawer_logout">
         <menu>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout"
-                android:title="Logout" />
+                android:title="@string/home_drawer_logout" />
 
         </menu>
     </item>
+
 
 </menu>

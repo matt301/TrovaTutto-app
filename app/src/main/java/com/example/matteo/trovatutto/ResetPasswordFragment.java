@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -219,6 +220,8 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     }
 
     private void goToLogin(){
+
+
 
         Fragment login = new LoginFragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();

@@ -5,6 +5,7 @@ public class Constants {
     public static final String BASE_URL                     = "http://130.251.61.30/";
     public static final String REGISTER_OPERATION           = "register";
     public static final String LOGIN_OPERATION              = "login";
+    public static final String LOGIN_GOOGLE_OPERATION       = "loginGoogle";
     public static final String CHANGE_PASSWORD_OPERATION    = "chgPass";
     public static final String CHANGE_PROFILE_OPERATION     = "chgProfile";
     public static final String RESET_PASSWORD_INITIATE      = "resPassReq";
@@ -13,6 +14,7 @@ public class Constants {
     public static final String DOWNLOAD_REPORTS             = "dlRep";
     public static final String DOWNLOAD_MY_REPORTS          = "dlMyRep";
     public static final String SHOW_PUBLIC_PROFILE          = "pubProf";
+    public static final String DELETE_REPORT                = "delRep";
 
 
     public static final String SUCCESS      = "success";

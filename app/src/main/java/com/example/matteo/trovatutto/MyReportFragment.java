@@ -17,6 +17,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.matteo.trovatutto.models.ReportAdapter;
 import com.example.matteo.trovatutto.models.Segnalazione;
@@ -44,6 +46,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
     private ArrayList<Segnalazione> reportList;
     private ArrayList<Segnalazione> myReportList;
     private SharedPreferences pref;
+    private Animation rotate_360;
     private View view;
     private FloatingActionButton updateMy;
 
@@ -53,21 +56,37 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my_report, container, false);
-
         return view;
     }
 
+
+    @Override
+    public void onResume(){
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                new DownloadReports().execute();
+
+            }
+        }, 500);
+
+        super.onResume();
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         pref = getActivity().getSharedPreferences("userInfo",MODE_PRIVATE);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
-        updateMy = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
+  /*      updateMy = (FloatingActionButton) view.findViewById(R.id.my_fab_update);
+        rotate_360 = AnimationUtils.loadAnimation(this.getActivity(), R.anim.rotate_360);
         updateMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateMy.startAnimation(rotate_360);
                 myReportList = new ArrayList<>();
                 new Handler().postDelayed(new Runnable() {
 
@@ -78,21 +97,20 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
                 }, 1000);
 
             }
-        });
+        });*/
 
 
         myReportList = new ArrayList<>();
 
+        new DownloadReports().execute();
+
         adapter = new ReportAdapter(view.getContext(), myReportList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);  // TODO: spanCount = numero di cards per riga
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);  //  spanCount = numero di cards per riga
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
-        new DownloadReports().execute();
-
 
     }
 
@@ -110,7 +128,7 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         @Override
         protected void onPostExecute(Void aVoid) {
             adapter.notifyDataSetChanged();
-            Snackbar.make(getActivity().findViewById(R.id.my_content_frame), "miei report", Snackbar.LENGTH_LONG).show();
+            //Snackbar.make(getActivity().findViewById(R.id.my_content_frame), "", Snackbar.LENGTH_LONG).show();
 
         }
 

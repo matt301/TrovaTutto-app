@@ -24,8 +24,6 @@
     <dimen name="ic_report_overflow_margin_end">10dp</dimen>
 
 
-
-
     <dimen name="tab_max_width">264dp</dimen>
     <dimen name="tab_padding_bottom">16dp</dimen>
     <dimen name="tab_label">14sp</dimen>

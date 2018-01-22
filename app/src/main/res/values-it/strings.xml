@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">TrovaTutto</string>
+    <string name="app_title">TrovaTutto</string>
+    <string name="title_activity_home">TrovaTutto</string>
+    <string name="navigation_drawer_open">Apri la barra di navigazione</string>
+    <string name="navigation_drawer_close">Chiudi la barra di navigazione</string>
+
+    <string name="search_item">Cerca un elemento</string>
+
+    <!-- Profile -->
+    <string name="edit_profile_btn">Modifica il profilo</string>
+    <string name="change_password_btn">Cambia Password</string>
+    <string name="user_name">Nome</string>
+    <string name="user_surname">Cognome</string>
+    <string name="user_birthday">Data di nascita(AAAA/MM/GG)</string>
+    <string name="user_address">Indirizzo</string>
+    <string name="user_phone">Numero di telefono</string>
+    <string name="user_bio">Biografia (Opzionale)</string>
+    <string name="user_register_btn">Registra</string>
+    <string name="user_already_registered">Già registrato? Vai al Login!</string>
+
+
+    <!-- Login & Forgot password -->
+    <string name="forgot_password">Password dimenticata</string>
+    <string name="not_registered_yet">Non sei ancora registrato? Vai alla registrazione!</string>
+    <string name="login_btn">Login</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_email">Email</string>
+    <string name="code_pass_forgot">Codice</string>
+    <string name="back_to_login">Torna indietro al Login</string>
+    <string name="loading">Caricamento...</string>
+
+
+    <!-- Report details -->
+    <string name="report_info_title">Titolo</string>
+    <string name="report_info_subtitle">Sottotitolo</string>
+    <string name="report_info_description">Descrizione</string>
+    <string name="report_info_address">Indirizzo</string>
+    <string name="report_info_author">Autore</string>
+    <string name="report_info_category">Categoria</string>
+    <string-array name="category_array">
+        <item>Effetti Personali</item>
+        <item>Dispositivi Elettronici</item>
+        <item>Libri</item>
+        <item>Gioielli</item>
+        <item>Vestiario</item>
+        <item>Documenti</item>
+        <item>Animali</item>
+        <item>Altro...</item>
+    </string-array>
+    <string name="insert_photo_btn">Inserisci una foto</string>
+    <string name="send_report_btn">Invia la Segnalazione</string>
+    <string name="btn_rep_delete">Elimina</string>
+
+
+    <!-- Change Password -->
+
+    <string name="d_change_password_old">Password precedente</string>
+    <string name="d_change_password_new">Nuova Password</string>
+
+
+    <!-- Insert Photo -->
+
+    <string name="d_insert_photo_gallery">Galleria</string>
+    <string name="d_insert_photo_camera">Fotocamera</string>
+
+
+
+    <!-- Utility-->
+
+    <string name="utility_from">Seleziona da</string>
+
+
+    <!-- Activity Home Drawer -->
+
+    <string name="home_drawer_home">Home</string>
+    <string name="home_drawer_profile">Profilo</string>
+    <string name="home_drawer_setting">Preferenze</string>
+    <string name="home_drawer_rep">Segnalazioni</string>
+    <string name="home_drawer_show_my_rep">Le mie segnalazioni</string>
+    <string name="home_drawer_send_rep">Invia nuova segnalazione</string>
+    <string name="home_drawer_logout">Esci</string>
+
+
+    <!-- Preferences -->
+
+    <string name="pref_title">Ricerca per raggio</string>
+    <string name="pref_subtitle1">Mostra tutti gli elementi</string>
+    <string name="pref_subtitle2">Scegli il raggio</string>
+    <string name="pref_summary">Puoi scegliere il raggio degli elementi visualizzati</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="key_seekbar_preference">seekbar_preference</string>
+    <string name="title_activity_maps">Mappa</string>
+
+
+</resources>

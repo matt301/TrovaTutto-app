@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0000a4</color>
+    <color name="colorPrimary">#a40000</color>
+    <color name="colorPrimaryDark">#330000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="bordeaux">#4c0000</color>
+    <color name="grey">#808080</color>
+    <color name="report_title">#4c4c4c</color>
+    <color name="button">#000000</color>
+
+
+   <!-- <color name="colorPrimary">#0000a4</color>
     <color name="colorPrimaryDark">#e7000d63</color>
     <color name="colorAccent">#08005a</color>
     <color name="grey">#808080</color>
-    <color name="report_title">#4c4c4c</color>
-
+    <color name="report_title">#4c4c4c</color>-->
 
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>

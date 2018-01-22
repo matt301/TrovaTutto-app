@@ -3,7 +3,7 @@ package com.example.matteo.trovatutto.models;
 
 public class Segnalazione {
 
-    private int id;
+    private String id;
     private String titolo;
     private String sottotitolo;
     private String categoria;
@@ -24,10 +24,10 @@ public class Segnalazione {
         this.autore = autore;
     }
 
-    public int getID() {
+    public String getID() {
         return id;
     }
-    public void setID(int id) {
+    public void setID(String id) {
         this.id=id;
     }
 

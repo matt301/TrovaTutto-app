@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sample="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/pref_title">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="ch_radius_preference"
+            android:title="@string/pref_subtitle1"
+            />
+
+        <com.pavelsikun.seekbarpreference.SeekBarPreference
+            android:key="seekbar_preference"
+            android:title="@string/pref_subtitle2"
+            android:summary="@string/pref_summary"
+            android:enabled="true"
+            android:defaultValue="50"
+
+            sample:msbp_minValue="1"
+            sample:msbp_maxValue="200"
+            sample:msbp_interval="5"
+            sample:msbp_measurementUnit="Km"
+            sample:msbp_dialogEnabled="true"/>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

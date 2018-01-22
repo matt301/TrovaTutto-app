@@ -12,7 +12,7 @@
     <string name="change_password_btn">Change Password</string>
     <string name="user_name">Name</string>
     <string name="user_surname">Surname</string>
-    <string name="user_birthday">Birthday</string>
+    <string name="user_birthday">Birthday(YYYY/MM/DD)</string>
     <string name="user_address">Address</string>
     <string name="user_phone">Phone number</string>
     <string name="user_bio">Biography(Optional)</string>
@@ -28,6 +28,7 @@
     <string name="tv_email">Email</string>
     <string name="code_pass_forgot">Code</string>
     <string name="back_to_login">Back to login</string>
+    <string name="loading">Loading…</string>
 
 
     <!-- Report details -->
@@ -38,23 +39,62 @@
     <string name="report_info_author">Author</string>
     <string name="report_info_category">Category</string>
     <string-array name="category_array">
-        <item>Effetti personali (leggilo in inglese)</item>
+        <item>Personal effects</item>
         <item>Electronic device</item>
         <item>Book</item>
-        <item>Jewel</item>
+        <item>Jewels</item>
         <item>Dress</item>
         <item>Documents</item>
-        <item>Animal</item>
-        <item>Ass</item>
+        <item>Animals</item>
         <item>Other...</item>
     </string-array>
     <string name="insert_photo_btn">Insert photo</string>
     <string name="send_report_btn">Send report</string>
+    <string name="btn_rep_delete">Delete</string>
+
+
+    <!-- Change Password -->
+
+    <string name="d_change_password_old">Old Password</string>
+    <string name="d_change_password_new">New Password</string>
+
+
+    <!-- Insert Photo -->
+
+    <string name="d_insert_photo_gallery">Gallery</string>
+    <string name="d_insert_photo_camera">Camera</string>
+
+
+    <!-- Utility-->
+
+    <string name="utility_from">Selected from</string>
+
+
+    <!-- Activity Home Drawer -->
+
+    <string name="home_drawer_home">Home</string>
+    <string name="home_drawer_profile">Profile</string>
+    <string name="home_drawer_setting">Settings</string>
+    <string name="home_drawer_rep">Reports</string>
+    <string name="home_drawer_show_my_rep">Show my reports</string>
+    <string name="home_drawer_send_rep">Send new report</string>
+    <string name="home_drawer_logout">Logout</string>
+
+
+    <!-- Preferences -->
+
+    <string name="pref_title">Radius Search</string>
+    <string name="pref_subtitle1">See all Items</string>
+    <string name="pref_subtitle2">Choose your radius</string>
+    <string name="pref_summary">You can choose the radius of items visualized</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello my nigga</string>
+    <string name="key_seekbar_preference">seekbar_preference</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_google_places_autocomplete">GooglePlacesAutocompleteActivity
+    </string>
 
 
 </resources>

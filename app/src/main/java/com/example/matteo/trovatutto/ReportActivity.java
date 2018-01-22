@@ -5,9 +5,12 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -18,8 +21,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.matteo.trovatutto.models.Segnalazione;
 import com.example.matteo.trovatutto.models.ServerRequest;
 import com.example.matteo.trovatutto.models.ServerResponse;
 import com.example.matteo.trovatutto.models.User;
@@ -41,16 +46,22 @@ public class ReportActivity extends AppCompatActivity {
     private ImageView image;
     private AlertDialog authorProfile;
     private ImageButton send_email,new_contact;
+    private AppCompatButton delete;
+    private SharedPreferences userInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+        userInfo = getSharedPreferences("userInfo",MODE_PRIVATE);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_report);
         toolbar.setTitle(getIntent().getStringArrayListExtra("info").get(0));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         report_title = (TextView) findViewById(R.id.reportACT_tv_title);
         report_title.setText(getIntent().getStringArrayListExtra("info").get(0));
@@ -70,6 +81,21 @@ public class ReportActivity extends AppCompatActivity {
         SpannableString content_aut = new SpannableString(getIntent().getStringArrayListExtra("info").get(4));
         content_aut.setSpan(new UnderlineSpan(), 0, content_aut.length(), 0);
         report_author.setText(content_aut);
+
+        delete = (AppCompatButton) findViewById(R.id.btn_rep_delete);
+
+        delete.setVisibility(View.GONE);
+
+        if(userInfo.getString(Constants.EMAIL,"").equals(report_author.getText().toString())){
+            delete.setVisibility(View.VISIBLE);
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteReport(userInfo.getString(Constants.EMAIL,""),getIntent().getStringArrayListExtra("info").get(5));
+                    goToHome();
+                }
+            });
+        }
 
 
         image = findViewById(R.id.reportACT_iv_image);
@@ -100,7 +126,9 @@ public class ReportActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ReportActivity.this, MapsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("ADDRESS",getIntent().getStringArrayListExtra("info").get(3).toString());
+                intent.putExtra                 ("ADDRESS",getIntent().getStringArrayListExtra("info").get(3).toString());
+                intent.putStringArrayListExtra  ("INFO",getIntent().getStringArrayListExtra("info"));
+                intent.putExtra                 ("IMAGE",getIntent().getStringExtra("immagine"));
                 startActivity(intent);
 
             }
@@ -117,12 +145,14 @@ public class ReportActivity extends AppCompatActivity {
                 LayoutInflater inflater = getLayoutInflater();
                 view = inflater.inflate(R.layout.dialog_public_profile, null);
 
-                author_name     = view.findViewById(R.id.tv_pp_author_name);
-                author_email    = view.findViewById(R.id.tv_pp_author_email);
-                author_ntel     = view.findViewById(R.id.tv_pp_author_ntel);
-                author_bio      = view.findViewById(R.id.tv_pp_author_description);
+                author_name     = (TextView)view.findViewById(R.id.tv_pp_author_name);
+                author_email    = (TextView)view.findViewById(R.id.tv_pp_author_email);
+                author_ntel     = (TextView)view.findViewById(R.id.tv_pp_author_ntel);
+                author_bio      = (TextView)view.findViewById(R.id.tv_pp_author_description);
                 send_email      = (ImageButton)view.findViewById(R.id.btn_pp_send_email);
                 new_contact     = (ImageButton)view.findViewById(R.id.btn_pp_new_contact);
+
+
 
                 showAuthorProfile(report_author.getText().toString());
 
@@ -130,12 +160,25 @@ public class ReportActivity extends AppCompatActivity {
                 send_email.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        String TO = author_email.getText().toString();
+
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.setData(Uri.parse("mailto:"));
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{TO});
+                        emailIntent.putExtra(Intent.EXTRA_TEXT   , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+ userInfo.getString(Constants.SURNAME,"") + ". I need to contact you for " + "\"" + report_title.getText().toString() + "\"");
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TrovaTutto: Report Ask for " + report_title.getText().toString());
+                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
                         Snackbar.make(findViewById(R.id.report_activity_layout),"Invia email", Snackbar.LENGTH_LONG).show();
                     }
                 });
                 new_contact.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        sendSMS();
 
                     }
                 });
@@ -190,6 +233,28 @@ public class ReportActivity extends AppCompatActivity {
     }
 
 
+    protected void sendSMS() {
+        Log.i("Send SMS", "");
+        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+
+        smsIntent.setData(Uri.parse("smsto:"));
+        smsIntent.setType("vnd.android-dir/mms-sms");
+        smsIntent.putExtra("address"  ,author_ntel.getText().toString() );
+        smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +". I need to contact you for "+ report_title.getText().toString()+"\"");
+
+        try {
+           startActivity(smsIntent);
+
+            finish();
+            Log.i("Finish sending SMS...", "");
+        }
+        catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(ReportActivity.this,
+                    "SMS failed, please try again later.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void goToHome() {
 
         Intent intent = new Intent(this, HomeActivity.class);
@@ -240,7 +305,7 @@ public class ReportActivity extends AppCompatActivity {
 
                 if(resp.getResult().equals(Constants.SUCCESS)){
 
-                    String nome = resp.getUser().getName() +' '+ resp.getUser().getCognome();
+                    String nome = resp.getUser().getName() +" "+ resp.getUser().getCognome();
                     String tel = resp.getUser().getNtel();
                     String desc = resp.getUser().getDescrizione();
                     author_name.setText(nome);
@@ -262,4 +327,57 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
+    private void deleteReport(String email, String id){
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+
+        Segnalazione report = new Segnalazione();
+        report.setID(id);
+        report.setAutore(email);
+
+        ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.DELETE_REPORT);
+        request.setSegnalazione(report);
+        final Call<ServerResponse> response = requestInterface.operation(request);
+
+        response.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+
+                if(resp.getResult().equals(Constants.SUCCESS)){
+                    Snackbar.make(findViewById(R.id.report_activity_layout), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                Log.d(TAG,"failed");
+                Snackbar.make(findViewById(R.id.report_activity_layout), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent openHome = new Intent(ReportActivity.this, HomeActivity.class);
+        startActivity(openHome);
+        this.finish();
+
+    }
 }
