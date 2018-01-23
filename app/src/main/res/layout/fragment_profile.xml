@@ -115,6 +115,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/diagonalLayout"
+        android:layout_marginTop="30dp"
         >
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_chg_profile"
@@ -126,18 +127,19 @@
             android:background="@drawable/buttonshape"
             android:text="@string/edit_profile_btn"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+           />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_chg_password"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
-
             android:layout_gravity="center_horizontal"
             android:background="@drawable/buttonshape"
             android:text="@string/change_password_btn"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+           />
 
 
     </LinearLayout>
@@ -164,55 +166,59 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#d6cccc"
-
         android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/tv_profile_email"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="24sp"
             android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/ic_email"/>
+            android:drawableRight="@drawable/ic_email"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:id="@+id/tv_birthdate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="24sp"
             android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/ic_bitrhday"/>
+            android:drawableRight="@drawable/ic_bitrhday"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:id="@+id/tv_ntel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="24sp"
             android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/ic_numerotel"/>
+            android:drawableRight="@drawable/ic_numerotel"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/ic_indirizzo"/>
+            android:drawableRight="@drawable/ic_indirizzo"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:id="@+id/tv_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/ic_description"/>
+            android:drawableRight="@drawable/ic_description"
+            android:layout_marginRight="20dp"/>
 
 
     </LinearLayout>
