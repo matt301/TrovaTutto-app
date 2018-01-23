@@ -190,7 +190,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
 
                 } else {
 
-                    Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.tv_reset_password:

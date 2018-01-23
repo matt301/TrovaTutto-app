@@ -80,7 +80,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
                         initiateResetPasswordProcess(email);
                     } else {
 
-                        Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getView(), getString(R.string.empty_fields), Snackbar.LENGTH_LONG).show();
                     }
                 } else {
 
@@ -92,7 +92,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
                         finishResetPasswordProcess(email,code,password);
                     } else {
 
-                        Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getView(), getString(R.string.empty_fields), Snackbar.LENGTH_LONG).show();
                     }
 
                 }
@@ -131,7 +131,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
                     et_code.setVisibility(View.VISIBLE);
                     et_password.setVisibility(View.VISIBLE);
                     tv_timer.setVisibility(View.VISIBLE);
-                    btn_reset.setText("Change Password");
+                    btn_reset.setText(getString(R.string.change_password_btn));
                     isResetInitiated = true;
                     startCountdownTimer();
 
@@ -209,11 +209,11 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
         countDownTimer = new CountDownTimer(300000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                tv_timer.setText("Time remaining : " + millisUntilFinished / 1000);
+                tv_timer.setText(getString(R.string.time_remaining) + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
-                Snackbar.make(getView(), "Time Out ! Request again to reset password.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getView(), getString(R.string.time_out), Snackbar.LENGTH_LONG).show();
                 goToLogin();
             }
         }.start();

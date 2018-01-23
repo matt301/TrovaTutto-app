@@ -122,6 +122,7 @@ public class HomeActivity extends AppCompatActivity
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 
+
         if( showAll = (preferences.getBoolean("ch_radius_preference",false)))
             radius=40000000;
         else
@@ -228,7 +229,7 @@ public class HomeActivity extends AppCompatActivity
                         PLAY_SERVICES_RESOLUTION_REQUEST).show();
             } else {
                 Toast.makeText(getApplicationContext(),
-                        "This device is not supported.", Toast.LENGTH_LONG)
+                        R.string.device_supp, Toast.LENGTH_LONG)
                         .show();
                 finish();
             }
@@ -284,7 +285,7 @@ public class HomeActivity extends AppCompatActivity
             }
 
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.back_again, Toast.LENGTH_SHORT).show();
 
 
             new Handler().postDelayed(new Runnable() {
@@ -339,7 +340,7 @@ public class HomeActivity extends AppCompatActivity
         protected void onPreExecute() {
 
             progressUpdate.setCancelable(false);
-            progressUpdate.setMessage("Loading reports ...");
+            progressUpdate.setMessage(getString(R.string.loading_reports));
             progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressUpdate.setProgress(0);
             progressUpdate.setMax(100);
@@ -365,7 +366,7 @@ public class HomeActivity extends AppCompatActivity
         protected void onPostExecute(Void aVoid) {
             progressUpdate.dismiss();
             adapter.notifyDataSetChanged();
-            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.drawer_layout), R.string.reports_updated, Snackbar.LENGTH_LONG).show();
 
         }
 

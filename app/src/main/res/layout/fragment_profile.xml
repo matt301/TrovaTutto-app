@@ -76,7 +76,7 @@
         android:src="@drawable/no_image"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/più"
+        android:id="@+id/piu"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="470dp"

@@ -5,8 +5,8 @@
     <PreferenceCategory
         android:title="@string/pref_title">
 
-        <SwitchPreference
-            android:defaultValue="false"
+        <CheckBoxPreference
+            android:checked="false"
             android:key="ch_radius_preference"
             android:title="@string/pref_subtitle1"
             />

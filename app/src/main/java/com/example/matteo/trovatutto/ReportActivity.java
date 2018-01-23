@@ -167,11 +167,11 @@ public class ReportActivity extends AppCompatActivity {
                         emailIntent.setData(Uri.parse("mailto:"));
                         emailIntent.setType("text/plain");
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{TO});
-                        emailIntent.putExtra(Intent.EXTRA_TEXT   , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+ userInfo.getString(Constants.SURNAME,"") + ". I need to contact you for " + "\"" + report_title.getText().toString() + "\"");
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TrovaTutto: Report Ask for " + report_title.getText().toString());
-                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                        emailIntent.putExtra(Intent.EXTRA_TEXT   , getString(R.string.hi)+ userInfo.getString(Constants.NAME,"") +" "+ userInfo.getString(Constants.SURNAME,"") + getString(R.string.need_to_contact) + "\"" + report_title.getText().toString() + "\"");
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject)+ report_title.getText().toString());
+                        startActivity(Intent.createChooser(emailIntent, getString(R.string.send_mail)));
 
-                        Snackbar.make(findViewById(R.id.report_activity_layout),"Invia email", Snackbar.LENGTH_LONG).show();
+
                     }
                 });
                 new_contact.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +185,7 @@ public class ReportActivity extends AppCompatActivity {
 
 
                 builder.setView(view);
-                builder.setTitle("Author");
+                builder.setTitle(getString(R.string.report_info_author));
                 builder.setIcon(R.drawable.ic_person);
                /* builder.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                     @Override
@@ -194,7 +194,7 @@ public class ReportActivity extends AppCompatActivity {
                     }
                 });
                 */
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.close_dialog, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         authorProfile.dismiss();
@@ -203,28 +203,7 @@ public class ReportActivity extends AppCompatActivity {
 
                 authorProfile = builder.create();
                 authorProfile.show();
-               /* authorProfile.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String new_nome         = et_new_nome.getText().toString();
-                        String new_cognome      = et_new_cognome.getText().toString();
-                        String new_address      = et_new_address.getText().toString();
-                        String new_birthdate    = et_new_birthdate.getText().toString();
-                        String new_ntel         = et_new_ntel.getText().toString();
-                        String new_description  = et_new_description.getText().toString();
 
-                        if (!new_nome.isEmpty() && !new_cognome.isEmpty()) {
-                            progress.setVisibility(View.VISIBLE);
-                            changeProfileProcess(pref.getString(Constants.EMAIL, ""), new_nome, new_cognome, new_address, new_birthdate, new_ntel, new_description);
-                        }
-                        else{
-                            tv_message.setVisibility(View.VISIBLE);
-                            tv_message.setText("Name o Surname are empty");
-                        }
-
-                    }
-                });
-                */
 
             }
         });
@@ -240,7 +219,7 @@ public class ReportActivity extends AppCompatActivity {
         smsIntent.setData(Uri.parse("smsto:"));
         smsIntent.setType("vnd.android-dir/mms-sms");
         smsIntent.putExtra("address"  ,author_ntel.getText().toString() );
-        smsIntent.putExtra("sms_body"  , "Hi, i'm "+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +". I need to contact you for "+ report_title.getText().toString()+"\"");
+        smsIntent.putExtra("sms_body"  , getString(R.string.hi)+ userInfo.getString(Constants.NAME,"") +" "+userInfo.getString(Constants.SURNAME,"") +getString(R.string.need_to_contact)+ report_title.getText().toString()+"\"");
 
         try {
            startActivity(smsIntent);
@@ -250,7 +229,7 @@ public class ReportActivity extends AppCompatActivity {
         }
         catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(ReportActivity.this,
-                    "SMS failed, please try again later.", Toast.LENGTH_SHORT).show();
+                    getString(R.string.sms_failed), Toast.LENGTH_SHORT).show();
         }
     }
 
