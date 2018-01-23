@@ -68,7 +68,9 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
             @Override
             public void run() {
 
-                new DownloadReports().execute();
+
+                adapter.notifyDataSetChanged();
+                //new DownloadReports().execute();
 
             }
         }, 500);

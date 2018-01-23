@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle(R.string.home_drawer_home);
 
         geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -244,7 +244,6 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
-
         super.onStart();
     }
 
@@ -253,9 +252,9 @@ public class HomeActivity extends AppCompatActivity
         super.onResume();
         if(viewIsHome){
 
-            reportList = new ArrayList<>();
-            adapter = new ReportAdapter(this, reportList);
-            recyclerView.setAdapter(adapter);
+                reportList = new ArrayList<>();
+                adapter = new ReportAdapter(this, reportList);
+                recyclerView.setAdapter(adapter);
             new DownloadReports().execute();
 
             new Handler().postDelayed(new Runnable() {
@@ -609,7 +608,7 @@ public class HomeActivity extends AppCompatActivity
         switch (viewId) {
             case R.id.nav_home:
                 fragment =null;
-                title = "Home";
+                title =getString(R.string.home_drawer_home);
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);
@@ -618,7 +617,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_profilo:
                 fragment=new ProfileFragment();
-                title = "Profile";
+                title = getString(R.string.home_drawer_profile);
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
@@ -626,14 +625,14 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_mie_segnalazioni:
                 fragment = new MyReportFragment();
-                title = "My Reports";
+                title = getString(R.string.home_drawer_show_my_rep);
                 update.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
                 viewIsHome= false;
                 break;
             case R.id.nav_add_segnalazioni:
                 fragment = new NewReportFragment();
-                title = "New Report";
+                title = getString(R.string.home_drawer_send_rep);
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
@@ -641,7 +640,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 fragment=null;
-                title = "Settings";
+                title = getString(R.string.home_drawer_setting);
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
@@ -659,7 +658,7 @@ public class HomeActivity extends AppCompatActivity
 
             default:
                 fragment =null;
-                title = "Home";
+                title = getString(R.string.home_drawer_home);
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);

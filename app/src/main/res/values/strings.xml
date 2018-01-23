@@ -72,7 +72,7 @@
 
     <!-- Activity Home Drawer -->
 
-    <string name="home_drawer_home">Items found</string>
+    <string name="home_drawer_home">Items founded</string>
     <string name="home_drawer_profile">Profile</string>
     <string name="home_drawer_setting">Settings</string>
     <string name="home_drawer_rep">Reports</string>
