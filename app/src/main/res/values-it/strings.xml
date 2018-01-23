@@ -73,7 +73,7 @@
 
     <!-- Activity Home Drawer -->
 
-    <string name="home_drawer_home">Home</string>
+    <string name="home_drawer_home">Oggetti ritrovati</string>
     <string name="home_drawer_profile">Profilo</string>
     <string name="home_drawer_setting">Preferenze</string>
     <string name="home_drawer_rep">Segnalazioni</string>
