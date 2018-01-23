@@ -84,7 +84,7 @@
     <!-- Preferences -->
 
     <string name="pref_title">Radius Search</string>
-    <string name="pref_subtitle1">See all Items</string>
+    <string name="pref_subtitle1">See all Items, max radius</string>
     <string name="pref_subtitle2">Choose your radius</string>
     <string name="pref_summary">You can choose the radius of items visualized</string>
 

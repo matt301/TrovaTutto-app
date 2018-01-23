@@ -85,7 +85,7 @@
     <!-- Preferences -->
 
     <string name="pref_title">Ricerca per raggio</string>
-    <string name="pref_subtitle1">Mostra tutte le segnalazioni</string>
+    <string name="pref_subtitle1">Mostra tutte le segnalazioni, raggio massimo</string>
     <string name="pref_subtitle2">Scegli il raggio</string>
     <string name="pref_summary">Puoi scegliere il raggio degli elementi visualizzati</string>
 
