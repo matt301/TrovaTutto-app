@@ -158,9 +158,11 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
-                android:background="#0c0c0c"
+
                 android:text="@string/insert_photo_btn"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:background="@drawable/buttonshape"
+                />
 
 
             <ProgressBar
