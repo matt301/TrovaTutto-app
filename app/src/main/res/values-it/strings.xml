@@ -29,7 +29,7 @@
     <string name="code_pass_forgot">Codice</string>
     <string name="back_to_login">Torna indietro al Login</string>
     <string name="loading">Caricamento...</string>
-    <string name="empty_fields">I campi sono vuoti!</string>
+
 
 
     <!--Home Activity-->
@@ -38,9 +38,6 @@
     <string name="loading_reports">Caricamento Segnalazioni...</string>
     <string name="reports_updated">Segnalazioni Aggiornate !</string>
     <string name="logged_out">Logged out</string>
-
-
-
 
     <!-- Report details -->
     <string name="report_info_title">Titolo</string>
@@ -68,6 +65,8 @@
 
     <string name="d_change_password_old">Password precedente</string>
     <string name="d_change_password_new">Nuova Password</string>
+    <string name="time_remaining">Tempo rimanente : </string>
+    <string name="time_out">Tempo terminato! Richiedi nuovamente la password per resettarla</string>
 
 
     <!-- Insert Photo -->
@@ -79,10 +78,12 @@
     <string name="photo_not_taken">Non hai scattato nessuna foto!</string>
 
 
+
     <!-- Utility-->
 
     <string name="utility_from">Seleziona da</string>
     <string name="close_dialog">Chiudi</string>
+    <string name="empty_fields">I campi sono vuoti!</string>
     <string name="apply">Applica</string>
 
     <!-- Activity Home Drawer -->
@@ -102,14 +103,20 @@
     <string name="pref_subtitle1">Mostra tutte le segnalazioni</string>
     <string name="pref_subtitle2">Ricerca per raggio</string>
     <string name="pref_summary">Puoi scegliere il raggio degli elementi visualizzati</string>
-
-
     <string name="key_seekbar_preference">seekbar_preference</string>
     <string name="ch_radius_preference">ch_radius_preference</string>
     <string name="title_activity_maps">Mappa</string>
+    <string name="title_activity_google_places_autocomplete">GooglePlacesAutocompleteActivity</string>
 
     <!-- Maps -->
     <string name="wrong_address_title">Indirizzo Errato</string>
     <string name="wrong_address_message">L\'indirizzo non è corretto!!</string>
+
+    <!-- Email -->
+    <string name="hi">Ciao! Sono </string>
+    <string name="need_to_contact">. Ho bisogno di contattarti per </string>
+    <string name="subject">TrovaTutto: Report richiesto </string>
+    <string name="send_mail">Invio Email...</string>
+    <string name="sms_failed">SMS fallito, riprova nuovamente dopo</string>
 
 </resources>
