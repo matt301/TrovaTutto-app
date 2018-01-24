@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,7 +63,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tv_ntel.setText(pref.getString(Constants.NTEL,""));
         tv_address.setText(pref.getString(Constants.ADDRESS,""));
         tv_description.setText(pref.getString(Constants.BIO,""));
-
 
         Glide.with(getActivity()).load(pref.getString(Constants.PROFILE_PHOTO,"")).into(iv_photo);
 
@@ -206,6 +206,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
 
             case R.id.piu:
+
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.home_drawer_send_rep);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.content_frame, new NewReportFragment()).commit();

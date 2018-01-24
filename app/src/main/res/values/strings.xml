@@ -85,6 +85,7 @@
     <string name="close_dialog">Close</string>
     <string name="empty_fields">Fields are empty!</string>
     <string name="apply">Apply</string>
+    <string name="no_reports_found">No reports founded</string>
 
     <!-- Activity Home Drawer -->
 

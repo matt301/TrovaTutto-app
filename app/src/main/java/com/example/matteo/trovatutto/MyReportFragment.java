@@ -70,6 +70,8 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
 
 
                 adapter.notifyDataSetChanged();
+                if(myReportList.isEmpty())
+                    Snackbar.make(getView(),getString(R.string.no_reports_found), Snackbar.LENGTH_LONG).show();
                 //new DownloadReports().execute();
 
             }
