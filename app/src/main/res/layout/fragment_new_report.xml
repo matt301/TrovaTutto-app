@@ -24,11 +24,16 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/titolo" />
+                android:fontFamily="@font/days_one"
+                android:text="@string/new_item"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="45sp"
+                />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

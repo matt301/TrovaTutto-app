@@ -85,6 +85,7 @@
     <string name="close_dialog">Chiudi</string>
     <string name="empty_fields">I campi sono vuoti!</string>
     <string name="apply">Applica</string>
+    <string name="new_item">Nuova Segnalazione</string>
     <string name="no_reports_found">Nessuna segnalazione trovata</string>
 
     <!-- Activity Home Drawer -->
