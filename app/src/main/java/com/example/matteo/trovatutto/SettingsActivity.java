@@ -50,17 +50,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity{
 
             showAll = (CheckBoxPreference) findPreference("ch_radius_preference");
             radiusSeekbar = (SeekBarPreference) findPreference("seekbar_preference");
-
-
+            if (showAll.isChecked()) {
+                radiusSeekbar.setEnabled(false);
+            }
 
             showAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
 
-                    if (showAll.isChecked())
+                    if (showAll.isChecked()) {
                         radiusSeekbar.setEnabled(false);
-                    else
+                    }
+
+                    else{
                         radiusSeekbar.setEnabled(true);
+                    }
+
                     return true;
                 }
             });
