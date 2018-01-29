@@ -2,13 +2,16 @@ package com.example.matteo.trovatutto;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+
 
 import android.preference.SwitchPreference;
 import android.support.v4.view.GravityCompat;
@@ -19,31 +22,60 @@ import android.widget.Toast;
 
 import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
-public class SettingsActivity extends AppCompatPreferenceActivity {
-    private static final String TAG = SettingsActivity.class.getSimpleName();
+import java.util.prefs.Preferences;
 
+public class SettingsActivity extends AppCompatPreferenceActivity{
+    private static final String TAG = SettingsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.home_drawer_setting);
+
 
         // load settings fragment
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MainPreferenceFragment()).commit();
     }
 
     public static class MainPreferenceFragment extends PreferenceFragment {
+        private SeekBarPreference radiusSeekbar;
+        private CheckBoxPreference showAll;
+
+
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
 
-            // seekbar change listener
-            //bindPreferenceSummaryToValue(findPreference(getString(R.string.key_seekbar_preference)));
+            showAll = (CheckBoxPreference) findPreference("ch_radius_preference");
+            radiusSeekbar = (SeekBarPreference) findPreference("seekbar_preference");
+            if (showAll.isChecked()) {
+                radiusSeekbar.setEnabled(false);
+            }
+
+            showAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+
+                    if (showAll.isChecked()) {
+                        radiusSeekbar.setEnabled(false);
+                    }
+
+                    else{
+                        radiusSeekbar.setEnabled(true);
+                    }
+
+                    return true;
+                }
+            });
+
 
 
         }
     }
+
+
     private void goToHome() {
 
         Intent intent = new Intent(this, HomeActivity.class);
@@ -65,45 +97,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
-/*
-    private static void bindPreferenceSummaryToValue(Preference preference) {
-        preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                PreferenceManager
-                        .getDefaultSharedPreferences(preference.getContext())
-                        .getInt(preference.getKey(), 0));
-    }
 
-    /**
-     * A preference value change listener that updates the preference's summary
-     * to reflect its new value.
-
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            String stringValue = newValue.toString();
-
-            if (preference instanceof ListPreference) {
-                // For list preferences, look up the correct display value in
-                // the preference's 'entries' list.
-                ListPreference listPreference = (ListPreference) preference;
-                int index = listPreference.findIndexOfValue(stringValue);
-
-                // Set the summary to reflect the new value.
-                preference.setSummary(
-                        index >= 0
-                                ? listPreference.getEntries()[index]
-                                : null);
-
-            }
-            else {
-                preference.setSummary(stringValue);
-            }
-            return true;
-        }
-    };
-*/
     @Override
     public void onBackPressed() {
         Intent openHome = new Intent(SettingsActivity.this, HomeActivity.class);

@@ -115,14 +115,20 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.home_drawer_home);
 
         geoCoder = new Geocoder(HomeActivity.this, Locale.getDefault());
         pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        radius = (preferences.getInt("seekbar_preference",0))*1000;
 
-        showAll = (preferences.getBoolean("ch_radius_preference",false));
+
+        if( showAll = (preferences.getBoolean("ch_radius_preference",false)))
+            radius=40000000;
+        else
+            radius = (preferences.getInt("seekbar_preference",0))*1000;
+
+        //showAll = (preferences.getBoolean("ch_radius_preference",false));
 
 
         Log.e("radius",String.valueOf(radius));
@@ -223,7 +229,7 @@ public class HomeActivity extends AppCompatActivity
                         PLAY_SERVICES_RESOLUTION_REQUEST).show();
             } else {
                 Toast.makeText(getApplicationContext(),
-                        "This device is not supported.", Toast.LENGTH_LONG)
+                        R.string.device_supp, Toast.LENGTH_LONG)
                         .show();
                 finish();
             }
@@ -239,11 +245,17 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
+        super.onStart();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         if(viewIsHome){
 
-            reportList = new ArrayList<>();
-            adapter = new ReportAdapter(this, reportList);
-            recyclerView.setAdapter(adapter);
+                reportList = new ArrayList<>();
+                adapter = new ReportAdapter(this, reportList);
+                recyclerView.setAdapter(adapter);
             new DownloadReports().execute();
 
             new Handler().postDelayed(new Runnable() {
@@ -256,12 +268,6 @@ public class HomeActivity extends AppCompatActivity
                 }
             }, 500);
         }
-        super.onStart();
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
 
         checkPlayServices();
 
@@ -279,7 +285,7 @@ public class HomeActivity extends AppCompatActivity
             }
 
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.back_again, Toast.LENGTH_SHORT).show();
 
 
             new Handler().postDelayed(new Runnable() {
@@ -334,7 +340,7 @@ public class HomeActivity extends AppCompatActivity
         protected void onPreExecute() {
 
             progressUpdate.setCancelable(false);
-            progressUpdate.setMessage("Loading reports ...");
+            progressUpdate.setMessage(getString(R.string.loading_reports));
             progressUpdate.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressUpdate.setProgress(0);
             progressUpdate.setMax(100);
@@ -360,7 +366,7 @@ public class HomeActivity extends AppCompatActivity
         protected void onPostExecute(Void aVoid) {
             progressUpdate.dismiss();
             adapter.notifyDataSetChanged();
-            Snackbar.make(findViewById(R.id.drawer_layout), "Reports Updated !", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.drawer_layout), R.string.reports_updated, Snackbar.LENGTH_LONG).show();
 
         }
 
@@ -602,16 +608,17 @@ public class HomeActivity extends AppCompatActivity
 
         switch (viewId) {
             case R.id.nav_home:
-                fragment = new HomeFragment();
-                title = "Home";
+                fragment =null;
+                title =getString(R.string.home_drawer_home);
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);
                 viewIsHome = true;
+                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 break;
             case R.id.nav_profilo:
-                fragment = new ProfileFragment();
-                title = "Profile";
+                fragment=new ProfileFragment();
+                title = getString(R.string.home_drawer_profile);
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
@@ -619,14 +626,14 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_mie_segnalazioni:
                 fragment = new MyReportFragment();
-                title = "My Reports";
+                title = getString(R.string.home_drawer_show_my_rep);
                 update.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
                 viewIsHome= false;
                 break;
             case R.id.nav_add_segnalazioni:
                 fragment = new NewReportFragment();
-                title = "New Report";
+                title = getString(R.string.home_drawer_send_rep);
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
@@ -634,12 +641,12 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 fragment=null;
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
-                title = "Settings";
+                title = getString(R.string.home_drawer_setting);
                 update.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
                 search.setVisible(false);
                 viewIsHome= false;
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                 break;
 
             case R.id.nav_logout:
@@ -651,12 +658,13 @@ public class HomeActivity extends AppCompatActivity
 
 
             default:
-                fragment = new HomeFragment();
-                title = "Home";
+                fragment =null;
+                title = getString(R.string.home_drawer_home);
                 recyclerView.setVisibility(View.VISIBLE);
                 update.setVisibility(View.VISIBLE);
                 search.setVisible(true);
                 viewIsHome = true;
+                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 break;
         }
 
@@ -672,8 +680,8 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
 
         // set the toolbar title
-        if (getActionBar() != null) {
-            getActionBar().setTitle(title);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
         }
 
 

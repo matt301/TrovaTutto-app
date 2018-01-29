@@ -68,7 +68,11 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
             @Override
             public void run() {
 
-                new DownloadReports().execute();
+
+                adapter.notifyDataSetChanged();
+                if(myReportList.isEmpty())
+                    Snackbar.make(getView(),getString(R.string.no_reports_found), Snackbar.LENGTH_LONG).show();
+                //new DownloadReports().execute();
 
             }
         }, 500);
@@ -113,7 +117,6 @@ public class MyReportFragment extends Fragment  implements View.OnClickListener 
         recyclerView.setAdapter(adapter);
 
     }
-
 
 
     private class DownloadReports extends AsyncTask<Void, Void, Void> {

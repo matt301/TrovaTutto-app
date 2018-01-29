@@ -28,6 +28,7 @@ public class Constants {
     public static final String NTEL         = "ntel";
     public static final String ADDRESS      = "indirizzo";
     public static final String BIO          = "descrizione";
+    public static final String PROFILE_PHOTO          = "fotoprofilo";
 
     public static final String REPORT_TITLE         = "titolo";
     public static final String REPORT_SUBTITLE      = "sottotitolo";

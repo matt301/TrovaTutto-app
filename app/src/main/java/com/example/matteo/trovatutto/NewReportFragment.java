@@ -119,7 +119,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
         fragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
+
                 Log.i("Place", "Place: " + place.getName());
 
                 String placeDetailsStr = place.getAddress() + "\n";
@@ -181,13 +181,13 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
 
                         } else {
 
-                            Snackbar.make(getView(), "Fields are empty ", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
                         }
                     }else{
-                        Snackbar.make(getView(), "Immage is empty !", Snackbar.LENGTH_LONG).show();
+
                     }
                 } else {
-                    Snackbar.make(getView(), "Category is empty !", Snackbar.LENGTH_LONG).show();
+
                 }
                 break;
         }
@@ -265,7 +265,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
             btn_dialog_camera =  view.findViewById(R.id.btn_dialog_camera);
 
             builder.setView(view);
-            builder.setTitle("From?");
+            builder.setTitle(getString(R.string.from));
             dialog = builder.create();
             dialog.show();
 
@@ -312,7 +312,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 Uri imageUri = data.getData();
                 iv_report.setImageURI(imageUri);
             } else {
-                Snackbar.make(this.getView(), "You haven't picked Image", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(this.getView(), R.string.image_not_picked, Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         }
 
@@ -324,7 +324,7 @@ public class NewReportFragment extends Fragment  implements View.OnClickListener
                 iv_report.setImageBitmap(imageBitmap);
 
             } else {
-                Snackbar.make(this.getView(), "You haven't made a photo", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(this.getView(), R.string.photo_not_taken, Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
             }
 

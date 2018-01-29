@@ -105,8 +105,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
 
-            builder.setTitle("Wrong Address").setMessage("The address isn't correct!!");
-            builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            builder.setTitle(getString(R.string.wrong_address_title)).setMessage(getString(R.string.wrong_address_message));
+            builder.setNegativeButton(R.string.close_dialog, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 

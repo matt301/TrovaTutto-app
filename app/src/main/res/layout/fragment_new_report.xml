@@ -24,11 +24,16 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/titolo" />
+                android:fontFamily="@font/days_one"
+                android:text="@string/new_item"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="45sp"
+                />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -140,14 +145,11 @@
 
             </android.support.design.widget.TextInputLayout>
 
-
-
-
-
             <ImageView
                 android:id="@+id/iv_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/im_border"
@@ -160,10 +162,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:layout_marginTop="8dp"
-                android:background="#0c0c0c"
+                android:layout_marginTop="20dp"
+
                 android:text="@string/insert_photo_btn"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:background="@drawable/buttonshape"
+                />
 
 
             <ProgressBar
@@ -183,7 +187,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="30dp"
-                android:background="@color/button"
+                android:background="@drawable/buttonshape"
                 android:text="@string/send_report_btn"
                 android:textColor="@android:color/white" />
 

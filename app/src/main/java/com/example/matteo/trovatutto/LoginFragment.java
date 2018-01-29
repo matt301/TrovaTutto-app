@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -189,7 +190,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
 
                 } else {
 
-                    Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.tv_reset_password:
@@ -237,6 +238,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                     editor.putString(Constants.NTEL,resp.getUser().getNtel());
                     editor.putString(Constants.ADDRESS,resp.getUser().getIndirizzo());
                     editor.putString(Constants.BIO,resp.getUser().getDescrizione());
+                    editor.putString(Constants.PROFILE_PHOTO,"https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/user-pic.png");
                     editor.apply();
                     goToHome();
 
@@ -256,7 +258,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
     }
 
 
-    private void loginGoogleProcess(String email, String Nome, String Cognome){
+    private void loginGoogleProcess(String email, String Nome, String Cognome, final Uri foto){
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -297,6 +299,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                     editor.putString(Constants.NTEL,resp.getUser().getNtel());
                     editor.putString(Constants.ADDRESS,resp.getUser().getIndirizzo());
                     editor.putString(Constants.BIO,resp.getUser().getDescrizione());
+                    if(foto!=null)
+                        editor.putString(Constants.PROFILE_PHOTO,foto.toString());
+                    else
+                        editor.putString(Constants.PROFILE_PHOTO,"https://webdev.dibris.unige.it/~S4094311/TROVATUTTO/img/user-pic.png");
                     editor.apply();
                     goToHome();
 
@@ -360,7 +366,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            loginGoogleProcess( result.getSignInAccount().getEmail(),  result.getSignInAccount().getGivenName(), result.getSignInAccount().getFamilyName());
+            loginGoogleProcess( result.getSignInAccount().getEmail(),  result.getSignInAccount().getGivenName(), result.getSignInAccount().getFamilyName(), result.getSignInAccount().getPhotoUrl());
         } else {
             // Signed out, show unauthenticated UI.
 

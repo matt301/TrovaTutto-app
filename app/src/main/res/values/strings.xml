@@ -18,7 +18,7 @@
     <string name="user_bio">Biography(Optional)</string>
     <string name="user_register_btn">Register</string>
     <string name="user_already_registered">Already registered ? Login Now !</string>
-
+    <string name="empty_name">Name o Surname are empty</string>
 
     <!-- Login & Forgot password -->
     <string name="forgot_password">Forgot Password</string>
@@ -30,6 +30,14 @@
     <string name="back_to_login">Back to login</string>
     <string name="loading">Loading…</string>
 
+
+
+    <!--Home Activity-->
+    <string name="device_supp">This device is not supported</string>
+    <string name="back_again">Please click BACK again to exit</string>
+    <string name="loading_reports">Loading Reports...</string>
+    <string name="reports_updated">Reports Updated !</string>
+    <string name="logged_out">Logged out</string>
 
     <!-- Report details -->
     <string name="report_info_title">Title</string>
@@ -57,22 +65,32 @@
 
     <string name="d_change_password_old">Old Password</string>
     <string name="d_change_password_new">New Password</string>
+    <string name="time_remaining">Time remaining : </string>
+    <string name="time_out">Time Out ! Request again to reset password</string>
 
 
     <!-- Insert Photo -->
 
     <string name="d_insert_photo_gallery">Gallery</string>
     <string name="d_insert_photo_camera">Camera</string>
+    <string name="from">Select From</string>
+    <string name="image_not_picked">You don\'t picked an image!</string>
+    <string name="photo_not_taken">You don\'t take a photo!</string>
+
 
 
     <!-- Utility-->
 
     <string name="utility_from">Selected from</string>
-
+    <string name="close_dialog">Close</string>
+    <string name="empty_fields">Fields are empty!</string>
+    <string name="apply">Apply</string>
+    <string name="new_item">New Report</string>
+    <string name="no_reports_found">No reports found</string>
 
     <!-- Activity Home Drawer -->
 
-    <string name="home_drawer_home">Home</string>
+    <string name="home_drawer_home">Items found</string>
     <string name="home_drawer_profile">Profile</string>
     <string name="home_drawer_setting">Settings</string>
     <string name="home_drawer_rep">Reports</string>
@@ -83,18 +101,24 @@
 
     <!-- Preferences -->
 
-    <string name="pref_title">Radius Search</string>
+    <string name="pref_title">Search</string>
     <string name="pref_subtitle1">See all Items</string>
-    <string name="pref_subtitle2">Choose your radius</string>
+    <string name="pref_subtitle2">Search by radius</string>
     <string name="pref_summary">You can choose the radius of items visualized</string>
-
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="key_seekbar_preference">seekbar_preference</string>
+    <string name="key_seekbar_preference" translatable="false">seekbar_preference</string>
+    <string name="ch_radius_preference" translatable="false">ch_radius_preference</string>
     <string name="title_activity_maps">Map</string>
-    <string name="title_activity_google_places_autocomplete">GooglePlacesAutocompleteActivity
-    </string>
+    <string name="title_activity_google_places_autocomplete">GooglePlacesAutocompleteActivity</string>
 
+    <!-- Maps -->
+    <string name="wrong_address_title">Wrong Address</string>
+    <string name="wrong_address_message">The address isn\'t correct!!</string>
+
+    <!-- Email -->
+    <string name="hi">Hi! I\'m </string>
+    <string name="need_to_contact">. I need to contact you for </string>
+    <string name="subject">TrovaTutto: Report Ask for </string>
+    <string name="send_mail">Send Mail...</string>
+    <string name="sms_failed">SMS failed, please try again later</string>
 
 </resources>
